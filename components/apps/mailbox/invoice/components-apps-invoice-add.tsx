@@ -6,6 +6,7 @@ import IconSend from '@/components/icon/icon-send';
 import IconX from '@/components/icon/icon-x';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import AppButton from '@/components/ui/app-button';
 
 const ComponentsAppsInvoiceAdd = () => {
     const currencyList = ['USD - US Dollar', 'GBP - British Pound', 'IDR - Indonesian Rupiah', 'INR - Indian Rupee', 'BRL - Brazilian Real', 'EUR - Germany (Euro)', 'TRY - Turkish Lira'];
@@ -401,9 +402,7 @@ const ComponentsAppsInvoiceAdd = () => {
                                             </td>
                                             <td>${item.quantity * item.amount}</td>
                                             <td>
-                                                <button type="button" onClick={() => removeItem(item)}>
-                                                    <IconX className="h-5 w-5" />
-                                                </button>
+                                                <AppButton type="text" size="small" shape="circle" icon={<IconX className="h-5 w-5" />} onClick={() => removeItem(item)} />
                                             </td>
                                         </tr>
                                     );
@@ -413,9 +412,9 @@ const ComponentsAppsInvoiceAdd = () => {
                     </div>
                     <div className="mt-6 flex flex-col justify-between px-4 sm:flex-row">
                         <div className="mb-6 sm:mb-0">
-                            <button type="button" className="btn btn-primary" onClick={() => addItem()}>
+                            <AppButton type="primary" onClick={() => addItem()}>
                                 Add Item
-                            </button>
+                            </AppButton>
                         </div>
                         <div className="sm:w-2/5">
                             <div className="flex items-center justify-between">
@@ -484,25 +483,22 @@ const ComponentsAppsInvoiceAdd = () => {
                 </div>
                 <div className="panel">
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
-                        <button type="button" className="btn btn-success w-full gap-2">
-                            <IconSave className="shrink-0 ltr:mr-2 rtl:ml-2" />
+                        <AppButton tone="success" variant="solid" block icon={<IconSave className="shrink-0" />}>
                             Save
-                        </button>
+                        </AppButton>
 
-                        <button type="button" className="btn btn-info w-full gap-2">
-                            <IconSend className="shrink-0 ltr:mr-2 rtl:ml-2" />
+                        <AppButton tone="info" variant="solid" block icon={<IconSend className="shrink-0" />}>
                             Send Invoice
-                        </button>
+                        </AppButton>
 
                         <Link href="/apps/invoice/preview" className="btn btn-primary w-full gap-2">
                             <IconEye className="shrink-0 ltr:mr-2 rtl:ml-2" />
                             Preview
                         </Link>
 
-                        <button type="button" className="btn btn-secondary w-full gap-2">
-                            <IconDownload className="shrink-0 ltr:mr-2 rtl:ml-2" />
+                        <AppButton tone="secondary" variant="solid" block icon={<IconDownload className="shrink-0" />}>
                             Download
-                        </button>
+                        </AppButton>
                     </div>
                 </div>
             </div>

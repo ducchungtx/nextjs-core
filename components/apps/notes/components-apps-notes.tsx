@@ -17,6 +17,7 @@ import { Transition, Dialog, DialogPanel, TransitionChild } from '@headlessui/re
 import { message } from 'antd';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useThemeStore } from '@/store/useThemeStore';
+import AppButton from '@/components/ui/app-button';
 
 const ComponentsAppsNotes = () => {
     const [notesList, setNoteList] = useState([
@@ -395,87 +396,92 @@ const ComponentsAppsNotes = () => {
                         <div className="my-4 h-px w-full border-b border-white-light dark:border-[#1b2e4b]"></div>
                         <PerfectScrollbar className="relative h-full grow ltr:-mr-3.5 ltr:pr-3.5 rtl:-ml-3.5 rtl:pl-3.5">
                             <div className="space-y-1">
-                                <button
-                                    type="button"
-                                    className={`flex h-10 w-full items-center justify-between rounded-md p-2 font-medium hover:bg-white-dark/10 hover:text-primary dark:hover:bg-[#181F32] dark:hover:text-primary ${
-                                        selectedTab === 'all' && 'bg-gray-100 text-primary dark:bg-[#181F32] dark:text-primary'
+                                <AppButton
+                                    type="text"
+                                    block
+                                    align="start"
+                                    className={`h-10! px-2! font-medium! hover:bg-white-dark/10! hover:text-primary! dark:hover:bg-[#181F32]! dark:hover:text-primary! ${
+                                        selectedTab === 'all' ? 'bg-gray-100! text-primary! dark:bg-[#181F32]! dark:text-primary!' : ''
                                     }`}
+                                    icon={<IconNotesEdit className="shrink-0" />}
                                     onClick={() => tabChanged('all')}
                                 >
-                                    <div className="flex items-center">
-                                        <IconNotesEdit className="shrink-0" />
-                                        <div className="ltr:ml-3 rtl:mr-3">All Notes</div>
-                                    </div>
-                                </button>
-                                <button
-                                    type="button"
-                                    className={`flex h-10 w-full items-center justify-between rounded-md p-2 font-medium hover:bg-white-dark/10 hover:text-primary dark:hover:bg-[#181F32] dark:hover:text-primary ${
-                                        selectedTab === 'fav' && 'bg-gray-100 text-primary dark:bg-[#181F32] dark:text-primary'
+                                    All Notes
+                                </AppButton>
+                                <AppButton
+                                    type="text"
+                                    block
+                                    align="start"
+                                    className={`h-10! px-2! font-medium! hover:bg-white-dark/10! hover:text-primary! dark:hover:bg-[#181F32]! dark:hover:text-primary! ${
+                                        selectedTab === 'fav' ? 'bg-gray-100! text-primary! dark:bg-[#181F32]! dark:text-primary!' : ''
                                     }`}
+                                    icon={<IconStar className="shrink-0" />}
                                     onClick={() => tabChanged('fav')}
                                 >
-                                    <div className="flex items-center">
-                                        <IconStar className="shrink-0" />
-                                        <div className="ltr:ml-3 rtl:mr-3">Favourites</div>
-                                    </div>
-                                </button>
+                                    Favourites
+                                </AppButton>
                                 <div className="h-px w-full border-b border-white-light dark:border-[#1b2e4b]"></div>
                                 <div className="px-1 py-3 text-white-dark">Tags</div>
-                                <button
-                                    type="button"
-                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-primary duration-300 hover:bg-white-dark/10 hover:ltr:pl-3 hover:rtl:pr-3 dark:hover:bg-[#181F32] ${
-                                        selectedTab === 'personal' && 'bg-gray-100 ltr:pl-3 rtl:pr-3 dark:bg-[#181F32]'
+                                <AppButton
+                                    type="text"
+                                    block
+                                    align="start"
+                                    className={`h-10! px-1! font-medium! text-primary! duration-300 hover:bg-white-dark/10! hover:ltr:pl-3! hover:rtl:pr-3! dark:hover:bg-[#181F32]! ${
+                                        selectedTab === 'personal' ? 'bg-gray-100! ltr:pl-3! rtl:pr-3! dark:bg-[#181F32]!' : ''
                                     }`}
+                                    icon={<IconSquareRotated className="shrink-0 fill-primary" />}
                                     onClick={() => tabChanged('personal')}
                                 >
-                                    <IconSquareRotated className="shrink-0 fill-primary" />
-                                    <div className="ltr:ml-3 rtl:mr-3">Personal</div>
-                                </button>
-                                <button
-                                    type="button"
-                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-warning duration-300 hover:bg-white-dark/10 hover:ltr:pl-3 hover:rtl:pr-3 dark:hover:bg-[#181F32] ${
-                                        selectedTab === 'work' && 'bg-gray-100 ltr:pl-3 rtl:pr-3 dark:bg-[#181F32]'
+                                    Personal
+                                </AppButton>
+                                <AppButton
+                                    type="text"
+                                    block
+                                    align="start"
+                                    className={`h-10! px-1! font-medium! text-warning! duration-300 hover:bg-white-dark/10! hover:ltr:pl-3! hover:rtl:pr-3! dark:hover:bg-[#181F32]! ${
+                                        selectedTab === 'work' ? 'bg-gray-100! ltr:pl-3! rtl:pr-3! dark:bg-[#181F32]!' : ''
                                     }`}
+                                    icon={<IconSquareRotated className="shrink-0 fill-warning" />}
                                     onClick={() => tabChanged('work')}
                                 >
-                                    <IconSquareRotated className="shrink-0 fill-warning" />
-                                    <div className="ltr:ml-3 rtl:mr-3">Work</div>
-                                </button>
-                                <button
-                                    type="button"
-                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-info duration-300 hover:bg-white-dark/10 hover:ltr:pl-3 hover:rtl:pr-3 dark:hover:bg-[#181F32] ${
-                                        selectedTab === 'social' && 'bg-gray-100 ltr:pl-3 rtl:pr-3 dark:bg-[#181F32]'
+                                    Work
+                                </AppButton>
+                                <AppButton
+                                    type="text"
+                                    block
+                                    align="start"
+                                    className={`h-10! px-1! font-medium! text-info! duration-300 hover:bg-white-dark/10! hover:ltr:pl-3! hover:rtl:pr-3! dark:hover:bg-[#181F32]! ${
+                                        selectedTab === 'social' ? 'bg-gray-100! ltr:pl-3! rtl:pr-3! dark:bg-[#181F32]!' : ''
                                     }`}
+                                    icon={<IconSquareRotated className="shrink-0 fill-info" />}
                                     onClick={() => tabChanged('social')}
                                 >
-                                    <IconSquareRotated className="shrink-0 fill-info" />
-                                    <div className="ltr:ml-3 rtl:mr-3">Social</div>
-                                </button>
-                                <button
-                                    type="button"
-                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-danger duration-300 hover:bg-white-dark/10 hover:ltr:pl-3 hover:rtl:pr-3 dark:hover:bg-[#181F32] ${
-                                        selectedTab === 'important' && 'bg-gray-100 ltr:pl-3 rtl:pr-3 dark:bg-[#181F32]'
+                                    Social
+                                </AppButton>
+                                <AppButton
+                                    type="text"
+                                    block
+                                    align="start"
+                                    className={`h-10! px-1! font-medium! text-danger! duration-300 hover:bg-white-dark/10! hover:ltr:pl-3! hover:rtl:pr-3! dark:hover:bg-[#181F32]! ${
+                                        selectedTab === 'important' ? 'bg-gray-100! ltr:pl-3! rtl:pr-3! dark:bg-[#181F32]!' : ''
                                     }`}
+                                    icon={<IconSquareRotated className="shrink-0 fill-danger" />}
                                     onClick={() => tabChanged('important')}
                                 >
-                                    <IconSquareRotated className="shrink-0 fill-danger" />
-                                    <div className="ltr:ml-3 rtl:mr-3">Important</div>
-                                </button>
+                                    Important
+                                </AppButton>
                             </div>
                         </PerfectScrollbar>
                     </div>
                     <div className="absolute bottom-0 w-full p-4 ltr:left-0 rtl:right-0">
-                        <button className="btn btn-primary w-full" type="button" onClick={() => editNote()}>
-                            <IconPlus className="h-5 w-5 shrink-0 ltr:mr-2 rtl:ml-2" />
+                        <AppButton type="primary" block size="large" icon={<IconPlus className="h-5 w-5 shrink-0" />} onClick={() => editNote()}>
                             Add New Note
-                        </button>
+                        </AppButton>
                     </div>
                 </div>
                 <div className="panel h-full flex-1 overflow-auto">
                     <div className="pb-5">
-                        <button type="button" className="hover:text-primary xl:hidden" onClick={() => setIsShowNoteMenu(!isShowNoteMenu)}>
-                            <IconMenu />
-                        </button>
+                        <AppButton type="text" shape="circle" className="hover:text-primary! xl:hidden!" icon={<IconMenu />} onClick={() => setIsShowNoteMenu(!isShowNoteMenu)} />
                     </div>
                     {filterdNotesList.length ? (
                         <div className="min-h-[400px] sm:min-h-[300px]">
@@ -531,22 +537,19 @@ const ComponentsAppsNotes = () => {
                                                         >
                                                             <ul className="text-sm font-medium">
                                                                 <li>
-                                                                    <button type="button" onClick={() => editNote(note)}>
-                                                                        <IconPencil className="h-4 w-4 shrink-0 ltr:mr-3 rtl:ml-3" />
+                                                                    <AppButton type="text" block align="start" icon={<IconPencil className="h-4 w-4 shrink-0" />} onClick={() => editNote(note)}>
                                                                         Edit
-                                                                    </button>
+                                                                    </AppButton>
                                                                 </li>
                                                                 <li>
-                                                                    <button type="button" onClick={() => deleteNoteConfirm(note)}>
-                                                                        <IconTrashLines className="h-4.5 w-4.5 shrink-0 ltr:mr-3 rtl:ml-3" />
+                                                                    <AppButton type="text" block align="start" icon={<IconTrashLines className="h-4.5 w-4.5 shrink-0" />} onClick={() => deleteNoteConfirm(note)}>
                                                                         Delete
-                                                                    </button>
+                                                                    </AppButton>
                                                                 </li>
                                                                 <li>
-                                                                    <button type="button" onClick={() => viewNote(note)}>
-                                                                        <IconEye className="h-4.5 w-4.5 shrink-0 ltr:mr-3 rtl:ml-3" />
+                                                                    <AppButton type="text" block align="start" icon={<IconEye className="h-4.5 w-4.5 shrink-0" />} onClick={() => viewNote(note)}>
                                                                         View
-                                                                    </button>
+                                                                    </AppButton>
                                                                 </li>
                                                             </ul>
                                                         </Dropdown>
@@ -595,40 +598,39 @@ const ComponentsAppsNotes = () => {
                                                             >
                                                                 <ul className="text-sm font-medium">
                                                                     <li>
-                                                                        <button type="button" onClick={() => setTag(note, 'personal')}>
-                                                                            <IconSquareRotated className="fill-primary text-primary ltr:mr-2 rtl:ml-2" />
+                                                                        <AppButton type="text" block align="start" icon={<IconSquareRotated className="fill-primary text-primary" />} onClick={() => setTag(note, 'personal')}>
                                                                             Personal
-                                                                        </button>
+                                                                        </AppButton>
                                                                     </li>
                                                                     <li>
-                                                                        <button type="button" onClick={() => setTag(note, 'work')}>
-                                                                            <IconSquareRotated className="fill-warning text-warning ltr:mr-2 rtl:ml-2" />
+                                                                        <AppButton type="text" block align="start" icon={<IconSquareRotated className="fill-warning text-warning" />} onClick={() => setTag(note, 'work')}>
                                                                             Work
-                                                                        </button>
+                                                                        </AppButton>
                                                                     </li>
                                                                     <li>
-                                                                        <button type="button" onClick={() => setTag(note, 'social')}>
-                                                                            <IconSquareRotated className="fill-info text-info ltr:mr-2 rtl:ml-2" />
+                                                                        <AppButton type="text" block align="start" icon={<IconSquareRotated className="fill-info text-info" />} onClick={() => setTag(note, 'social')}>
                                                                             Social
-                                                                        </button>
+                                                                        </AppButton>
                                                                     </li>
                                                                     <li>
-                                                                        <button type="button" onClick={() => setTag(note, 'important')}>
-                                                                            <IconSquareRotated className="fill-danger text-danger ltr:mr-2 rtl:ml-2" />
+                                                                        <AppButton type="text" block align="start" icon={<IconSquareRotated className="fill-danger text-danger" />} onClick={() => setTag(note, 'important')}>
                                                                             Important
-                                                                        </button>
+                                                                        </AppButton>
                                                                     </li>
                                                                 </ul>
                                                             </Dropdown>
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center">
-                                                        <button type="button" className="text-danger" onClick={() => deleteNoteConfirm(note)}>
-                                                            <IconTrashLines />
-                                                        </button>
-                                                        <button type="button" className="group text-warning ltr:ml-2 rtl:mr-2" onClick={() => setFav(note)}>
-                                                            <IconStar className={`h-4.5 w-4.5 group-hover:fill-warning ${note.isFav && 'fill-warning'}`} />
-                                                        </button>
+                                                        <AppButton type="text" size="small" shape="circle" className="text-danger!" icon={<IconTrashLines />} onClick={() => deleteNoteConfirm(note)} />
+                                                        <AppButton
+                                                            type="text"
+                                                            size="small"
+                                                            shape="circle"
+                                                            className="group text-warning! ltr:ml-2 rtl:mr-2"
+                                                            icon={<IconStar className={`h-4.5 w-4.5 group-hover:fill-warning ${note.isFav && 'fill-warning'}`} />}
+                                                            onClick={() => setFav(note)}
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
@@ -667,13 +669,13 @@ const ComponentsAppsNotes = () => {
                                         leaveTo="opacity-0 scale-95"
                                     >
                                         <DialogPanel className="panel w-full max-w-lg overflow-hidden rounded-lg border-0 p-0 text-black dark:text-white-dark">
-                                            <button
-                                                type="button"
+                                            <AppButton
+                                                type="text"
+                                                shape="circle"
                                                 onClick={() => setAddContactModal(false)}
-                                                className="absolute top-4 text-gray-400 outline-hidden hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
-                                            >
-                                                <IconX />
-                                            </button>
+                                                className="absolute! top-4 text-gray-400! hover:text-gray-800! ltr:right-4 rtl:left-4 dark:hover:text-gray-600!"
+                                                icon={<IconX />}
+                                            />
                                             <div className="bg-[#fbfbfb] py-3 text-lg font-medium ltr:pl-5 ltr:pr-[50px] rtl:pl-[50px] rtl:pr-5 dark:bg-[#121c2c]">
                                                 {params.id ? 'Edit Note' : 'Add Note'}
                                             </div>
@@ -728,12 +730,12 @@ const ComponentsAppsNotes = () => {
                                                         ></textarea>
                                                     </div>
                                                     <div className="mt-8 flex items-center justify-end">
-                                                        <button type="button" className="btn btn-outline-danger gap-2" onClick={() => setAddContactModal(false)}>
+                                                        <AppButton tone="danger" variant="outlined" onClick={() => setAddContactModal(false)}>
                                                             Cancel
-                                                        </button>
-                                                        <button type="button" className="btn btn-primary ltr:ml-4 rtl:mr-4" onClick={saveNote}>
+                                                        </AppButton>
+                                                        <AppButton type="primary" className="ltr:ml-4 rtl:mr-4" onClick={saveNote}>
                                                             {params.id ? 'Update Note' : 'Add Note'}
-                                                        </button>
+                                                        </AppButton>
                                                     </div>
                                                 </form>
                                             </div>
@@ -770,13 +772,13 @@ const ComponentsAppsNotes = () => {
                                         leaveTo="opacity-0 scale-95"
                                     >
                                         <DialogPanel className="panel w-full max-w-lg overflow-hidden rounded-lg border-0 p-0 text-black dark:text-white-dark">
-                                            <button
-                                                type="button"
+                                            <AppButton
+                                                type="text"
+                                                shape="circle"
                                                 onClick={() => setIsDeleteNoteModal(false)}
-                                                className="absolute top-4 text-gray-400 outline-hidden hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
-                                            >
-                                                <IconX />
-                                            </button>
+                                                className="absolute! top-4 text-gray-400! hover:text-gray-800! ltr:right-4 rtl:left-4 dark:hover:text-gray-600!"
+                                                icon={<IconX />}
+                                            />
                                             <div className="bg-[#fbfbfb] py-3 text-lg font-medium ltr:pl-5 ltr:pr-[50px] rtl:pl-[50px] rtl:pr-5 dark:bg-[#121c2c]">Delete Notes</div>
                                             <div className="p-5 text-center">
                                                 <div className="mx-auto w-fit rounded-full bg-danger p-4 text-white ring-4 ring-danger/30">
@@ -785,12 +787,12 @@ const ComponentsAppsNotes = () => {
                                                 <div className="mx-auto mt-5 sm:w-3/4">Are you sure you want to delete Notes?</div>
 
                                                 <div className="mt-8 flex items-center justify-center">
-                                                    <button type="button" className="btn btn-outline-danger" onClick={() => setIsDeleteNoteModal(false)}>
+                                                    <AppButton tone="danger" variant="outlined" onClick={() => setIsDeleteNoteModal(false)}>
                                                         Cancel
-                                                    </button>
-                                                    <button type="button" className="btn btn-primary ltr:ml-4 rtl:mr-4" onClick={deleteNote}>
+                                                    </AppButton>
+                                                    <AppButton type="primary" className="ltr:ml-4 rtl:mr-4" onClick={deleteNote}>
                                                         Delete
-                                                    </button>
+                                                    </AppButton>
                                                 </div>
                                             </div>
                                         </DialogPanel>
@@ -826,41 +828,45 @@ const ComponentsAppsNotes = () => {
                                         leaveTo="opacity-0 scale-95"
                                     >
                                         <DialogPanel className="panel w-full max-w-lg overflow-hidden rounded-lg border-0 p-0 text-black dark:text-white-dark">
-                                            <button
-                                                type="button"
+                                            <AppButton
+                                                type="text"
+                                                shape="circle"
                                                 onClick={() => setIsViewNoteModal(false)}
-                                                className="absolute top-4 text-gray-400 outline-hidden hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
-                                            >
-                                                <IconX />
-                                            </button>
+                                                className="absolute! top-4 text-gray-400! hover:text-gray-800! ltr:right-4 rtl:left-4 dark:hover:text-gray-600!"
+                                                icon={<IconX />}
+                                            />
                                             <div className="flex flex-wrap items-center gap-2 bg-[#fbfbfb] py-3 text-lg font-medium ltr:pl-5 ltr:pr-[50px] rtl:pl-[50px] rtl:pr-5 dark:bg-[#121c2c]">
                                                 <div className="ltr:mr-3 rtl:ml-3">{params.title}</div>
                                                 {params.tag && (
-                                                    <button
-                                                        type="button"
-                                                        className={`badge badge-outline-primary rounded-3xl capitalize ltr:mr-3 rtl:ml-3 ${
-                                                            (params.tag === 'personal' && 'shadow-primary',
-                                                            params.tag === 'work' && 'shadow-warning',
-                                                            params.tag === 'social' && 'shadow-info',
-                                                            params.tag === 'important' && 'shadow-danger')
+                                                    <AppButton
+                                                        tone="primary"
+                                                        variant="outlined"
+                                                        size="small"
+                                                        shape="round"
+                                                        className={`capitalize ltr:mr-3 rtl:ml-3 ${
+                                                            params.tag === 'personal'
+                                                                ? 'shadow-primary'
+                                                                : params.tag === 'work'
+                                                                  ? 'shadow-warning'
+                                                                  : params.tag === 'social'
+                                                                    ? 'shadow-info'
+                                                                    : params.tag === 'important'
+                                                                      ? 'shadow-danger'
+                                                                      : ''
                                                         }`}
                                                     >
                                                         {params.tag}
-                                                    </button>
+                                                    </AppButton>
                                                 )}
-                                                {params.isFav && (
-                                                    <button type="button" className="text-warning">
-                                                        <IconStar className="fill-warning" />
-                                                    </button>
-                                                )}
+                                                {params.isFav && <AppButton type="text" size="small" shape="circle" className="text-warning!" icon={<IconStar className="fill-warning" />} />}
                                             </div>
                                             <div className="p-5">
                                                 <div className="text-base">{params.description}</div>
 
                                                 <div className="mt-8 ltr:text-right rtl:text-left">
-                                                    <button type="button" className="btn btn-outline-danger" onClick={() => setIsViewNoteModal(false)}>
+                                                    <AppButton tone="danger" variant="outlined" onClick={() => setIsViewNoteModal(false)}>
                                                         Close
-                                                    </button>
+                                                    </AppButton>
                                                 </div>
                                             </div>
                                         </DialogPanel>

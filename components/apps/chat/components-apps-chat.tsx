@@ -24,6 +24,7 @@ import IconVideo from '@/components/icon/icon-video';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import React, { useEffect, useState } from 'react';
 import { useThemeStore } from '@/store/useThemeStore';
+import AppButton from '@/components/ui/app-button';
 
 const contactList = [
     {
@@ -331,22 +332,19 @@ const ComponentsAppsChat = () => {
                             >
                                 <ul className="whitespace-nowrap">
                                     <li>
-                                        <button type="button">
-                                            <IconSettings className="h-4.5 w-4.5 shrink-0 ltr:mr-1 rtl:ml-1" />
+                                        <AppButton type="text" block align="start" icon={<IconSettings className="h-4.5 w-4.5 shrink-0" />}>
                                             Settings
-                                        </button>
+                                        </AppButton>
                                     </li>
                                     <li>
-                                        <button type="button">
-                                            <IconHelpCircle className="h-4.5 w-4.5 shrink-0 ltr:mr-1 rtl:ml-1" />
+                                        <AppButton type="text" block align="start" icon={<IconHelpCircle className="h-4.5 w-4.5 shrink-0" />}>
                                             Help & feedback
-                                        </button>
+                                        </AppButton>
                                     </li>
                                     <li>
-                                        <button type="button">
-                                            <IconLogin className="shrink-0 ltr:mr-1 rtl:ml-1" />
+                                        <AppButton type="text" block align="start" icon={<IconLogin className="shrink-0" />}>
                                             Sign Out
-                                        </button>
+                                        </AppButton>
                                     </li>
                                 </ul>
                             </Dropdown>
@@ -359,25 +357,25 @@ const ComponentsAppsChat = () => {
                         </div>
                     </div>
                     <div className="flex items-center justify-between text-xs">
-                        <button type="button" className="hover:text-primary">
-                            <IconMessagesDot className="mx-auto mb-1" />
-                            Chats
-                        </button>
+                        <AppButton type="text" className="h-auto! flex-col! gap-1! px-2! py-1! text-xs! hover:text-primary!">
+                            <IconMessagesDot className="mx-auto" />
+                            <span>Chats</span>
+                        </AppButton>
 
-                        <button type="button" className="hover:text-primary">
-                            <IconPhone className="mx-auto mb-1" />
-                            Calls
-                        </button>
+                        <AppButton type="text" className="h-auto! flex-col! gap-1! px-2! py-1! text-xs! hover:text-primary!">
+                            <IconPhone className="mx-auto" />
+                            <span>Calls</span>
+                        </AppButton>
 
-                        <button type="button" className="hover:text-primary">
-                            <IconUserPlus className="mx-auto mb-1" />
-                            Contacts
-                        </button>
+                        <AppButton type="text" className="h-auto! flex-col! gap-1! px-2! py-1! text-xs! hover:text-primary!">
+                            <IconUserPlus className="mx-auto" />
+                            <span>Contacts</span>
+                        </AppButton>
 
-                        <button type="button" className="group hover:text-primary">
-                            <IconBell className="mx-auto mb-1 h-5 w-5" />
-                            Notification
-                        </button>
+                        <AppButton type="text" className="group h-auto! flex-col! gap-1! px-2! py-1! text-xs! hover:text-primary!">
+                            <IconBell className="mx-auto h-5 w-5" />
+                            <span>Notification</span>
+                        </AppButton>
                     </div>
                     <div className="h-px w-full border-b border-white-light dark:border-[#1b2e4b]"></div>
                     <div className="mt-0!">
@@ -385,10 +383,12 @@ const ComponentsAppsChat = () => {
                             {filteredItems.map((person: any) => {
                                 return (
                                     <div key={person.userId}>
-                                        <button
-                                            type="button"
-                                            className={`flex w-full items-center justify-between rounded-md p-2 hover:bg-gray-100 hover:text-primary dark:hover:bg-[#050b14] dark:hover:text-primary ${
-                                                selectedUser && selectedUser.userId === person.userId ? 'bg-gray-100 text-primary dark:bg-[#050b14] dark:text-primary' : ''
+                                        <AppButton
+                                            type="text"
+                                            block
+                                            align="between"
+                                            className={`h-auto! p-2! hover:bg-gray-100! hover:text-primary! dark:hover:bg-[#050b14]! dark:hover:text-primary! ${
+                                                selectedUser && selectedUser.userId === person.userId ? 'bg-gray-100! text-primary! dark:bg-[#050b14]! dark:text-primary!' : ''
                                             }`}
                                             onClick={() => selectUser(person)}
                                         >
@@ -413,7 +413,7 @@ const ComponentsAppsChat = () => {
                                             <div className="whitespace-nowrap text-xs font-semibold">
                                                 <p>{person.time}</p>
                                             </div>
-                                        </button>
+                                        </AppButton>
                                     </div>
                                 );
                             })}
@@ -424,9 +424,13 @@ const ComponentsAppsChat = () => {
                 <div className="panel flex-1 p-0">
                     {!isShowUserChat && (
                         <div className="relative flex h-full items-center justify-center p-4">
-                            <button type="button" onClick={() => setIsShowChatMenu(!isShowChatMenu)} className="absolute top-4 hover:text-primary ltr:left-4 rtl:right-4 xl:hidden">
-                                <IconMenu />
-                            </button>
+                            <AppButton
+                                type="text"
+                                shape="circle"
+                                onClick={() => setIsShowChatMenu(!isShowChatMenu)}
+                                className="absolute! top-4 hover:text-primary! ltr:left-4 rtl:right-4 xl:hidden!"
+                                icon={<IconMenu />}
+                            />
 
                             <div className="flex flex-col items-center justify-center py-8">
                                 <div className="mb-8 h-[calc(100vh-320px)] min-h-[120px] w-[280px] text-white dark:text-black md:w-[430px]">
@@ -543,9 +547,7 @@ const ComponentsAppsChat = () => {
                         <div className="relative h-full">
                             <div className="flex items-center justify-between p-4">
                                 <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                                    <button type="button" className="hover:text-primary xl:hidden" onClick={() => setIsShowChatMenu(!isShowChatMenu)}>
-                                        <IconMenu />
-                                    </button>
+                                    <AppButton type="text" shape="circle" className="hover:text-primary! xl:hidden!" icon={<IconMenu />} onClick={() => setIsShowChatMenu(!isShowChatMenu)} />
                                     <div className="relative flex-none">
                                         <img src={`/assets/images/${selectedUser.path}`} className="h-10 w-10 rounded-full object-cover sm:h-12 sm:w-12" alt="" />
                                         <div className="absolute bottom-0 ltr:right-0 rtl:left-0">
@@ -557,14 +559,10 @@ const ComponentsAppsChat = () => {
                                         <p className="text-xs text-white-dark">{selectedUser.active ? 'Active now' : 'Last seen at ' + selectedUser.time}</p>
                                     </div>
                                 </div>
-                                <div className="flex gap-3 sm:gap-5">
-                                    <button type="button">
-                                        <IconPhoneCall className="hover:text-primary" />
-                                    </button>
+                                <div className="flex items-center gap-3 sm:gap-5">
+                                    <AppButton type="text" shape="circle" className="hover:text-primary!" icon={<IconPhoneCall />} />
 
-                                    <button type="button">
-                                        <IconVideo className="h-5 w-5 hover:text-primary" />
-                                    </button>
+                                    <AppButton type="text" shape="circle" className="hover:text-primary!" icon={<IconVideo className="h-5 w-5" />} />
                                     <div className="dropdown">
                                         <Dropdown
                                             placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
@@ -573,34 +571,29 @@ const ComponentsAppsChat = () => {
                                         >
                                             <ul className="text-black dark:text-white-dark">
                                                 <li>
-                                                    <button type="button">
-                                                        <IconSearch className="shrink-0 ltr:mr-2 rtl:ml-2" />
+                                                    <AppButton type="text" block align="start" icon={<IconSearch className="shrink-0" />}>
                                                         Search
-                                                    </button>
+                                                    </AppButton>
                                                 </li>
                                                 <li>
-                                                    <button type="button">
-                                                        <IconCopy className="h-4.5 w-4.5 shrink-0 ltr:mr-2 rtl:ml-2" />
+                                                    <AppButton type="text" block align="start" icon={<IconCopy className="h-4.5 w-4.5 shrink-0" />}>
                                                         Copy
-                                                    </button>
+                                                    </AppButton>
                                                 </li>
                                                 <li>
-                                                    <button type="button">
-                                                        <IconTrashLines className="h-4.5 w-4.5 shrink-0 ltr:mr-2 rtl:ml-2" />
+                                                    <AppButton type="text" block align="start" icon={<IconTrashLines className="h-4.5 w-4.5 shrink-0" />}>
                                                         Delete
-                                                    </button>
+                                                    </AppButton>
                                                 </li>
                                                 <li>
-                                                    <button type="button">
-                                                        <IconShare className="h-4.5 w-4.5 shrink-0 ltr:mr-2 rtl:ml-2" />
+                                                    <AppButton type="text" block align="start" icon={<IconShare className="h-4.5 w-4.5 shrink-0" />}>
                                                         Share
-                                                    </button>
+                                                    </AppButton>
                                                 </li>
                                                 <li>
-                                                    <button type="button">
-                                                        <IconSettings className="h-4.5 w-4.5 shrink-0 ltr:mr-2 rtl:ml-2" />
+                                                    <AppButton type="text" block align="start" icon={<IconSettings className="h-4.5 w-4.5 shrink-0" />}>
                                                         Settings
-                                                    </button>
+                                                    </AppButton>
                                                 </li>
                                             </ul>
                                         </Dropdown>
@@ -673,26 +666,32 @@ const ComponentsAppsChat = () => {
                                             onChange={(e: any) => setTextMessage(e.target.value)}
                                             onKeyUp={sendMessageHandle}
                                         />
-                                        <button type="button" className="absolute top-1/2 -translate-y-1/2 hover:text-primary ltr:left-4 rtl:right-4">
-                                            <IconMoodSmile />
-                                        </button>
-                                        <button type="button" className="absolute top-1/2 -translate-y-1/2 hover:text-primary ltr:right-4 rtl:left-4" onClick={() => sendMessage()}>
-                                            <IconSend />
-                                        </button>
+                                        <AppButton
+                                            type="text"
+                                            size="small"
+                                            shape="circle"
+                                            className="absolute! top-1/2 -translate-y-1/2 hover:text-primary! ltr:left-3 rtl:right-3"
+                                            icon={<IconMoodSmile />}
+                                        />
+                                        <AppButton
+                                            type="text"
+                                            size="small"
+                                            shape="circle"
+                                            className="absolute! top-1/2 -translate-y-1/2 hover:text-primary! ltr:right-3 rtl:left-3"
+                                            icon={<IconSend />}
+                                            onClick={() => sendMessage()}
+                                        />
                                     </div>
-                                    <div className="hidden items-center space-x-3 py-3 rtl:space-x-reverse sm:block sm:py-0">
-                                        <button type="button" className="rounded-md bg-[#f4f4f4] p-2 hover:bg-primary-light hover:text-primary dark:bg-[#1b2e4b]">
-                                            <IconMicrophoneOff />
-                                        </button>
-                                        <button type="button" className="rounded-md bg-[#f4f4f4] p-2 hover:bg-primary-light hover:text-primary dark:bg-[#1b2e4b]">
-                                            <IconDownload />
-                                        </button>
-                                        <button type="button" className="rounded-md bg-[#f4f4f4] p-2 hover:bg-primary-light hover:text-primary dark:bg-[#1b2e4b]">
-                                            <IconCamera />
-                                        </button>
-                                        <button type="button" className="rounded-md bg-[#f4f4f4] p-2 hover:bg-primary-light hover:text-primary dark:bg-[#1b2e4b]">
-                                            <IconHorizontalDots className="opacity-70" />
-                                        </button>
+                                    <div className="hidden items-center space-x-3 py-3 rtl:space-x-reverse sm:flex sm:py-0">
+                                        <AppButton variant="filled" color="default" icon={<IconMicrophoneOff />} className="hover:bg-primary-light! hover:text-primary! dark:bg-[#1b2e4b]!" />
+                                        <AppButton variant="filled" color="default" icon={<IconDownload />} className="hover:bg-primary-light! hover:text-primary! dark:bg-[#1b2e4b]!" />
+                                        <AppButton variant="filled" color="default" icon={<IconCamera />} className="hover:bg-primary-light! hover:text-primary! dark:bg-[#1b2e4b]!" />
+                                        <AppButton
+                                            variant="filled"
+                                            color="default"
+                                            icon={<IconHorizontalDots className="opacity-70" />}
+                                            className="hover:bg-primary-light! hover:text-primary! dark:bg-[#1b2e4b]!"
+                                        />
                                     </div>
                                 </div>
                             </div>

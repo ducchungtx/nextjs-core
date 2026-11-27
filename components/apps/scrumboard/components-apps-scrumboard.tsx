@@ -13,6 +13,7 @@ import { message } from 'antd';
 import React, { Fragment, useState } from 'react';
 import { useThemeStore } from '@/store/useThemeStore';
 import { ReactSortable } from 'react-sortablejs';
+import AppButton from '@/components/ui/app-button';
 
 const ComponentsAppsScrumBoard = () => {
     const [projectList, setProjectList] = useState<any>([
@@ -234,16 +235,15 @@ const ComponentsAppsScrumBoard = () => {
     return (
         <div>
             <div>
-                <button
-                    type="button"
-                    className="btn btn-primary flex"
+                <AppButton
+                    type="primary"
+                    icon={<IconPlus className="h-5 w-5" />}
                     onClick={() => {
                         addEditProject();
                     }}
                 >
-                    <IconPlus className="h-5 w-5 ltr:mr-3 rtl:ml-3" />
                     Add Project
-                </button>
+                </AppButton>
             </div>
             {/* project list  */}
             <div className="relative pt-5">
@@ -256,9 +256,14 @@ const ComponentsAppsScrumBoard = () => {
                                         <h4 className="text-base font-semibold">{project.title}</h4>
 
                                         <div className="flex items-center">
-                                            <button onClick={() => addEditTask(project.id)} type="button" className="hover:text-primary ltr:mr-2 rtl:ml-2">
-                                                <IconPlusCircle />
-                                            </button>
+                                            <AppButton
+                                                type="text"
+                                                size="small"
+                                                shape="circle"
+                                                onClick={() => addEditTask(project.id)}
+                                                className="hover:text-primary! ltr:mr-2 rtl:ml-2"
+                                                icon={<IconPlusCircle />}
+                                            />
                                             <div className="dropdown">
                                                 <Dropdown
                                                     offset={[0, 5]}
@@ -267,19 +272,19 @@ const ComponentsAppsScrumBoard = () => {
                                                 >
                                                     <ul>
                                                         <li>
-                                                            <button type="button" onClick={() => addEditProject(project)}>
+                                                            <AppButton type="text" block align="start" onClick={() => addEditProject(project)}>
                                                                 Edit
-                                                            </button>
+                                                            </AppButton>
                                                         </li>
                                                         <li>
-                                                            <button type="button" onClick={() => deleteProject(project)}>
+                                                            <AppButton type="text" block align="start" onClick={() => deleteProject(project)}>
                                                                 Delete
-                                                            </button>
+                                                            </AppButton>
                                                         </li>
                                                         <li>
-                                                            <button type="button" onClick={() => clearProjects(project)}>
+                                                            <AppButton type="text" block align="start" onClick={() => clearProjects(project)}>
                                                                 Clear All
-                                                            </button>
+                                                            </AppButton>
                                                         </li>
                                                     </ul>
                                                 </Dropdown>
@@ -337,12 +342,22 @@ const ComponentsAppsScrumBoard = () => {
                                                                 <span>{task.date}</span>
                                                             </div>
                                                             <div className="flex items-center">
-                                                                <button onClick={() => addEditTask(project.id, task)} type="button" className="hover:text-info">
-                                                                    <IconEdit className="ltr:mr-3 rtl:ml-3" />
-                                                                </button>
-                                                                <button onClick={() => deleteConfirmModal(project.id, task)} type="button" className="hover:text-danger">
-                                                                    <IconTrashLines />
-                                                                </button>
+                                                                <AppButton
+                                                                    type="text"
+                                                                    size="small"
+                                                                    shape="circle"
+                                                                    onClick={() => addEditTask(project.id, task)}
+                                                                    className="hover:text-info! ltr:mr-2 rtl:ml-2"
+                                                                    icon={<IconEdit />}
+                                                                />
+                                                                <AppButton
+                                                                    type="text"
+                                                                    size="small"
+                                                                    shape="circle"
+                                                                    onClick={() => deleteConfirmModal(project.id, task)}
+                                                                    className="hover:text-danger!"
+                                                                    icon={<IconTrashLines />}
+                                                                />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -350,11 +365,10 @@ const ComponentsAppsScrumBoard = () => {
                                             );
                                         })}
                                     </ReactSortable>
-                                    <div className="pt-3">
-                                        <button type="button" className="btn btn-primary mx-auto" onClick={() => addEditTask(project.id)}>
-                                            <IconPlus />
+                                    <div className="flex justify-center pt-3">
+                                        <AppButton type="primary" icon={<IconPlus />} onClick={() => addEditTask(project.id)}>
                                             Add Task
-                                        </button>
+                                        </AppButton>
                                     </div>
                                 </div>
                             );
@@ -380,13 +394,13 @@ const ComponentsAppsScrumBoard = () => {
                                 leaveTo="opacity-0 scale-95"
                             >
                                 <DialogPanel className="panel w-full max-w-lg overflow-hidden rounded-lg border-0 p-0 text-black dark:text-white-dark">
-                                    <button
-                                        type="button"
+                                    <AppButton
+                                        type="text"
+                                        shape="circle"
                                         onClick={() => setIsAddProjectModal(false)}
-                                        className="absolute top-4 text-gray-400 outline-hidden hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
-                                    >
-                                        <IconX />
-                                    </button>
+                                        className="absolute! top-4 text-gray-400! hover:text-gray-800! ltr:right-4 rtl:left-4 dark:hover:text-gray-600!"
+                                        icon={<IconX />}
+                                    />
                                     <div className="bg-[#fbfbfb] py-3 text-lg font-medium ltr:pl-5 ltr:pr-[50px] rtl:pl-[50px] rtl:pr-5 dark:bg-[#121c2c]">
                                         {params.id ? 'Edit Project' : 'Add Project'}
                                     </div>
@@ -400,12 +414,12 @@ const ComponentsAppsScrumBoard = () => {
                                             </div>
 
                                             <div className="mt-8 flex items-center justify-end">
-                                                <button type="button" className="btn btn-outline-danger" onClick={() => setIsAddProjectModal(false)}>
+                                                <AppButton tone="danger" variant="outlined" onClick={() => setIsAddProjectModal(false)}>
                                                     Cancel
-                                                </button>
-                                                <button type="submit" className="btn btn-primary ltr:ml-4 rtl:mr-4">
+                                                </AppButton>
+                                                <AppButton type="primary" htmlType="submit" className="ltr:ml-4 rtl:mr-4">
                                                     {params.id ? 'Update' : 'Add'}
-                                                </button>
+                                                </AppButton>
                                             </div>
                                         </form>
                                     </div>
@@ -424,9 +438,13 @@ const ComponentsAppsScrumBoard = () => {
                     <div className="fixed inset-0 z-999 overflow-y-auto">
                         <div className="flex min-h-screen items-center justify-center px-4">
                             <DialogPanel className="panel w-full max-w-lg overflow-hidden rounded-lg border-0 p-0 text-black dark:text-white-dark">
-                                <button onClick={() => setIsAddTaskModal(false)} type="button" className="absolute top-4 text-white-dark hover:text-dark ltr:right-4 rtl:left-4">
-                                    <IconX />
-                                </button>
+                                <AppButton
+                                    type="text"
+                                    shape="circle"
+                                    onClick={() => setIsAddTaskModal(false)}
+                                    className="absolute! top-4 text-white-dark! hover:text-dark! ltr:right-4 rtl:left-4"
+                                    icon={<IconX />}
+                                />
                                 <div className="bg-[#fbfbfb] py-3 text-lg font-medium ltr:pl-5 ltr:pr-[50px] rtl:pl-[50px] rtl:pr-5 dark:bg-[#121c2c]">{paramsTask.id ? 'Edit Task' : 'Add Task'}</div>
                                 <div className="p-5">
                                     <form onSubmit={saveTask}>
@@ -451,12 +469,12 @@ const ComponentsAppsScrumBoard = () => {
                                             </div>
                                         </div>
                                         <div className="mt-8 flex items-center justify-end">
-                                            <button onClick={() => setIsAddTaskModal(false)} type="button" className="btn btn-outline-danger">
+                                            <AppButton tone="danger" variant="outlined" onClick={() => setIsAddTaskModal(false)}>
                                                 Cancel
-                                            </button>
-                                            <button type="submit" className="btn btn-primary ltr:ml-4 rtl:mr-4">
+                                            </AppButton>
+                                            <AppButton type="primary" htmlType="submit" className="ltr:ml-4 rtl:mr-4">
                                                 {paramsTask.id ? 'Update' : 'Add'}
-                                            </button>
+                                            </AppButton>
                                         </div>
                                     </form>
                                 </div>
@@ -483,15 +501,15 @@ const ComponentsAppsScrumBoard = () => {
                                 leaveTo="opacity-0 scale-95"
                             >
                                 <DialogPanel className="panel my-8 w-[90%] max-w-lg overflow-hidden rounded-lg border-0 p-0 md:w-full">
-                                    <button
-                                        type="button"
+                                    <AppButton
+                                        type="text"
+                                        shape="circle"
                                         onClick={() => {
                                             setIsDeleteModal(false);
                                         }}
-                                        className="absolute top-4 text-white-dark ltr:right-4 rtl:left-4"
-                                    >
-                                        <IconX />
-                                    </button>
+                                        className="absolute! top-4 text-white-dark! ltr:right-4 rtl:left-4"
+                                        icon={<IconX />}
+                                    />
                                     <div className="bg-[#fbfbfb] py-3 text-lg font-medium ltr:pl-5 ltr:pr-[50px] rtl:pl-[50px] rtl:pr-5 dark:bg-[#121c2c]">Delete Task</div>
                                     <div className="p-5 text-center">
                                         <div className="mx-auto w-fit rounded-full bg-danger p-4 text-white ring-4 ring-danger/30">
@@ -500,18 +518,18 @@ const ComponentsAppsScrumBoard = () => {
                                         <div className="mx-auto mt-5 text-base sm:w-3/4">Are you sure you want to delete Task?</div>
 
                                         <div className="mt-8 flex items-center justify-center">
-                                            <button
+                                            <AppButton
+                                                tone="danger"
+                                                variant="outlined"
                                                 onClick={() => {
                                                     setIsDeleteModal(false);
                                                 }}
-                                                type="button"
-                                                className="btn btn-outline-danger"
                                             >
                                                 Cancel
-                                            </button>
-                                            <button onClick={deleteTask} type="button" className="btn btn-primary ltr:ml-4 rtl:mr-4">
+                                            </AppButton>
+                                            <AppButton type="primary" onClick={deleteTask} className="ltr:ml-4 rtl:mr-4">
                                                 Delete
-                                            </button>
+                                            </AppButton>
                                         </div>
                                     </div>
                                 </DialogPanel>

@@ -6,6 +6,7 @@ import IconPrinter from '@/components/icon/icon-printer';
 import IconSend from '@/components/icon/icon-send';
 import Link from 'next/link';
 import React from 'react';
+import AppButton from '@/components/ui/app-button';
 
 const ComponentsAppsInvoicePreview = () => {
     const exportTable = () => {
@@ -71,20 +72,17 @@ const ComponentsAppsInvoicePreview = () => {
     return (
         <div>
             <div className="mb-6 flex flex-wrap items-center justify-center gap-4 lg:justify-end">
-                <button type="button" className="btn btn-info gap-2">
-                    <IconSend />
+                <AppButton tone="info" variant="solid" icon={<IconSend />}>
                     Send Invoice
-                </button>
+                </AppButton>
 
-                <button type="button" className="btn btn-primary gap-2" onClick={() => exportTable()}>
-                    <IconPrinter />
+                <AppButton type="primary" icon={<IconPrinter />} onClick={() => exportTable()}>
                     Print
-                </button>
+                </AppButton>
 
-                <button type="button" className="btn btn-success gap-2">
-                    <IconDownload />
+                <AppButton tone="success" variant="solid" icon={<IconDownload />}>
                     Download
-                </button>
+                </AppButton>
 
                 <Link href="/apps/invoice/add" className="btn btn-secondary gap-2">
                     <IconPlus />

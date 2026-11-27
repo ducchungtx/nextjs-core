@@ -3,6 +3,7 @@ import IconPlus from '@/components/icon/icon-plus';
 import IconX from '@/components/icon/icon-x';
 import { Transition, Dialog, DialogBackdrop, TransitionChild, DialogPanel } from '@headlessui/react';
 import { message } from 'antd';
+import AppButton from '@/components/ui/app-button';
 import React, { Fragment, useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -260,10 +261,9 @@ const ComponentsAppsCalendar = () => {
                             </div>
                         </div>
                     </div>
-                    <button type="button" className="btn btn-primary" onClick={() => editEvent()}>
-                        <IconPlus className="ltr:mr-2 rtl:ml-2" />
+                    <AppButton type="primary" icon={<IconPlus />} onClick={() => editEvent()}>
                         Create Event
-                    </button>
+                    </AppButton>
                 </div>
                 <div className="calendar-wrapper">
                     <FullCalendar
@@ -312,13 +312,13 @@ const ComponentsAppsCalendar = () => {
                                 leave-to="opacity-0 scale-95"
                             >
                                 <DialogPanel className="panel w-full max-w-lg overflow-hidden rounded-lg border-0 p-0 text-black dark:text-white-dark">
-                                    <button
-                                        type="button"
-                                        className="absolute top-4 text-gray-400 outline-hidden hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
+                                    <AppButton
+                                        type="text"
+                                        shape="circle"
+                                        className="absolute! top-4 text-gray-400! hover:text-gray-800! ltr:right-4 rtl:left-4 dark:hover:text-gray-600!"
+                                        icon={<IconX />}
                                         onClick={() => setIsAddEventModal(false)}
-                                    >
-                                        <IconX />
-                                    </button>
+                                    />
                                     <div className="bg-[#fbfbfb] py-3 text-lg font-medium ltr:pl-5 ltr:pr-[50px] rtl:pl-[50px] rtl:pr-5 dark:bg-[#121c2c]">
                                         {params.id ? 'Edit Event' : 'Add Event'}
                                     </div>
@@ -430,12 +430,12 @@ const ComponentsAppsCalendar = () => {
                                                 </div>
                                             </div>
                                             <div className="mt-8! flex items-center justify-end">
-                                                <button type="button" className="btn btn-outline-danger" onClick={() => setIsAddEventModal(false)}>
+                                                <AppButton tone="danger" variant="outlined" onClick={() => setIsAddEventModal(false)}>
                                                     Cancel
-                                                </button>
-                                                <button type="button" onClick={() => saveEvent()} className="btn btn-primary ltr:ml-4 rtl:mr-4">
+                                                </AppButton>
+                                                <AppButton type="primary" onClick={() => saveEvent()} className="ltr:ml-4 rtl:mr-4">
                                                     {params.id ? 'Update Event' : 'Create Event'}
-                                                </button>
+                                                </AppButton>
                                             </div>
                                         </form>
                                     </div>

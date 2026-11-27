@@ -5,6 +5,7 @@ import IconPlus from '@/components/icon/icon-plus';
 import IconTrashLines from '@/components/icon/icon-trash-lines';
 import { Table } from 'antd';
 import type { TableColumnsType } from 'antd';
+import AppButton from '@/components/ui/app-button';
 import Link from 'next/link';
 import React, { useMemo, useState } from 'react';
 
@@ -243,9 +244,7 @@ const ComponentsAppsInvoiceList = () => {
                     <Link href="/apps/invoice/preview" className="flex hover:text-primary">
                         <IconEye />
                     </Link>
-                    <button type="button" className="flex hover:text-danger" onClick={() => deleteRow(record.id)}>
-                        <IconTrashLines />
-                    </button>
+                    <AppButton type="text" size="small" shape="circle" className="hover:text-danger!" icon={<IconTrashLines />} onClick={() => deleteRow(record.id)} />
                 </div>
             ),
         },
@@ -256,10 +255,9 @@ const ComponentsAppsInvoiceList = () => {
             <div className="invoice-table">
                 <div className="mb-4.5 flex flex-col gap-5 px-5 md:flex-row md:items-center">
                     <div className="flex items-center gap-2">
-                        <button type="button" className="btn btn-danger gap-2" onClick={() => deleteRow()}>
-                            <IconTrashLines />
+                        <AppButton tone="danger" variant="solid" icon={<IconTrashLines />} onClick={() => deleteRow()}>
                             Delete
-                        </button>
+                        </AppButton>
                         <Link href="/apps/invoice/add" className="btn btn-primary gap-2">
                             <IconPlus />
                             Add New
