@@ -1,38 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# nextis-core
+
+Dashboard application built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, **Ant Design v6**, **Tailwind CSS v4**, and **Zustand**.
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (`app/` App Router) & React 19
+- **Language**: TypeScript (`strict: true`, `@/*` path alias)
+- **UI & Styling**: Ant Design v6 (`antd` + `@ant-design/nextjs-registry`), Tailwind CSS v4, `@headlessui/react` v2
+- **State Management**: Zustand v5 (`store/useThemeStore.ts` for theme, dark mode, RTL, layout, sidebar, and locale)
+- **Typography**: Nunito (`next/font/google` via `--font-nunito`)
+- **Package Manager**: `pnpm`
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and start the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+| Command | Description |
+| --- | --- |
+| `pnpm dev` | Start the Next.js development server |
+| `pnpm build` | Build the application for production |
+| `pnpm start` | Start the production server |
+| `pnpm typecheck` | Run TypeScript type checking (`tsc --noEmit`) |
+| `pnpm lint` | Run ESLint across the repository |
+| `pnpm format` | Format files with Prettier |
+| `pnpm format:check` | Check formatting with Prettier |
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```text
+.
+├── app/                  # Next.js App Router pages & layouts
+│   ├── (defaults)/       # Main authenticated/dashboard routes
+│   ├── (auth)/           # Auth & minimal layout routes
+│   └── layout.tsx        # Root layout with AntdRegistry & Nunito font
+├── components/           # Feature & shared UI components
+│   ├── apps/             # App modules (mailbox, calendar, chat, contacts, notes, scrumboard, todolist)
+│   ├── layouts/          # Shell, sidebar, header, footer, theme provider
+│   └── ui/               # Shared UI primitives (e.g. app-button.tsx)
+├── store/                # Zustand stores (useThemeStore.ts)
+├── styles/               # Global & Tailwind CSS v4 stylesheets (tailwind.css)
+└── public/               # Static assets and i18n locale JSON files
+```
 
-## Learn More
+## Development Notes
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Keep `app/**/page.tsx` and `app/**/layout.tsx` as **Server Components** whenever possible; place `'use client'` in leaf components under `components/`.
+- Use [AppButton](components/ui/app-button.tsx) as the shared Ant Design `Button` wrapper for consistent theming, semantic `tone` variants, and easy customization.
+- Lazy-load browser-only widgets (`react-apexcharts`, `react-quill-new`, `@fullcalendar/react`) with `next/dynamic(..., { ssr: false })`.
+- See [AGENTS.md](AGENTS.md) for full project guidelines and conventions.
