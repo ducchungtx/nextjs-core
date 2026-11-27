@@ -18,11 +18,13 @@ import IconX from '@/components/icon/icon-x';
 import { IRootState } from '@/store';
 import { Transition, Dialog, DialogPanel, TransitionChild } from '@headlessui/react';
 import { message } from 'antd';
+import dynamic from 'next/dynamic';
 import React, { Fragment, useEffect, useState } from 'react';
-import ReactQuill from 'react-quill';
 import { useSelector } from 'react-redux';
-import 'react-quill/dist/quill.snow.css';
+import 'react-quill-new/dist/quill.snow.css';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+
+const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
 
 const ComponentsAppsTodoList = () => {
     const defaultParams = {

@@ -41,11 +41,13 @@ import IconZipFile from '@/components/icon/icon-zip-file';
 import { IRootState } from '@/store';
 import { Disclosure } from '@headlessui/react';
 import { message, Tooltip } from 'antd';
+import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
-import ReactQuill from 'react-quill';
 import { useSelector } from 'react-redux';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import 'react-quill/dist/quill.snow.css';
+import 'react-quill-new/dist/quill.snow.css';
+
+const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
 
 const ComponentsAppsMailbox = () => {
     const [mailList, setMailList] = useState([
