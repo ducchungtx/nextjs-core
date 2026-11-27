@@ -1,53 +1,45 @@
 'use client';
 import PanelCodeHighlight from '@/components/panel-code-highlight';
 import { IRootState } from '@/store';
+import { TimePicker } from 'antd';
+import dayjs, { Dayjs } from 'dayjs';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Flatpickr from 'react-flatpickr';
-import 'flatpickr/dist/flatpickr.css';
 
 const ComponentsFormDatePickerTime = () => {
     const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
-    const [date4, setDate4] = useState<any>('13:45');
+    const [date4, setDate4] = useState<Dayjs | null>(() => dayjs('13:45', 'HH:mm'));
     return (
         <PanelCodeHighlight
             title="Preloading Time"
             codeHighlight={`import { useState } from 'react';
-import Flatpickr from 'react-flatpickr';
-import 'flatpickr/dist/flatpickr.css';
+import { TimePicker } from 'antd';
+import dayjs, { Dayjs } from 'dayjs';
 import { useSelector } from 'react-redux';
 
 const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
-const [date4, setDate4] = useState<any>('13:45');
+const [date4, setDate4] = useState<Dayjs | null>(() => dayjs('13:45', 'HH:mm'));
 
-<Flatpickr
-    options={{
-        noCalendar: true,
-        enableTime: true,
-        dateFormat: 'H:i',
-        position: isRtl ? 'auto right' : 'auto left',
-    }}
-    defaultValue={date4}
-    className="form-input"
-    onChange={(date4) => setDate4(date4)}
+<TimePicker
+    value={date4}
+    format="HH:mm"
+    placement={isRtl ? 'bottomRight' : 'bottomLeft'}
+    className="w-full"
+    onChange={(time) => setDate4(time)}
 />`}
         >
             <div className="mb-2.5">
                 Use
-                <code className="text-danger">{` {noCalendar: true, enableTime: true, dateFormat: 'H:i'} `}</code>
-                with Date Time options to disable calendar and show time picker only.
+                <code className="text-danger">{` TimePicker `}</code>
+                to show time picker only.
             </div>
             <div className="mb-5">
-                <Flatpickr
-                    options={{
-                        noCalendar: true,
-                        enableTime: true,
-                        dateFormat: 'H:i',
-                        position: isRtl ? 'auto right' : 'auto left',
-                    }}
-                    defaultValue={date4}
-                    className="form-input"
-                    onChange={(date4) => setDate4(date4)}
+                <TimePicker
+                    value={date4}
+                    format="HH:mm"
+                    placement={isRtl ? 'bottomRight' : 'bottomLeft'}
+                    className="w-full"
+                    onChange={(time) => setDate4(time)}
                 />
             </div>
         </PanelCodeHighlight>

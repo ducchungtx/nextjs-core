@@ -1,29 +1,27 @@
 'use client';
 import PanelCodeHighlight from '@/components/panel-code-highlight';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+import { Tooltip } from 'antd';
 import React from 'react';
 
 const ElementsTooltipsHtml = () => {
     return (
         <PanelCodeHighlight
             title="HTML"
-            codeHighlight={`import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+            codeHighlight={`import { Tooltip } from 'antd';
 
-<Tippy content="Bolded content">
-    <button type="button" data-dismissable="true" className="btn btn-dark">
+<Tooltip title={<strong>Bolded content</strong>}>
+    <button type="button" className="btn btn-dark">
         Tooltip on HTML
     </button>
-</Tippy>`}
+</Tooltip>`}
         >
             <div className="mb-5">
                 <div className="flex w-full justify-center gap-4">
-                    <Tippy content={<strong>Bolded content</strong>}>
-                        <button type="button" data-dismissable="true" className="btn btn-dark">
+                    <Tooltip title={<strong>Bolded content</strong>}>
+                        <button type="button" className="btn btn-dark">
                             Tooltip on HTML
                         </button>
-                    </Tippy>
+                    </Tooltip>
                 </div>
             </div>
         </PanelCodeHighlight>

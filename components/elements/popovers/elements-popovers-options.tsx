@@ -1,62 +1,60 @@
 'use client';
 import PanelCodeHighlight from '@/components/panel-code-highlight';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+import { Popover } from 'antd';
 import React from 'react';
 
 const ElementsPopoversOptions = () => {
     return (
         <PanelCodeHighlight
             title="Options"
-            codeHighlight={`import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+            codeHighlight={`import { Popover } from 'antd';
 
-<Tippy trigger="mouseenter focus" content="On Hover">
-    <button type="button" data-trigger="mouseenter" className="btn btn-primary">
+<Popover trigger={['hover', 'focus']} content="On Hover">
+    <button type="button" className="btn btn-primary">
         On Hover
     </button>
-</Tippy>
+</Popover>
 
-<Tippy trigger="focusin" content="On Focus">
-    <button type="button" data-trigger="focus" className="btn btn-secondary">
+<Popover trigger="focus" content="On Focus">
+    <button type="button" className="btn btn-secondary">
         On Focus
     </button>
-</Tippy>
+</Popover>
 
-<Tippy trigger="click" content="Delay 1s" delay={1000}>
-    <button type="button" data-delay="1000" className="btn btn-info">
+<Popover trigger="click" content="Delay 1s" mouseEnterDelay={1}>
+    <button type="button" className="btn btn-info">
         Delay
     </button>
-</Tippy>
+</Popover>
 
-<Tippy trigger="click" content="Disabled Animation">
-    <button type="button" data-animation="false" className="btn btn-dark">
+<Popover trigger="click" content="Disabled Animation" motion={{ motionName: '' }}>
+    <button type="button" className="btn btn-dark">
         Disabled Animation
     </button>
-</Tippy>`}
+</Popover>`}
         >
             <div className="mb-5">
                 <div className="flex w-full flex-wrap justify-center gap-4">
-                    <Tippy trigger="mouseenter focus" content="On Hover">
-                        <button type="button" data-trigger="mouseenter" className="btn btn-primary">
+                    <Popover trigger={['hover', 'focus']} content="On Hover">
+                        <button type="button" className="btn btn-primary">
                             On Hover
                         </button>
-                    </Tippy>
-                    <Tippy trigger="focusin" content="On Focus">
-                        <button type="button" data-trigger="focus" className="btn btn-secondary">
+                    </Popover>
+                    <Popover trigger="focus" content="On Focus">
+                        <button type="button" className="btn btn-secondary">
                             On Focus
                         </button>
-                    </Tippy>
-                    <Tippy trigger="click" content="Delay 1s" delay={1000}>
-                        <button type="button" data-delay="1000" className="btn btn-info">
+                    </Popover>
+                    <Popover trigger="click" content="Delay 1s" mouseEnterDelay={1}>
+                        <button type="button" className="btn btn-info">
                             Delay
                         </button>
-                    </Tippy>
-                    <Tippy trigger="click" content="Disabled Animation">
-                        <button type="button" data-animation="false" className="btn btn-dark">
+                    </Popover>
+                    <Popover trigger="click" content="Disabled Animation" motion={{ motionName: '' }}>
+                        <button type="button" className="btn btn-dark">
                             Disabled Animation
                         </button>
-                    </Tippy>
+                    </Popover>
                 </div>
             </div>
         </PanelCodeHighlight>

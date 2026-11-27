@@ -27,7 +27,6 @@ import IconCaretDown from '@/components/icon/icon-caret-down';
 import IconMenuApps from '@/components/icon/menu/icon-menu-apps';
 import IconMenuComponents from '@/components/icon/menu/icon-menu-components';
 import IconMenuElements from '@/components/icon/menu/icon-menu-elements';
-import IconMenuDatatables from '@/components/icon/menu/icon-menu-datatables';
 import IconMenuForms from '@/components/icon/menu/icon-menu-forms';
 import IconMenuPages from '@/components/icon/menu/icon-menu-pages';
 import IconMenuMore from '@/components/icon/menu/icon-menu-more';
@@ -658,22 +657,6 @@ const Header = () => {
                             </li>
                             <li>
                                 <Link href="/elements/typography">{t('typography')}</Link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li className="menu nav-item relative">
-                        <button type="button" className="nav-link">
-                            <div className="flex items-center">
-                                <IconMenuDatatables className="shrink-0" />
-                                <span className="px-1">{t('tables')}</span>
-                            </div>
-                            <div className="right_arrow">
-                                <IconCaretDown />
-                            </div>
-                        </button>
-                        <ul className="sub-menu">
-                            <li>
-                                <Link href="/tables">{t('tables')}</Link>
                             </li>
                         </ul>
                     </li>

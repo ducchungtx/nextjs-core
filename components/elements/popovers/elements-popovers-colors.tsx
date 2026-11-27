@@ -1,95 +1,93 @@
 'use client';
 import PanelCodeHighlight from '@/components/panel-code-highlight';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+import { Popover } from 'antd';
 import React from 'react';
 
 const ElementsPopoversColors = () => {
     return (
         <PanelCodeHighlight
             title="Colors"
-            codeHighlight={`import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+            codeHighlight={`import { Popover } from 'antd';
 
-<Tippy trigger="click" content="Primary" theme="primary">
+<Popover trigger="click" content="Primary" color="#4361ee">
     <button type="button" className="btn btn-primary">
         Primary
     </button>
-</Tippy>
+</Popover>
 
-<Tippy trigger="click" content="Success" theme="success">
+<Popover trigger="click" content="Success" color="#00ab55">
     <button type="button" className="btn btn-success">
         Success
     </button>
-</Tippy>
+</Popover>
 
-<Tippy trigger="click" content="info" theme="info">
+<Popover trigger="click" content="info" color="#2196f3">
     <button type="button" className="btn btn-info">
         Info
     </button>
-</Tippy>
+</Popover>
 
-<Tippy trigger="click" content="danger" theme="danger">
+<Popover trigger="click" content="danger" color="#e7515a">
     <button type="button" className="btn btn-danger">
         Danger
     </button>
-</Tippy>
+</Popover>
 
-<Tippy trigger="click" content="warning" theme="warning">
+<Popover trigger="click" content="warning" color="#e2a03f">
     <button type="button" className="btn btn-warning">
         Warning
     </button>
-</Tippy>
+</Popover>
 
-<Tippy trigger="click" content="secondary" theme="secondary">
+<Popover trigger="click" content="secondary" color="#805dca">
     <button type="button" className="btn btn-secondary">
         Secondary
     </button>
-</Tippy>
+</Popover>
 
-<Tippy trigger="click" content="dark" theme="dark">
+<Popover trigger="click" content="dark" color="#3b3f5c">
     <button type="button" className="btn btn-dark">
         Dark
     </button>
-</Tippy>`}
+</Popover>`}
         >
             <div className="mb-5">
                 <div className="flex w-full flex-wrap justify-center gap-4">
-                    <Tippy trigger="click" content="Primary" theme="primary">
+                    <Popover trigger="click" content="Primary" color="#4361ee">
                         <button type="button" className="btn btn-primary">
                             Primary
                         </button>
-                    </Tippy>
-                    <Tippy trigger="click" content="Success" theme="success">
+                    </Popover>
+                    <Popover trigger="click" content="Success" color="#00ab55">
                         <button type="button" className="btn btn-success">
                             Success
                         </button>
-                    </Tippy>
-                    <Tippy trigger="click" content="info" theme="info">
+                    </Popover>
+                    <Popover trigger="click" content="info" color="#2196f3">
                         <button type="button" className="btn btn-info">
                             Info
                         </button>
-                    </Tippy>
-                    <Tippy trigger="click" content="danger" theme="danger">
+                    </Popover>
+                    <Popover trigger="click" content="danger" color="#e7515a">
                         <button type="button" className="btn btn-danger">
                             Danger
                         </button>
-                    </Tippy>
-                    <Tippy trigger="click" content="warning" theme="warning">
+                    </Popover>
+                    <Popover trigger="click" content="warning" color="#e2a03f">
                         <button type="button" className="btn btn-warning">
                             Warning
                         </button>
-                    </Tippy>
-                    <Tippy trigger="click" content="secondary" theme="secondary">
+                    </Popover>
+                    <Popover trigger="click" content="secondary" color="#805dca">
                         <button type="button" className="btn btn-secondary">
                             Secondary
                         </button>
-                    </Tippy>
-                    <Tippy trigger="click" content="dark" theme="dark">
+                    </Popover>
+                    <Popover trigger="click" content="dark" color="#3b3f5c">
                         <button type="button" className="btn btn-dark">
                             Dark
                         </button>
-                    </Tippy>
+                    </Popover>
                 </div>
             </div>
         </PanelCodeHighlight>

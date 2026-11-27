@@ -39,8 +39,8 @@ const DatePicker = () => {
                             <IconBell />
                         </div>
                         <span className="ltr:mr-3 rtl:ml-3">Documentation: </span>
-                        <a href="https://www.npmjs.com/package/react-flatpickr" target="_blank" className="block hover:underline" rel="noreferrer">
-                            https://www.npmjs.com/package/react-flatpickr
+                        <a href="https://ant.design/components/date-picker" target="_blank" className="block hover:underline" rel="noreferrer">
+                            https://ant.design/components/date-picker
                         </a>
                     </div>
                     <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -77,15 +77,15 @@ const DatePicker = () => {
                 </div>
 
                 <div className="space-y-8" id="noui_sliders">
-                    {/* Nouislider */}
-                    <div className="inline-block rounded bg-[#009688]/[.26] px-2 py-1 text-base text-[#009688]">noUI Slider</div>
+                    {/* Ant Design Slider */}
+                    <div className="inline-block rounded bg-[#009688]/[.26] px-2 py-1 text-base text-[#009688]">Slider</div>
                     <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-primary">
                         <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
                             <IconBell />
                         </div>
                         <span className="ltr:mr-3 rtl:ml-3">Documentation: </span>
-                        <a href="https://www.npmjs.com/package/nouislider-react" target="_blank" className="block hover:underline" rel="noreferrer">
-                            https://www.npmjs.com/package/nouislider-react
+                        <a href="https://ant.design/components/slider" target="_blank" className="block hover:underline" rel="noreferrer">
+                            https://ant.design/components/slider
                         </a>
                     </div>
                     <div className="grid gap-6 lg:grid-cols-2">

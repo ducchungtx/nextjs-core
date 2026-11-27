@@ -1,40 +1,38 @@
 'use client';
 import PanelCodeHighlight from '@/components/panel-code-highlight';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+import { Tooltip } from 'antd';
 import React from 'react';
 
 const ElementsTooltipsDefault = () => {
     return (
         <PanelCodeHighlight
             title="Default"
-            codeHighlight={`import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+            codeHighlight={`import { Tooltip } from 'antd';
 
-<Tippy content="Popover using ANCHOR tag">
+<Tooltip title="Popover using ANCHOR tag">
     <button type="button" className="btn bg-primary btn-primary">
         Link
     </button>
-</Tippy>
+</Tooltip>
 
-<Tippy content="Popover using BUTTON tag">
+<Tooltip title="Popover using BUTTON tag">
     <button type="button" className="btn btn-success">
         Button
     </button>
-</Tippy>`}
+</Tooltip>`}
         >
             <div className="mb-5">
                 <div className="flex w-full justify-center gap-4">
-                    <Tippy content="Popover using ANCHOR tag">
+                    <Tooltip title="Popover using ANCHOR tag">
                         <button type="button" className="btn btn-primary bg-primary">
                             Link
                         </button>
-                    </Tippy>
-                    <Tippy content="Popover using BUTTON tag">
+                    </Tooltip>
+                    <Tooltip title="Popover using BUTTON tag">
                         <button type="button" className="btn btn-success">
                             Button
                         </button>
-                    </Tippy>
+                    </Tooltip>
                 </div>
             </div>
         </PanelCodeHighlight>

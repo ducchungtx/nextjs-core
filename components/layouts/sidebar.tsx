@@ -24,7 +24,6 @@ import IconMenuCharts from '@/components/icon/menu/icon-menu-charts';
 import IconMenuWidgets from '@/components/icon/menu/icon-menu-widgets';
 import IconMenuFontIcons from '@/components/icon/menu/icon-menu-font-icons';
 import IconMenuDragAndDrop from '@/components/icon/menu/icon-menu-drag-and-drop';
-import IconMenuTables from '@/components/icon/menu/icon-menu-tables';
 import IconMenuForms from '@/components/icon/menu/icon-menu-forms';
 import IconMenuUsers from '@/components/icon/menu/icon-menu-users';
 import IconMenuPages from '@/components/icon/menu/icon-menu-pages';
@@ -407,15 +406,6 @@ const Sidebar = () => {
                                 <IconMinus className="hidden h-5 w-4 flex-none" />
                                 <span>{t('tables_and_forms')}</span>
                             </h2>
-
-                            <li className="menu nav-item">
-                                <Link href="/tables" className="group">
-                                    <div className="flex items-center">
-                                        <IconMenuTables className="shrink-0 group-hover:!text-primary" />
-                                        <span className="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">{t('tables')}</span>
-                                    </div>
-                                </Link>
-                            </li>
 
                             <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'forms' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('forms')}>

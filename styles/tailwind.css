@@ -1,7 +1,5 @@
 /* Animate css */
 @import './animate.css';
-/* tippy css */
-@import './tippy.css';
 
 /* swiper css */
 @import './swiper.css';
@@ -17,9 +15,6 @@
 
 /* sweetalert css */
 @import './sweetalert.css';
-
-/* flatpickr css */
-@import './flatpickr.css';
 
 /* quill-editor css */
 @import './quill-editor.css';

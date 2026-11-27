@@ -1,29 +1,27 @@
 'use client';
 import PanelCodeHighlight from '@/components/panel-code-highlight';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+import { Popover } from 'antd';
 import React from 'react';
 
 const ElementsPopoversDismissible = () => {
     return (
         <PanelCodeHighlight
             title="Dismissible popover"
-            codeHighlight={`import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+            codeHighlight={`import { Popover } from 'antd';
 
-<Tippy trigger="click" content="Popover on left" placement="left">
-    <button type="button" data-dismissable="true" className="btn btn-dark">
+<Popover trigger="click" content="Popover on left" placement="left">
+    <button type="button" className="btn btn-dark">
         Popover on left
     </button>
-</Tippy>`}
+</Popover>`}
         >
             <div className="mb-5">
                 <div className="flex w-full justify-center gap-4">
-                    <Tippy trigger="click" content="Popover on left" placement="left">
-                        <button type="button" data-dismissable="true" className="btn btn-dark">
+                    <Popover trigger="click" content="Popover on left" placement="left">
+                        <button type="button" className="btn btn-dark">
                             Popover on left
                         </button>
-                    </Tippy>
+                    </Popover>
                 </div>
             </div>
         </PanelCodeHighlight>

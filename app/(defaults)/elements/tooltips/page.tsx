@@ -31,8 +31,8 @@ const Tooltips = () => {
                         <IconBell />
                     </div>
                     <span className="ltr:mr-3 rtl:ml-3">Documentation: </span>
-                    <a href="https://www.npmjs.com/package/@tippyjs/react" target="_blank" className="block hover:underline" rel="noreferrer">
-                        https://www.npmjs.com/package/@tippyjs/react
+                    <a href="https://ant.design/components/tooltip" target="_blank" className="block hover:underline" rel="noreferrer">
+                        https://ant.design/components/tooltip
                     </a>
                 </div>
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">

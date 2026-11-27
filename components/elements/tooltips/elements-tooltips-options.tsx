@@ -1,62 +1,60 @@
 'use client';
 import PanelCodeHighlight from '@/components/panel-code-highlight';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+import { Tooltip } from 'antd';
 import React from 'react';
 
 const ElementsTooltipsOptions = () => {
     return (
         <PanelCodeHighlight
             title="Options"
-            codeHighlight={`import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+            codeHighlight={`import { Tooltip } from 'antd';
 
-<Tippy trigger="click" content="On Click">
-    <button type="button" data-trigger="mouseenter" className="btn btn-primary">
+<Tooltip trigger="click" title="On Click">
+    <button type="button" className="btn btn-primary">
         On Click
     </button>
-</Tippy>
+</Tooltip>
 
-<Tippy trigger="focusin" content="On Focus">
-    <button type="button" data-trigger="focus" className="btn btn-secondary">
+<Tooltip trigger="focus" title="On Focus">
+    <button type="button" className="btn btn-secondary">
         On Focus
     </button>
-</Tippy>
+</Tooltip>
 
-<Tippy content="Delay 1s" delay={1000}>
-    <button type="button" data-delay="1000" className="btn btn-info">
+<Tooltip title="Delay 1s" mouseEnterDelay={1}>
+    <button type="button" className="btn btn-info">
         Delay
     </button>
-</Tippy>
+</Tooltip>
 
-<Tippy content="Disabled Animation">
-    <button type="button" data-animation="false" className="btn btn-dark">
+<Tooltip title="Disabled Animation" motion={{ motionName: '' }}>
+    <button type="button" className="btn btn-dark">
         Disabled Animation
     </button>
-</Tippy>`}
+</Tooltip>`}
         >
             <div className="mb-5">
                 <div className="flex w-full flex-wrap justify-center gap-4">
-                    <Tippy trigger="click" content="On Click">
-                        <button type="button" data-trigger="mouseenter" className="btn btn-primary">
+                    <Tooltip trigger="click" title="On Click">
+                        <button type="button" className="btn btn-primary">
                             On Click
                         </button>
-                    </Tippy>
-                    <Tippy trigger="focusin" content="On Focus">
-                        <button type="button" data-trigger="focus" className="btn btn-secondary">
+                    </Tooltip>
+                    <Tooltip trigger="focus" title="On Focus">
+                        <button type="button" className="btn btn-secondary">
                             On Focus
                         </button>
-                    </Tippy>
-                    <Tippy content="Delay 1s" delay={1000}>
-                        <button type="button" data-delay="1000" className="btn btn-info">
+                    </Tooltip>
+                    <Tooltip title="Delay 1s" mouseEnterDelay={1}>
+                        <button type="button" className="btn btn-info">
                             Delay
                         </button>
-                    </Tippy>
-                    <Tippy content="Disabled Animation">
-                        <button type="button" data-animation="false" className="btn btn-dark">
+                    </Tooltip>
+                    <Tooltip title="Disabled Animation" motion={{ motionName: '' }}>
+                        <button type="button" className="btn btn-dark">
                             Disabled Animation
                         </button>
-                    </Tippy>
+                    </Tooltip>
                 </div>
             </div>
         </PanelCodeHighlight>

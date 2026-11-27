@@ -40,13 +40,12 @@ import IconWheel from '@/components/icon/icon-wheel';
 import IconZipFile from '@/components/icon/icon-zip-file';
 import { IRootState } from '@/store';
 import { Disclosure } from '@headlessui/react';
-import Tippy from '@tippyjs/react';
+import { Tooltip } from 'antd';
 import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import 'tippy.js/dist/tippy.css';
 import 'react-quill/dist/quill.snow.css';
 
 const ComponentsAppsMailbox = () => {
@@ -1459,31 +1458,31 @@ const ComponentsAppsMailbox = () => {
                                     </div>
 
                                     <div className="ltr:mr-4 rtl:ml-4">
-                                        <Tippy content="Refresh">
+                                        <Tooltip title="Refresh">
                                             <button type="button" className="flex items-center hover:text-primary" onClick={() => refreshMails()}>
                                                 <IconRefresh />
                                             </button>
-                                        </Tippy>
+                                        </Tooltip>
                                     </div>
 
                                     {selectedTab !== 'trash' && (
                                         <ul className="flex grow items-center gap-4 sm:flex-none ltr:sm:mr-4 rtl:sm:ml-4">
                                             <li>
                                                 <div>
-                                                    <Tippy content="Archive">
+                                                    <Tooltip title="Archive">
                                                         <button type="button" className="flex items-center hover:text-primary" onClick={setArchive}>
                                                             <IconArchive />
                                                         </button>
-                                                    </Tippy>
+                                                    </Tooltip>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div>
-                                                    <Tippy content="Spam">
+                                                    <Tooltip title="Spam">
                                                         <button type="button" className="flex items-center hover:text-primary" onClick={setSpam}>
                                                             <IconInfoHexagon />
                                                         </button>
-                                                    </Tippy>
+                                                    </Tooltip>
                                                 </div>
                                             </li>
                                             <li>
@@ -1493,11 +1492,11 @@ const ComponentsAppsMailbox = () => {
                                                         placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
                                                         btnClassName="hover:text-primary flex items-center"
                                                         button={
-                                                            <Tippy content="Group">
+                                                            <Tooltip title="Group">
                                                                 <span>
                                                                     <IconWheel />
                                                                 </span>
-                                                            </Tippy>
+                                                            </Tooltip>
                                                         }
                                                     >
                                                         <ul className="text-sm font-medium">
@@ -1567,20 +1566,20 @@ const ComponentsAppsMailbox = () => {
                                         <ul className="flex flex-1 items-center gap-4 sm:flex-none ltr:sm:mr-3 rtl:sm:ml-4">
                                             <li>
                                                 <div>
-                                                    <Tippy content="Permanently Delete">
+                                                    <Tooltip title="Permanently Delete">
                                                         <button type="button" className="block hover:text-primary" onClick={() => setAction('delete')}>
                                                             <IconTrash />
                                                         </button>
-                                                    </Tippy>
+                                                    </Tooltip>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div>
-                                                    <Tippy content="Restore">
+                                                    <Tooltip title="Restore">
                                                         <button type="button" className="block hover:text-primary" onClick={() => setAction('restore')}>
                                                             <IconRestore />
                                                         </button>
-                                                    </Tippy>
+                                                    </Tooltip>
                                                 </div>
                                             </li>
                                         </ul>
@@ -1608,18 +1607,18 @@ const ComponentsAppsMailbox = () => {
                                     </div>
                                     <div className="flex items-center">
                                         <div className="ltr:mr-4 rtl:ml-4">
-                                            <Tippy content="Settings">
+                                            <Tooltip title="Settings">
                                                 <button type="button" className="hover:text-primary">
                                                     <IconSettings />
                                                 </button>
-                                            </Tippy>
+                                            </Tooltip>
                                         </div>
                                         <div>
-                                            <Tippy content="Help">
+                                            <Tooltip title="Help">
                                                 <button type="button" className="hover:text-primary">
                                                     <IconHelpCircle className="h-6 w-6" />
                                                 </button>
-                                            </Tippy>
+                                            </Tooltip>
                                         </div>
                                     </div>
                                 </div>
@@ -1731,7 +1730,7 @@ const ComponentsAppsMailbox = () => {
                                                                     />
                                                                 </div>
                                                                 <div className="ltr:mr-3 rtl:ml-3">
-                                                                    <Tippy content="Star">
+                                                                    <Tooltip title="Star">
                                                                         <button
                                                                             type="button"
                                                                             className={`flex items-center enabled:hover:text-warning disabled:opacity-60 ${mail.isStar ? 'text-warning' : ''}`}
@@ -1743,10 +1742,10 @@ const ComponentsAppsMailbox = () => {
                                                                         >
                                                                             <IconStar className={mail.isStar ? 'fill-warning' : ''} />
                                                                         </button>
-                                                                    </Tippy>
+                                                                    </Tooltip>
                                                                 </div>
                                                                 <div className="ltr:mr-3 rtl:ml-3">
-                                                                    <Tippy content="Important">
+                                                                    <Tooltip title="Important">
                                                                         <button
                                                                             type="button"
                                                                             className={`flex rotate-90 items-center enabled:hover:text-primary disabled:opacity-60 ${
@@ -1760,7 +1759,7 @@ const ComponentsAppsMailbox = () => {
                                                                         >
                                                                             <IconBookmark bookmark={false} className={`h-4.5 w-4.5 ${mail.isImportant && 'fill-primary'}`} />
                                                                         </button>
-                                                                    </Tippy>
+                                                                    </Tooltip>
                                                                 </div>
                                                                 <div className={`whitespace-nowrap font-semibold dark:text-gray-300 ${!mail.isUnread ? 'text-gray-500 dark:text-gray-500' : ''}`}>
                                                                     {mail.firstName ? mail.firstName + ' ' + mail.lastName : mail.email}
@@ -1816,11 +1815,11 @@ const ComponentsAppsMailbox = () => {
                                     <div className="badge bg-info hover:top-0">{selectedMail.type}</div>
                                 </div>
                                 <div>
-                                    <Tippy content="Print">
+                                    <Tooltip title="Print">
                                         <button type="button">
                                             <IconPrinter />
                                         </button>
-                                    </Tippy>
+                                    </Tooltip>
                                 </div>
                             </div>
                             <div className="h-px border-b border-white-light dark:border-[#1b2e4b]"></div>
@@ -1842,7 +1841,7 @@ const ComponentsAppsMailbox = () => {
                                             </div>
                                             {selectedMail.group && (
                                                 <div className="ltr:mr-4 rtl:ml-4">
-                                                    <Tippy content={selectedMail.group} className="capitalize">
+                                                    <Tooltip title={selectedMail.group} classNames={{ container: 'capitalize' }}>
                                                         <div
                                                             className={`h-2 w-2 rounded-full ${
                                                                 (selectedMail.group === 'personal' && 'bg-primary') ||
@@ -1851,7 +1850,7 @@ const ComponentsAppsMailbox = () => {
                                                                 (selectedMail.group === 'private' && 'bg-danger')
                                                             }`}
                                                         ></div>
-                                                    </Tippy>
+                                                    </Tooltip>
                                                 </div>
                                             )}
                                             <div className="whitespace-nowrap text-white-dark">1 days ago</div>
@@ -1898,7 +1897,7 @@ const ComponentsAppsMailbox = () => {
 
                                     <div>
                                         <div className="flex items-center justify-center space-x-3 rtl:space-x-reverse">
-                                            <Tippy content="Star">
+                                            <Tooltip title="Star">
                                                 <button
                                                     type="button"
                                                     className={`enabled:hover:text-warning disabled:opacity-60 ${selectedMail.isStar ? 'text-warning' : ''}`}
@@ -1907,8 +1906,8 @@ const ComponentsAppsMailbox = () => {
                                                 >
                                                     <IconStar className={selectedMail.isStar ? 'fill-warning' : ''} />
                                                 </button>
-                                            </Tippy>
-                                            <Tippy content="Important">
+                                            </Tooltip>
+                                            <Tooltip title="Important">
                                                 <button
                                                     type="button"
                                                     className={`enabled:hover:text-primary disabled:opacity-60 ${selectedMail.isImportant ? 'text-primary' : ''}`}
@@ -1917,19 +1916,19 @@ const ComponentsAppsMailbox = () => {
                                                 >
                                                     <IconBookmark bookmark={false} className={`h-4.5 w-4.5 rotate-90 ${selectedMail.isImportant && 'fill-primary'}`} />
                                                 </button>
-                                            </Tippy>
-                                            <Tippy content="Reply">
+                                            </Tooltip>
+                                            <Tooltip title="Reply">
                                                 <button type="button" className="hover:text-info" onClick={() => openMail('reply', selectedMail)}>
                                                     <IconArrowBackward className="rtl:hidden" />
                                                     <IconArrowForward className="ltr:hidden" />
                                                 </button>
-                                            </Tippy>
-                                            <Tippy content="Forward">
+                                            </Tooltip>
+                                            <Tooltip title="Forward">
                                                 <button type="button" className="hover:text-info" onClick={() => openMail('forward', selectedMail)}>
                                                     <IconArrowBackward className="ltr:hidden" />
                                                     <IconArrowForward className="rtl:hidden" />
                                                 </button>
-                                            </Tippy>
+                                            </Tooltip>
                                         </div>
                                     </div>
                                 </div>
