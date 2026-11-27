@@ -22,9 +22,8 @@ import IconTrashLines from '@/components/icon/icon-trash-lines';
 import IconUserPlus from '@/components/icon/icon-user-plus';
 import IconVideo from '@/components/icon/icon-video';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { IRootState } from '@/store';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useThemeStore } from '@/store/useThemeStore';
 
 const contactList = [
     {
@@ -255,8 +254,8 @@ const loginUser = {
 };
 
 const ComponentsAppsChat = () => {
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
-    const isDark = useSelector((state: IRootState) => state.themeConfig.theme === 'dark' || state.themeConfig.isDarkMode);
+    const isRtl = useThemeStore((s) => s.rtlClass) === 'rtl';
+    const isDark = useThemeStore((s) => s.theme === 'dark' || s.isDarkMode);
 
     const [isShowChatMenu, setIsShowChatMenu] = useState(false);
     const [searchUser, setSearchUser] = useState('');
@@ -311,8 +310,8 @@ const ComponentsAppsChat = () => {
 
     return (
         <div>
-            <div className={`relative flex h-full gap-5 sm:h-[calc(100vh_-_150px)] sm:min-h-0 ${isShowChatMenu ? 'min-h-[999px]' : ''}`}>
-                <div className={`panel absolute z-10 hidden h-full w-full max-w-xs flex-none space-y-4 overflow-hidden p-4 xl:relative xl:block ${isShowChatMenu ? '!block' : ''}`}>
+            <div className={`relative flex h-full gap-5 sm:h-[calc(100vh-150px)] sm:min-h-0 ${isShowChatMenu ? 'min-h-[999px]' : ''}`}>
+                <div className={`panel absolute z-10 hidden h-full w-full max-w-xs flex-none space-y-4 overflow-hidden p-4 xl:relative xl:block ${isShowChatMenu ? 'block!' : ''}`}>
                     <div className="flex items-center justify-between">
                         <div className="flex items-center">
                             <div className="flex-none">
@@ -327,7 +326,7 @@ const ComponentsAppsChat = () => {
                             <Dropdown
                                 offset={[0, 5]}
                                 placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
-                                btnClassName="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-primary-light w-8 h-8 rounded-full !flex justify-center items-center hover:text-primary"
+                                btnClassName="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-primary-light w-8 h-8 rounded-full flex! justify-center items-center hover:text-primary"
                                 button={<IconHorizontalDots className="opacity-70" />}
                             >
                                 <ul className="whitespace-nowrap">
@@ -381,8 +380,8 @@ const ComponentsAppsChat = () => {
                         </button>
                     </div>
                     <div className="h-px w-full border-b border-white-light dark:border-[#1b2e4b]"></div>
-                    <div className="!mt-0">
-                        <PerfectScrollbar className="chat-users relative h-full min-h-[100px] space-y-0.5 ltr:-mr-3.5 ltr:pr-3.5 rtl:-ml-3.5 rtl:pl-3.5 sm:h-[calc(100vh_-_357px)]">
+                    <div className="mt-0!">
+                        <PerfectScrollbar className="chat-users relative h-full min-h-[100px] space-y-0.5 ltr:-mr-3.5 ltr:pr-3.5 rtl:-ml-3.5 rtl:pl-3.5 sm:h-[calc(100vh-357px)]">
                             {filteredItems.map((person: any) => {
                                 return (
                                     <div key={person.userId}>
@@ -395,7 +394,7 @@ const ComponentsAppsChat = () => {
                                         >
                                             <div className="flex-1">
                                                 <div className="flex items-center">
-                                                    <div className="relative flex-shrink-0">
+                                                    <div className="relative shrink-0">
                                                         <img src={`/assets/images/${person.path}`} className="h-12 w-12 rounded-full object-cover" alt="" />
                                                         {person.active && (
                                                             <div>
@@ -421,7 +420,7 @@ const ComponentsAppsChat = () => {
                         </PerfectScrollbar>
                     </div>
                 </div>
-                <div className={`absolute z-[5] hidden h-full w-full rounded-md bg-black/60 ${isShowChatMenu ? '!block xl:!hidden' : ''}`} onClick={() => setIsShowChatMenu(!isShowChatMenu)}></div>
+                <div className={`absolute z-5 hidden h-full w-full rounded-md bg-black/60 ${isShowChatMenu ? 'block! xl:hidden!' : ''}`} onClick={() => setIsShowChatMenu(!isShowChatMenu)}></div>
                 <div className="panel flex-1 p-0">
                     {!isShowUserChat && (
                         <div className="relative flex h-full items-center justify-center p-4">
@@ -430,7 +429,7 @@ const ComponentsAppsChat = () => {
                             </button>
 
                             <div className="flex flex-col items-center justify-center py-8">
-                                <div className="mb-8 h-[calc(100vh_-_320px)] min-h-[120px] w-[280px] text-white dark:text-black md:w-[430px]">
+                                <div className="mb-8 h-[calc(100vh-320px)] min-h-[120px] w-[280px] text-white dark:text-black md:w-[430px]">
                                     <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" className="h-full w-full" viewBox="0 0 891.29496 745.19434" xmlns-xlink="http://www.w3.org/1999/xlink">
                                         <ellipse cx="418.64354" cy="727.19434" rx="352" ry="18" fill={isDark ? '#888ea8' : '#e6e6e6'} />
                                         <path
@@ -569,7 +568,7 @@ const ComponentsAppsChat = () => {
                                     <div className="dropdown">
                                         <Dropdown
                                             placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
-                                            btnClassName="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-primary-light w-8 h-8 rounded-full !flex justify-center items-center"
+                                            btnClassName="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-primary-light w-8 h-8 rounded-full flex! justify-center items-center"
                                             button={<IconHorizontalDots className="rotate-90 opacity-70 hover:text-primary" />}
                                         >
                                             <ul className="text-black dark:text-white-dark">
@@ -610,7 +609,7 @@ const ComponentsAppsChat = () => {
                             </div>
                             <div className="h-px w-full border-b border-white-light dark:border-[#1b2e4b]"></div>
 
-                            <PerfectScrollbar className="chat-conversation-box relative h-full sm:h-[calc(100vh_-_300px)]">
+                            <PerfectScrollbar className="chat-conversation-box relative h-full sm:h-[calc(100vh-300px)]">
                                 <div className="min-h-[400px] space-y-5 p-4 pb-[68px] sm:min-h-[300px] sm:pb-0">
                                     <div className="m-6 mt-0 block">
                                         <h4 className="relative border-b border-[#f4f4f4] text-center text-xs dark:border-gray-800">
@@ -640,7 +639,7 @@ const ComponentsAppsChat = () => {
                                                                     <div
                                                                         className={`rounded-md bg-black/10 p-4 py-2 dark:bg-gray-800 ${
                                                                             message.fromUserId === selectedUser.userId
-                                                                                ? '!bg-primary text-white ltr:rounded-br-none rtl:rounded-bl-none'
+                                                                                ? 'bg-primary! text-white ltr:rounded-br-none rtl:rounded-bl-none'
                                                                                 : 'ltr:rounded-bl-none rtl:rounded-br-none'
                                                                         }`}
                                                                     >
@@ -668,7 +667,7 @@ const ComponentsAppsChat = () => {
                                 <div className="w-full items-center space-x-3 rtl:space-x-reverse sm:flex">
                                     <div className="relative flex-1">
                                         <input
-                                            className="form-input rounded-full border-0 bg-[#f4f4f4] px-12 py-2 focus:outline-none"
+                                            className="form-input rounded-full border-0 bg-[#f4f4f4] px-12 py-2 focus:outline-hidden"
                                             placeholder="Type a message"
                                             value={textMessage}
                                             onChange={(e: any) => setTextMessage(e.target.value)}

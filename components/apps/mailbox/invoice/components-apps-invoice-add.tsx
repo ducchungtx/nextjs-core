@@ -56,7 +56,7 @@ const ComponentsAppsInvoiceAdd = () => {
 
     return (
         <div className="flex flex-col gap-2.5 xl:flex-row">
-            <div className="panel flex-1 px-0 py-6 ltr:xl:mr-6 rtl:xl:ml-6">
+            <div className="panel flex-1 px-0 py-6 xl:ltr:mr-6 xl:rtl:ml-6">
                 <div className="flex flex-wrap justify-between px-4">
                     <div className="mb-6 w-full lg:w-1/2">
                         <div className="flex shrink-0 items-center text-black dark:text-white">
@@ -98,7 +98,7 @@ const ComponentsAppsInvoiceAdd = () => {
                 <hr className="my-6 border-white-light dark:border-[#1b2e4b]" />
                 <div className="mt-8 px-4">
                     <div className="flex flex-col justify-between lg:flex-row">
-                        <div className="mb-6 w-full lg:w-1/2 ltr:lg:mr-6 rtl:lg:ml-6">
+                        <div className="mb-6 w-full lg:w-1/2 lg:ltr:mr-6 lg:rtl:ml-6">
                             <div className="text-lg">Bill To :-</div>
                             <div className="mt-4 flex items-center">
                                 <label htmlFor="reciever-name" className="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">
@@ -367,7 +367,7 @@ const ComponentsAppsInvoiceAdd = () => {
                             <tbody>
                                 {items.length <= 0 && (
                                     <tr>
-                                        <td colSpan={5} className="!text-center font-semibold">
+                                        <td colSpan={5} className="text-center! font-semibold">
                                             No Item Available
                                         </td>
                                     </tr>

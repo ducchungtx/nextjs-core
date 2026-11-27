@@ -190,7 +190,7 @@ const Profile = () => {
                             <h5 className="text-lg font-semibold dark:text-white-light">Summary</h5>
                         </div>
                         <div className="space-y-4">
-                            <div className="rounded border border-[#ebedf2] dark:border-0 dark:bg-[#1b2e4b]">
+                            <div className="rounded-sm border border-[#ebedf2] dark:border-0 dark:bg-[#1b2e4b]">
                                 <div className="flex items-center justify-between p-4 py-2">
                                     <div className="grid h-9 w-9 place-content-center rounded-md bg-secondary-light text-secondary dark:bg-secondary dark:text-secondary-light">
                                         <IconShoppingBag />
@@ -204,7 +204,7 @@ const Profile = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="rounded border border-[#ebedf2] dark:border-0 dark:bg-[#1b2e4b]">
+                            <div className="rounded-sm border border-[#ebedf2] dark:border-0 dark:bg-[#1b2e4b]">
                                 <div className="flex items-center justify-between p-4 py-2">
                                     <div className="grid h-9 w-9 place-content-center rounded-md bg-info-light text-info dark:bg-info dark:text-info-light">
                                         <IconTag />
@@ -218,7 +218,7 @@ const Profile = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="rounded border border-[#ebedf2] dark:border-0 dark:bg-[#1b2e4b]">
+                            <div className="rounded-sm border border-[#ebedf2] dark:border-0 dark:bg-[#1b2e4b]">
                                 <div className="flex items-center justify-between p-4 py-2">
                                     <div className="grid h-9 w-9 place-content-center rounded-md bg-warning-light text-warning dark:bg-warning dark:text-warning-light">
                                         <IconCreditCard />
@@ -252,7 +252,7 @@ const Profile = () => {
                                 <p className="text-info">$25 / month</p>
                             </div>
                             <div className="mb-5 h-2.5 overflow-hidden rounded-full bg-dark-light p-0.5 dark:bg-dark-light/10">
-                                <div className="relative h-full w-full rounded-full bg-gradient-to-r from-[#f67062] to-[#fc5296]" style={{ width: '65%' }}></div>
+                                <div className="relative h-full w-full rounded-full bg-linear-to-r from-[#f67062] to-[#fc5296]" style={{ width: '65%' }}></div>
                             </div>
                         </div>
                     </div>

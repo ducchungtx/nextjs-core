@@ -240,22 +240,22 @@ const ComponentsAppsCalendar = () => {
             <div className="panel mb-5">
                 <div className="mb-4 flex flex-col items-center justify-center sm:flex-row sm:justify-between">
                     <div className="mb-4 sm:mb-0">
-                        <div className="text-center text-lg font-semibold ltr:sm:text-left rtl:sm:text-right">Calendar</div>
+                        <div className="text-center text-lg font-semibold sm:ltr:text-left sm:rtl:text-right">Calendar</div>
                         <div className="mt-2 flex flex-wrap items-center justify-center sm:justify-start">
                             <div className="flex items-center ltr:mr-4 rtl:ml-4">
-                                <div className="h-2.5 w-2.5 rounded-sm bg-primary ltr:mr-2 rtl:ml-2"></div>
+                                <div className="h-2.5 w-2.5 rounded-xs bg-primary ltr:mr-2 rtl:ml-2"></div>
                                 <div>Work</div>
                             </div>
                             <div className="flex items-center ltr:mr-4 rtl:ml-4">
-                                <div className="h-2.5 w-2.5 rounded-sm bg-info ltr:mr-2 rtl:ml-2"></div>
+                                <div className="h-2.5 w-2.5 rounded-xs bg-info ltr:mr-2 rtl:ml-2"></div>
                                 <div>Travel</div>
                             </div>
                             <div className="flex items-center ltr:mr-4 rtl:ml-4">
-                                <div className="h-2.5 w-2.5 rounded-sm bg-success ltr:mr-2 rtl:ml-2"></div>
+                                <div className="h-2.5 w-2.5 rounded-xs bg-success ltr:mr-2 rtl:ml-2"></div>
                                 <div>Personal</div>
                             </div>
                             <div className="flex items-center">
-                                <div className="h-2.5 w-2.5 rounded-sm bg-danger ltr:mr-2 rtl:ml-2"></div>
+                                <div className="h-2.5 w-2.5 rounded-xs bg-danger ltr:mr-2 rtl:ml-2"></div>
                                 <div>Important</div>
                             </div>
                         </div>
@@ -314,7 +314,7 @@ const ComponentsAppsCalendar = () => {
                                 <DialogPanel className="panel w-full max-w-lg overflow-hidden rounded-lg border-0 p-0 text-black dark:text-white-dark">
                                     <button
                                         type="button"
-                                        className="absolute top-4 text-gray-400 outline-none hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
+                                        className="absolute top-4 text-gray-400 outline-hidden hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
                                         onClick={() => setIsAddEventModal(false)}
                                     >
                                         <IconX />
@@ -429,7 +429,7 @@ const ComponentsAppsCalendar = () => {
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div className="!mt-8 flex items-center justify-end">
+                                            <div className="mt-8! flex items-center justify-end">
                                                 <button type="button" className="btn btn-outline-danger" onClick={() => setIsAddEventModal(false)}>
                                                     Cancel
                                                 </button>

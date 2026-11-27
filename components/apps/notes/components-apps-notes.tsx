@@ -13,11 +13,10 @@ import IconStar from '@/components/icon/icon-star';
 import IconTrashLines from '@/components/icon/icon-trash-lines';
 import IconUser from '@/components/icon/icon-user';
 import IconX from '@/components/icon/icon-x';
-import { IRootState } from '@/store';
 import { Transition, Dialog, DialogPanel, TransitionChild } from '@headlessui/react';
 import { message } from 'antd';
 import React, { Fragment, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useThemeStore } from '@/store/useThemeStore';
 
 const ComponentsAppsNotes = () => {
     const [notesList, setNoteList] = useState([
@@ -362,12 +361,12 @@ const ComponentsAppsNotes = () => {
         searchNotes();
     }, [selectedTab, notesList]);
 
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
+    const isRtl = useThemeStore((s) => s.rtlClass) === 'rtl';
 
     return (
         <div>
-            <div className="relative flex h-full gap-5 sm:h-[calc(100vh_-_150px)]">
-                <div className={`absolute z-10 hidden h-full w-full rounded-md bg-black/60 ${isShowNoteMenu ? '!block xl:!hidden' : ''}`} onClick={() => setIsShowNoteMenu(!isShowNoteMenu)}></div>
+            <div className="relative flex h-full gap-5 sm:h-[calc(100vh-150px)]">
+                <div className={`absolute z-10 hidden h-full w-full rounded-md bg-black/60 ${isShowNoteMenu ? 'block! xl:hidden!' : ''}`} onClick={() => setIsShowNoteMenu(!isShowNoteMenu)}></div>
                 <div
                     className={`panel
                     absolute
@@ -381,9 +380,9 @@ const ComponentsAppsNotes = () => {
                     p-4
                     ltr:rounded-r-none
                     rtl:rounded-l-none
-                    ltr:lg:rounded-r-md rtl:lg:rounded-l-md
+                    lg:ltr:rounded-r-md lg:rtl:rounded-l-md
                     xl:relative xl:block
-                    xl:h-auto ${isShowNoteMenu ? '!block h-full ltr:left-0 rtl:right-0' : 'hidden shadow'}`}
+                    xl:h-auto ${isShowNoteMenu ? 'block! h-full ltr:left-0 rtl:right-0' : 'hidden shadow-sm'}`}
                 >
                     <div className="flex h-full flex-col pb-16">
                         <div className="flex items-center text-center">
@@ -424,7 +423,7 @@ const ComponentsAppsNotes = () => {
                                 <div className="px-1 py-3 text-white-dark">Tags</div>
                                 <button
                                     type="button"
-                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-primary duration-300 hover:bg-white-dark/10 ltr:hover:pl-3 rtl:hover:pr-3 dark:hover:bg-[#181F32] ${
+                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-primary duration-300 hover:bg-white-dark/10 hover:ltr:pl-3 hover:rtl:pr-3 dark:hover:bg-[#181F32] ${
                                         selectedTab === 'personal' && 'bg-gray-100 ltr:pl-3 rtl:pr-3 dark:bg-[#181F32]'
                                     }`}
                                     onClick={() => tabChanged('personal')}
@@ -434,7 +433,7 @@ const ComponentsAppsNotes = () => {
                                 </button>
                                 <button
                                     type="button"
-                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-warning duration-300 hover:bg-white-dark/10 ltr:hover:pl-3 rtl:hover:pr-3 dark:hover:bg-[#181F32] ${
+                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-warning duration-300 hover:bg-white-dark/10 hover:ltr:pl-3 hover:rtl:pr-3 dark:hover:bg-[#181F32] ${
                                         selectedTab === 'work' && 'bg-gray-100 ltr:pl-3 rtl:pr-3 dark:bg-[#181F32]'
                                     }`}
                                     onClick={() => tabChanged('work')}
@@ -444,7 +443,7 @@ const ComponentsAppsNotes = () => {
                                 </button>
                                 <button
                                     type="button"
-                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-info duration-300 hover:bg-white-dark/10 ltr:hover:pl-3 rtl:hover:pr-3 dark:hover:bg-[#181F32] ${
+                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-info duration-300 hover:bg-white-dark/10 hover:ltr:pl-3 hover:rtl:pr-3 dark:hover:bg-[#181F32] ${
                                         selectedTab === 'social' && 'bg-gray-100 ltr:pl-3 rtl:pr-3 dark:bg-[#181F32]'
                                     }`}
                                     onClick={() => tabChanged('social')}
@@ -454,7 +453,7 @@ const ComponentsAppsNotes = () => {
                                 </button>
                                 <button
                                     type="button"
-                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-danger duration-300 hover:bg-white-dark/10 ltr:hover:pl-3 rtl:hover:pr-3 dark:hover:bg-[#181F32] ${
+                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-danger duration-300 hover:bg-white-dark/10 hover:ltr:pl-3 hover:rtl:pr-3 dark:hover:bg-[#181F32] ${
                                         selectedTab === 'important' && 'bg-gray-100 ltr:pl-3 rtl:pr-3 dark:bg-[#181F32]'
                                     }`}
                                     onClick={() => tabChanged('important')}
@@ -671,7 +670,7 @@ const ComponentsAppsNotes = () => {
                                             <button
                                                 type="button"
                                                 onClick={() => setAddContactModal(false)}
-                                                className="absolute top-4 text-gray-400 outline-none hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
+                                                className="absolute top-4 text-gray-400 outline-hidden hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
                                             >
                                                 <IconX />
                                             </button>
@@ -774,7 +773,7 @@ const ComponentsAppsNotes = () => {
                                             <button
                                                 type="button"
                                                 onClick={() => setIsDeleteNoteModal(false)}
-                                                className="absolute top-4 text-gray-400 outline-none hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
+                                                className="absolute top-4 text-gray-400 outline-hidden hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
                                             >
                                                 <IconX />
                                             </button>
@@ -830,7 +829,7 @@ const ComponentsAppsNotes = () => {
                                             <button
                                                 type="button"
                                                 onClick={() => setIsViewNoteModal(false)}
-                                                className="absolute top-4 text-gray-400 outline-none hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
+                                                className="absolute top-4 text-gray-400 outline-hidden hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
                                             >
                                                 <IconX />
                                             </button>

@@ -77,7 +77,7 @@ const ComponentsPagesFaqWithTabs = ({ title = 'Some common <span className="text
                         <div>
                             <div
                                 className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
-            ${active1 === 1 ? 'bg-primary-light !text-primary dark:bg-[#1B2E4B]' : ''}`}
+            ${active1 === 1 ? 'bg-primary-light text-primary! dark:bg-[#1B2E4B]' : ''}`}
                                 onClick={() => setActive1(active1 === 1 ? null : 1)}
                             >
                                 <span>How to install VRISTO Admin</span>
@@ -105,7 +105,7 @@ const ComponentsPagesFaqWithTabs = ({ title = 'Some common <span className="text
                         <div>
                             <div
                                 className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
-            ${active1 === 2 ? 'bg-primary-light !text-primary dark:bg-[#1B2E4B]' : ''}`}
+            ${active1 === 2 ? 'bg-primary-light text-primary! dark:bg-[#1B2E4B]' : ''}`}
                                 onClick={() => setActive1(active1 === 2 ? null : 2)}
                             >
                                 <span> Where can I subscribe to your newsletter?</span>
@@ -133,7 +133,7 @@ const ComponentsPagesFaqWithTabs = ({ title = 'Some common <span className="text
                         <div>
                             <div
                                 className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
-            ${active1 === 3 ? 'bg-primary-light !text-primary dark:bg-[#1B2E4B]' : ''}`}
+            ${active1 === 3 ? 'bg-primary-light text-primary! dark:bg-[#1B2E4B]' : ''}`}
                                 onClick={() => setActive1(active1 === 3 ? null : 3)}
                             >
                                 <span>How to install VRISTO Admin</span>
@@ -161,7 +161,7 @@ const ComponentsPagesFaqWithTabs = ({ title = 'Some common <span className="text
                         <div>
                             <div
                                 className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
-            ${active1 === 5 ? 'bg-primary-light !text-primary dark:bg-[#1B2E4B]' : ''}`}
+            ${active1 === 5 ? 'bg-primary-light text-primary! dark:bg-[#1B2E4B]' : ''}`}
                                 onClick={() => setActive1(active1 === 5 ? null : 5)}
                             >
                                 <span>How to install VRISTO Admin</span>
@@ -194,7 +194,7 @@ const ComponentsPagesFaqWithTabs = ({ title = 'Some common <span className="text
                         <div>
                             <div
                                 className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
-            ${active2 === 1 ? 'bg-primary-light !text-primary dark:bg-[#1B2E4B]' : ''}`}
+            ${active2 === 1 ? 'bg-primary-light text-primary! dark:bg-[#1B2E4B]' : ''}`}
                                 onClick={() => setActive2(active2 === 1 ? null : 1)}
                             >
                                 <span>How to use Browser Sync</span>
@@ -222,7 +222,7 @@ const ComponentsPagesFaqWithTabs = ({ title = 'Some common <span className="text
                         <div>
                             <div
                                 className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
-            ${active2 === 2 ? 'bg-primary-light !text-primary dark:bg-[#1B2E4B]' : ''}`}
+            ${active2 === 2 ? 'bg-primary-light text-primary! dark:bg-[#1B2E4B]' : ''}`}
                                 onClick={() => setActive2(active2 === 2 ? null : 2)}
                             >
                                 <span> Sidebar not rendering CSS</span>
@@ -250,7 +250,7 @@ const ComponentsPagesFaqWithTabs = ({ title = 'Some common <span className="text
                         <div>
                             <div
                                 className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
-            ${active2 === 3 ? 'bg-primary-light !text-primary dark:bg-[#1B2E4B]' : ''}`}
+            ${active2 === 3 ? 'bg-primary-light text-primary! dark:bg-[#1B2E4B]' : ''}`}
                                 onClick={() => setActive2(active2 === 3 ? null : 3)}
                             >
                                 <span>Connect with us Personally</span>
@@ -278,7 +278,7 @@ const ComponentsPagesFaqWithTabs = ({ title = 'Some common <span className="text
                         <div>
                             <div
                                 className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
-            ${active2 === 5 ? 'bg-primary-light !text-primary dark:bg-[#1B2E4B]' : ''}`}
+            ${active2 === 5 ? 'bg-primary-light text-primary! dark:bg-[#1B2E4B]' : ''}`}
                                 onClick={() => setActive2(active2 === 5 ? null : 5)}
                             >
                                 <span>Compilation Issue</span>

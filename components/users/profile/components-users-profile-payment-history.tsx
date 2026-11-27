@@ -1,12 +1,11 @@
 'use client';
 import Dropdown from '@/components/dropdown';
 import IconHorizontalDots from '@/components/icon/icon-horizontal-dots';
-import { IRootState } from '@/store';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useThemeStore } from '@/store/useThemeStore';
 
 const ComponentsUsersProfilePaymentHistory = () => {
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
+    const isRtl = useThemeStore((s) => s.rtlClass) === 'rtl';
 
     return (
         <div className="panel">
@@ -29,7 +28,7 @@ const ComponentsUsersProfilePaymentHistory = () => {
                                     btnClassName="hover:text-primary"
                                     button={<IconHorizontalDots className="opacity-80 hover:opacity-100" />}
                                 >
-                                    <ul className="!min-w-[150px]">
+                                    <ul className="min-w-[150px]!">
                                         <li>
                                             <button type="button">View Invoice</button>
                                         </li>
@@ -52,7 +51,7 @@ const ComponentsUsersProfilePaymentHistory = () => {
                             <p className="font-semibold">90%</p>
                             <div className="dropdown ltr:ml-4 rtl:mr-4">
                                 <Dropdown offset={[0, 5]} placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`} button={<IconHorizontalDots className="opacity-80 hover:opacity-100" />}>
-                                    <ul className="!min-w-[150px]">
+                                    <ul className="min-w-[150px]!">
                                         <li>
                                             <button type="button">View Invoice</button>
                                         </li>
@@ -75,7 +74,7 @@ const ComponentsUsersProfilePaymentHistory = () => {
                             <p className="font-semibold">90%</p>
                             <div className="dropdown ltr:ml-4 rtl:mr-4">
                                 <Dropdown offset={[0, 5]} placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`} button={<IconHorizontalDots className="opacity-80 hover:opacity-100" />}>
-                                    <ul className="!min-w-[150px]">
+                                    <ul className="min-w-[150px]!">
                                         <li>
                                             <button type="button">View Invoice</button>
                                         </li>

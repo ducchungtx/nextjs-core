@@ -10,11 +10,10 @@ import IconInfoCircle from '@/components/icon/icon-info-circle';
 import IconLitecoin from '@/components/icon/icon-litecoin';
 import IconSolana from '@/components/icon/icon-solana';
 import IconTether from '@/components/icon/icon-tether';
-import { IRootState } from '@/store';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import { useSelector } from 'react-redux';
+import { useThemeStore } from '@/store/useThemeStore';
 
 const ComponentsDashboardFinance = () => {
     const [isMounted, setIsMounted] = useState(false);
@@ -388,7 +387,7 @@ const ComponentsDashboardFinance = () => {
         },
     };
 
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
+    const isRtl = useThemeStore((s) => s.rtlClass) === 'rtl';
 
     return (
         <div>
@@ -404,7 +403,7 @@ const ComponentsDashboardFinance = () => {
             </ul>
             <div className="pt-5">
                 <div className="mb-6 grid grid-cols-1 gap-6 text-white sm:grid-cols-2 xl:grid-cols-4">
-                    <div className="panel bg-gradient-to-r from-cyan-500 to-cyan-400">
+                    <div className="panel bg-linear-to-r from-cyan-500 to-cyan-400">
                         <div className="flex justify-between">
                             <div className="text-md font-semibold ltr:mr-1 rtl:ml-1">Users Visit</div>
                             <div className="dropdown">
@@ -436,7 +435,7 @@ const ComponentsDashboardFinance = () => {
                     </div>
 
                     {/* Sessions */}
-                    <div className="panel bg-gradient-to-r from-violet-500 to-violet-400">
+                    <div className="panel bg-linear-to-r from-violet-500 to-violet-400">
                         <div className="flex justify-between">
                             <div className="text-md font-semibold ltr:mr-1 rtl:ml-1">Sessions</div>
                             <div className="dropdown">
@@ -468,7 +467,7 @@ const ComponentsDashboardFinance = () => {
                     </div>
 
                     {/*  Time On-Site */}
-                    <div className="panel bg-gradient-to-r from-blue-500 to-blue-400">
+                    <div className="panel bg-linear-to-r from-blue-500 to-blue-400">
                         <div className="flex justify-between">
                             <div className="text-md font-semibold ltr:mr-1 rtl:ml-1">Time On-Site</div>
                             <div className="dropdown">
@@ -500,7 +499,7 @@ const ComponentsDashboardFinance = () => {
                     </div>
 
                     {/* Bounce Rate */}
-                    <div className="panel bg-gradient-to-r from-fuchsia-500 to-fuchsia-400">
+                    <div className="panel bg-linear-to-r from-fuchsia-500 to-fuchsia-400">
                         <div className="flex justify-between">
                             <div className="text-md font-semibold ltr:mr-1 rtl:ml-1">Bounce Rate</div>
                             <div className="dropdown">

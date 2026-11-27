@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 const KnowledgeBase = () => {
     return (
         <div>
-            <div className="relative rounded-t-md bg-primary-light bg-[url('/assets/images/knowledge/pattern.png')] bg-contain bg-left-top bg-no-repeat px-5 py-10 dark:bg-black md:px-10">
-                <div className="absolute -bottom-1 -end-6 hidden text-[#DBE7FF] rtl:rotate-y-180 dark:text-[#1B2E4B] lg:block xl:end-0">
+            <div className="relative rounded-t-md bg-primary-light bg-[url('/assets/images/knowledge/pattern.png')] bg-contain bg-top-left bg-no-repeat px-5 py-10 dark:bg-black md:px-10">
+                <div className="absolute -bottom-1 -inset-e-6 hidden text-[#DBE7FF] rtl:rotate-y-180 dark:text-[#1B2E4B] lg:block xl:inset-e-0">
                     <svg width="375" height="185" viewBox="0 0 375 185" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-72 max-w-xs xl:w-full">
                         <g clipPath="url(#clip0_1109_89938)">
                             <path
@@ -124,7 +124,7 @@ const KnowledgeBase = () => {
                             <span>It&apos;s free </span>
                             <span>For everyone</span>
                         </div>
-                        <div className="me-4 ms-2 hidden text-[#0E1726] rtl:rotate-y-180 dark:text-white sm:block">
+                        <div className="me-4 ms-2 hidden text-black rtl:rotate-y-180 dark:text-white sm:block">
                             <IconArrowWaveLeftUp className="w-16 xl:w-28" />
                         </div>
                         <div className="mb-2 text-center text-2xl font-bold dark:text-white md:text-5xl">Knowledge Base</div>
@@ -138,7 +138,7 @@ const KnowledgeBase = () => {
                             </button>
                         </div>
                     </form>
-                    <div className="flex flex-wrap items-center justify-center gap-2 font-semibold text-[#2196F3] sm:gap-5">
+                    <div className="flex flex-wrap items-center justify-center gap-2 font-semibold text-info sm:gap-5">
                         <div className="whitespace-nowrap font-medium text-black dark:text-white">Popular topics :</div>
                         <div className="flex items-center justify-center gap-2 sm:gap-5">
                             <Link href="#" className="duration-300 hover:underline">
@@ -172,7 +172,7 @@ const KnowledgeBase = () => {
                     </button>
                 </div>
             </div>
-            <div className="mt-10 flex flex-col-reverse items-center justify-between gap-5 rounded-md bg-gradient-to-tl from-[rgba(234,241,255,0.44)] to-[rgba(234,241,255,0.96)] px-6 py-2.5 dark:from-[rgba(14,23,38,0.44)] dark:to-[#0E1726] md:flex-row lg:mt-20 xl:px-16">
+            <div className="mt-10 flex flex-col-reverse items-center justify-between gap-5 rounded-md bg-linear-to-tl from-[rgba(234,241,255,0.44)] to-[rgba(234,241,255,0.96)] px-6 py-2.5 dark:from-[rgba(14,23,38,0.44)] dark:to-[#0E1726] md:flex-row lg:mt-20 xl:px-16">
                 <div className="flex-1 py-3.5 text-center md:text-start">
                     <h3 className="mb-2 text-xl font-bold dark:text-white md:text-2xl">Didn’t find any solutions?</h3>
                     <div className="text-lg font-medium text-white-dark">Loaded with awesome features like documentation, knowledge base forum, domain transfer, affiliates etc.</div>
@@ -183,7 +183,7 @@ const KnowledgeBase = () => {
                     </div>
                 </div>
                 <div className="w-52 max-w-xs lg:w-full">
-                    <img src="/assets/images/knowledge/find-solution.svg" alt="find-solution" className="w-full object-cover rtl:rotate-y-180 dark:brightness-[2.59] dark:grayscale-[83%]" />
+                    <img src="/assets/images/knowledge/find-solution.svg" alt="find-solution" className="w-full object-cover rtl:rotate-y-180 dark:brightness-[2.59] dark:grayscale-83" />
                 </div>
             </div>
             <div className="mt-10">

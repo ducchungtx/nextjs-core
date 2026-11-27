@@ -3,11 +3,10 @@ import Dropdown from '@/components/dropdown';
 import IconArrowLeft from '@/components/icon/icon-arrow-left';
 import IconCaretDown from '@/components/icon/icon-caret-down';
 import IconMenu from '@/components/icon/icon-menu';
-import { IRootState } from '@/store';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import { useSelector } from 'react-redux';
+import { useThemeStore } from '@/store/useThemeStore';
 
 const coins = [
     {
@@ -591,8 +590,8 @@ const coins = [
 ];
 
 const ComponentsDashboardCrypto = () => {
-    const isDark = useSelector((state: IRootState) => state.themeConfig.theme === 'dark' || state.themeConfig.isDarkMode);
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
+    const isDark = useThemeStore((s) => s.theme === 'dark' || s.isDarkMode);
+    const isRtl = useThemeStore((s) => s.rtlClass) === 'rtl';
 
     const [isMounted, setIsMounted] = useState(false);
     useEffect(() => {
@@ -798,7 +797,7 @@ const ComponentsDashboardCrypto = () => {
             <div className="relative mt-5 flex flex-col gap-5 xl:flex-row">
                 <div
                     className={`${
-                        isShowCryptoMenu ? '!block h-full xl:h-auto' : ''
+                        isShowCryptoMenu ? 'block! h-full xl:h-auto' : ''
                     } panel absolute z-10 hidden w-80 flex-none divide-y divide-[#ebedf2] overflow-y-auto border-0 p-0 dark:divide-[#191e3a] xl:relative xl:block`}
                 >
                     {coins.map((item) => {
@@ -835,7 +834,7 @@ const ComponentsDashboardCrypto = () => {
                     })}
                 </div>
                 <div
-                    className={`absolute z-[5] hidden h-full w-full rounded-md bg-black/60 ${isShowCryptoMenu ? '!block xl:!hidden' : ''}`}
+                    className={`absolute z-5 hidden h-full w-full rounded-md bg-black/60 ${isShowCryptoMenu ? 'block! xl:hidden!' : ''}`}
                     onClick={() => setIsShowCryptoMenu(!isShowCryptoMenu)}
                 ></div>
 
@@ -858,7 +857,7 @@ const ComponentsDashboardCrypto = () => {
                                 </div>
                             </div>
                         </div>
-                        <ul className="mt-5 grid grid-cols-2 divide-[#ebedf2] font-semibold text-white-dark rtl:divide-x-reverse dark:divide-[#253b5c] sm:mt-0 sm:grid-cols-4 sm:divide-x ltr:md:ml-auto rtl:md:mr-auto">
+                        <ul className="mt-5 grid grid-cols-2 divide-[#ebedf2] font-semibold text-white-dark rtl:divide-x-reverse dark:divide-[#253b5c] sm:mt-0 sm:grid-cols-4 sm:divide-x md:ltr:ml-auto md:rtl:mr-auto">
                             <li className="px-4 py-1">
                                 Market Cap
                                 <span className="mt-1.5 block text-lg text-black dark:text-white-light">${currentCoin.marketcap}B</span>
@@ -906,7 +905,7 @@ const ComponentsDashboardCrypto = () => {
                                     <Dropdown
                                         offset={[0, 5]}
                                         placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
-                                        btnClassName="bg-[#f1f2f3] dark:bg-[#1b2e4b] !flex justify-center gap-1 items-center rounded-none px-3 py-2 font-semibold border dark:border-[#253b5c] ltr:rounded-r-md rtl:rounded-l-md cursor-pointer"
+                                        btnClassName="bg-[#f1f2f3] dark:bg-[#1b2e4b] flex! justify-center gap-1 items-center rounded-none px-3 py-2 font-semibold border dark:border-[#253b5c] ltr:rounded-r-md rtl:rounded-l-md cursor-pointer"
                                         button={
                                             <>
                                                 BTC

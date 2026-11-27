@@ -309,7 +309,7 @@ const ComponentsAppsContacts = () => {
                                     <th>Email</th>
                                     <th>Location</th>
                                     <th>Phone</th>
-                                    <th className="!text-center">Actions</th>
+                                    <th className="text-center!">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -360,8 +360,8 @@ const ComponentsAppsContacts = () => {
                 <div className="mt-5 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
                     {filteredItems.map((contact: any) => {
                         return (
-                            <div className="relative overflow-hidden rounded-md bg-white text-center shadow dark:bg-[#1c232f]" key={contact.id}>
-                                <div className="relative overflow-hidden rounded-md bg-white text-center shadow dark:bg-[#1c232f]">
+                            <div className="relative overflow-hidden rounded-md bg-white text-center shadow-sm dark:bg-[#1c232f]" key={contact.id}>
+                                <div className="relative overflow-hidden rounded-md bg-white text-center shadow-sm dark:bg-[#1c232f]">
                                     <div className="rounded-t-md bg-white/40 bg-[url('/assets/images/notification-bg.png')] bg-cover bg-center p-6 pb-0">
                                         <img className="mx-auto max-h-40 w-4/5 object-contain" src={`/assets/images/${contact.path}`} alt="contact_image" />
                                     </div>
@@ -458,7 +458,7 @@ const ComponentsAppsContacts = () => {
                                     <button
                                         type="button"
                                         onClick={() => setAddContactModal(false)}
-                                        className="absolute top-4 text-gray-400 outline-none hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
+                                        className="absolute top-4 text-gray-400 outline-hidden hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
                                     >
                                         <IconX />
                                     </button>

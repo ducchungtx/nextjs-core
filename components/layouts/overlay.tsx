@@ -1,15 +1,13 @@
 'use client';
-import { IRootState } from '@/store';
-import { toggleSidebar } from '@/store/themeConfigSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useThemeStore } from '@/store/useThemeStore';
 
 const Overlay = () => {
-    const themeConfig = useSelector((state: IRootState) => state.themeConfig);
-    const dispatch = useDispatch();
+    const sidebar = useThemeStore((s) => s.sidebar);
+    const toggleSidebar = useThemeStore((s) => s.toggleSidebar);
     return (
         <>
             {/* sidebar menu overlay */}
-            <div className={`${(!themeConfig.sidebar && 'hidden') || ''} fixed inset-0 z-50 bg-[black]/60 lg:hidden`} onClick={() => dispatch(toggleSidebar())}></div>
+            <div className={`${(!sidebar && 'hidden') || ''} fixed inset-0 z-50 bg-[black]/60 lg:hidden`} onClick={() => toggleSidebar()}></div>
         </>
     );
 };

@@ -1,13 +1,12 @@
 'use client';
 import PanelCodeHighlight from '@/components/panel-code-highlight';
-import { IRootState } from '@/store';
 import ReactApexChart from 'react-apexcharts';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useThemeStore } from '@/store/useThemeStore';
 
 const ComponentsChartsBubble = () => {
-    const isDark = useSelector((state: IRootState) => state.themeConfig.theme === 'dark' || state.themeConfig.isDarkMode);
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
+    const isDark = useThemeStore((s) => s.theme === 'dark' || s.isDarkMode);
+    const isRtl = useThemeStore((s) => s.rtlClass) === 'rtl';
 
     const [isMounted, setIsMounted] = useState(false);
     useEffect(() => {

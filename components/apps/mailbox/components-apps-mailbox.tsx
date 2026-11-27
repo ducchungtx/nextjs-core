@@ -38,12 +38,11 @@ import IconUsers from '@/components/icon/icon-users';
 import IconVideo from '@/components/icon/icon-video';
 import IconWheel from '@/components/icon/icon-wheel';
 import IconZipFile from '@/components/icon/icon-zip-file';
-import { IRootState } from '@/store';
 import { Disclosure } from '@headlessui/react';
 import { message, Tooltip } from 'antd';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useThemeStore } from '@/store/useThemeStore';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-quill-new/dist/quill.snow.css';
 
@@ -848,7 +847,7 @@ const ComponentsAppsMailbox = () => {
     const [params, setParams] = useState<any>(JSON.parse(JSON.stringify(defaultParams)));
     const [pagedMails, setPagedMails] = useState<any>([]);
 
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
+    const isRtl = useThemeStore((s) => s.rtlClass) === 'rtl';
 
     const [pager] = useState<any>({
         currentPage: 1,
@@ -1218,14 +1217,14 @@ const ComponentsAppsMailbox = () => {
 
     return (
         <div>
-            <div className="relative flex h-full gap-5 sm:h-[calc(100vh_-_150px)]">
+            <div className="relative flex h-full gap-5 sm:h-[calc(100vh-150px)]">
                 <div
-                    className={`overlay absolute z-[5] hidden h-full w-full rounded-md bg-black/60 ${isShowMailMenu ? '!block xl:!hidden' : ''}`}
+                    className={`overlay absolute z-5 hidden h-full w-full rounded-md bg-black/60 ${isShowMailMenu ? 'block! xl:hidden!' : ''}`}
                     onClick={() => setIsShowMailMenu(!isShowMailMenu)}
                 ></div>
                 <div
-                    className={`panel dark:gray-50 absolute z-10 hidden h-full w-[250px] max-w-full flex-none space-y-3 overflow-hidden p-4 ltr:rounded-r-none rtl:rounded-l-none xl:relative xl:block xl:h-auto ltr:xl:rounded-r-md rtl:xl:rounded-l-md ${
-                        isShowMailMenu ? '!block' : ''
+                    className={`panel dark:gray-50 absolute z-10 hidden h-full w-[250px] max-w-full flex-none space-y-3 overflow-hidden p-4 ltr:rounded-r-none rtl:rounded-l-none xl:relative xl:block xl:h-auto xl:ltr:rounded-r-md xl:rtl:rounded-l-md ${
+                        isShowMailMenu ? 'block!' : ''
                     }`}
                 >
                     <div className="flex h-full flex-col pb-16">
@@ -1460,7 +1459,7 @@ const ComponentsAppsMailbox = () => {
                                     </div>
 
                                     {selectedTab !== 'trash' && (
-                                        <ul className="flex grow items-center gap-4 sm:flex-none ltr:sm:mr-4 rtl:sm:ml-4">
+                                        <ul className="flex grow items-center gap-4 sm:flex-none sm:ltr:mr-4 sm:rtl:ml-4">
                                             <li>
                                                 <div>
                                                     <Tooltip title="Archive">
@@ -1557,7 +1556,7 @@ const ComponentsAppsMailbox = () => {
                                     )}
 
                                     {selectedTab === 'trash' && (
-                                        <ul className="flex flex-1 items-center gap-4 sm:flex-none ltr:sm:mr-3 rtl:sm:ml-4">
+                                        <ul className="flex flex-1 items-center gap-4 sm:flex-none sm:ltr:mr-3 sm:rtl:ml-4">
                                             <li>
                                                 <div>
                                                     <Tooltip title="Permanently Delete">
@@ -1677,7 +1676,7 @@ const ComponentsAppsMailbox = () => {
                                         <button
                                             type="button"
                                             disabled={pager.currentPage === 1}
-                                            className="rounded-md bg-[#f4f4f4] p-1 enabled:hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60 ltr:mr-3 rtl:ml-3 dark:bg-white-dark/20 enabled:dark:hover:bg-white-dark/30"
+                                            className="rounded-md bg-[#f4f4f4] p-1 enabled:hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60 ltr:mr-3 rtl:ml-3 dark:bg-white-dark/20 dark:enabled:hover:bg-white-dark/30"
                                             onClick={() => {
                                                 pager.currentPage--;
                                                 searchMails(false);
@@ -1688,7 +1687,7 @@ const ComponentsAppsMailbox = () => {
                                         <button
                                             type="button"
                                             disabled={pager.currentPage === pager.totalPages}
-                                            className="rounded-md bg-[#f4f4f4] p-1 enabled:hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white-dark/20 enabled:dark:hover:bg-white-dark/30"
+                                            className="rounded-md bg-[#f4f4f4] p-1 enabled:hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white-dark/20 dark:enabled:hover:bg-white-dark/30"
                                             onClick={() => {
                                                 pager.currentPage++;
                                                 searchMails(false);
@@ -1819,7 +1818,7 @@ const ComponentsAppsMailbox = () => {
                             <div className="h-px border-b border-white-light dark:border-[#1b2e4b]"></div>
                             <div className="relative p-4">
                                 <div className="flex flex-wrap">
-                                    <div className="flex-shrink-0 ltr:mr-2 rtl:ml-2">
+                                    <div className="shrink-0 ltr:mr-2 rtl:ml-2">
                                         {selectedMail.path ? (
                                             <img src={`/assets/images/${selectedMail.path}`} className="h-12 w-12 rounded-full object-cover" alt="avatar" />
                                         ) : (
@@ -1955,7 +1954,7 @@ const ComponentsAppsMailbox = () => {
                                                             <p className="text-xs font-semibold text-primary">{attachment.name}</p>
                                                             <p className="text-[11px] text-gray-400 dark:text-gray-600">{attachment.size}</p>
                                                         </div>
-                                                        <div className="absolute top-0 z-[5] hidden h-full w-full rounded-md bg-dark-light/40 group-hover:block ltr:left-0 rtl:right-0"></div>
+                                                        <div className="absolute top-0 z-5 hidden h-full w-full rounded-md bg-dark-light/40 group-hover:block ltr:left-0 rtl:right-0"></div>
                                                         <div className="btn btn-primary absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 rounded-full p-1 group-hover:block">
                                                             <IconDownload className="h-4.5 w-4.5" />
                                                         </div>
@@ -1977,7 +1976,7 @@ const ComponentsAppsMailbox = () => {
                                 </button>
                                 <h4 className="text-lg font-medium text-gray-600 dark:text-gray-400">Message</h4>
                             </div>
-                            <div className="h-px bg-gradient-to-l from-indigo-900/20 via-black to-indigo-900/20 opacity-[0.1] dark:via-white"></div>
+                            <div className="h-px bg-linear-to-l from-indigo-900/20 via-black to-indigo-900/20 opacity-[0.1] dark:via-white"></div>
                             <form className="grid gap-6 p-6">
                                 <div>
                                     <input
@@ -2019,7 +2018,7 @@ const ComponentsAppsMailbox = () => {
                                 <div>
                                     <input
                                         type="file"
-                                        className="form-input p-0 file:border-0 file:bg-primary/90 file:px-4 file:py-2 file:font-semibold file:text-white file:hover:bg-primary ltr:file:mr-5 rtl:file:ml-5"
+                                        className="form-input p-0 file:border-0 file:bg-primary/90 file:px-4 file:py-2 file:font-semibold file:text-white file:hover:bg-primary file:ltr:mr-5 file:rtl:ml-5"
                                         multiple
                                         accept="image/*,.zip,.pdf,.xls,.xlsx,.txt.doc,.docx"
                                         required

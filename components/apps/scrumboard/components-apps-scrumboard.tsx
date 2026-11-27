@@ -8,11 +8,10 @@ import IconPlusCircle from '@/components/icon/icon-plus-circle';
 import IconTag from '@/components/icon/icon-tag';
 import IconTrashLines from '@/components/icon/icon-trash-lines';
 import IconX from '@/components/icon/icon-x';
-import { IRootState } from '@/store';
 import { Transition, Dialog, DialogPanel, TransitionChild } from '@headlessui/react';
 import { message } from 'antd';
 import React, { Fragment, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useThemeStore } from '@/store/useThemeStore';
 import { ReactSortable } from 'react-sortablejs';
 
 const ComponentsAppsScrumBoard = () => {
@@ -79,7 +78,7 @@ const ComponentsAppsScrumBoard = () => {
             tasks: [],
         },
     ]);
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
+    const isRtl = useThemeStore((s) => s.rtlClass) === 'rtl';
     const changeValue = (e: any) => {
         const { value, id } = e.target;
         setParams({ ...params, [id]: value });
@@ -311,7 +310,7 @@ const ComponentsAppsScrumBoard = () => {
                                         {project.tasks.map((task: any) => {
                                             return (
                                                 <div className="sortable-list " key={project.id + '' + task.id}>
-                                                    <div className="mb-5 cursor-move space-y-3 rounded-md bg-[#f4f4f4] p-3 pb-5 shadow dark:bg-white-dark/20">
+                                                    <div className="mb-5 cursor-move space-y-3 rounded-md bg-[#f4f4f4] p-3 pb-5 shadow-sm dark:bg-white-dark/20">
                                                         {task.image ? <img src="/assets/images/carousel1.jpeg" alt="images" className="h-32 w-full rounded-md object-cover" /> : ''}
                                                         <div className="text-base font-medium">{task.title}</div>
                                                         <p className="break-all">{task.description}</p>
@@ -369,7 +368,7 @@ const ComponentsAppsScrumBoard = () => {
                     <TransitionChild as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
                         <div className="fixed inset-0 bg-[black]/60" />
                     </TransitionChild>
-                    <div className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60 px-4">
+                    <div className="fixed inset-0 z-999 overflow-y-auto bg-[black]/60 px-4">
                         <div className="flex min-h-screen items-center justify-center">
                             <TransitionChild
                                 as={Fragment}
@@ -384,7 +383,7 @@ const ComponentsAppsScrumBoard = () => {
                                     <button
                                         type="button"
                                         onClick={() => setIsAddProjectModal(false)}
-                                        className="absolute top-4 text-gray-400 outline-none hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
+                                        className="absolute top-4 text-gray-400 outline-hidden hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
                                     >
                                         <IconX />
                                     </button>
@@ -422,7 +421,7 @@ const ComponentsAppsScrumBoard = () => {
                     <TransitionChild as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
                         <div className="fixed inset-0 bg-[black]/60" />
                     </TransitionChild>
-                    <div className="fixed inset-0 z-[999] overflow-y-auto">
+                    <div className="fixed inset-0 z-999 overflow-y-auto">
                         <div className="flex min-h-screen items-center justify-center px-4">
                             <DialogPanel className="panel w-full max-w-lg overflow-hidden rounded-lg border-0 p-0 text-black dark:text-white-dark">
                                 <button onClick={() => setIsAddTaskModal(false)} type="button" className="absolute top-4 text-white-dark hover:text-dark ltr:right-4 rtl:left-4">
@@ -472,7 +471,7 @@ const ComponentsAppsScrumBoard = () => {
                     <TransitionChild as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
                         <div className="fixed inset-0 bg-[black]/60" />
                     </TransitionChild>
-                    <div className="fixed inset-0 z-[999] overflow-y-auto">
+                    <div className="fixed inset-0 z-999 overflow-y-auto">
                         <div className="flex min-h-screen items-center justify-center px-4 ">
                             <TransitionChild
                                 as={Fragment}

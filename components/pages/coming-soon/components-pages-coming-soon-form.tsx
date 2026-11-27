@@ -58,7 +58,7 @@ const ComponentsPagesComingSoonForm = () => {
             <div className="mb-16 flex items-center justify-center gap-2 text-xl font-bold leading-none text-primary sm:text-2xl md:mb-24 md:gap-4 md:text-[50px]">
                 <div className="relative inline-flex h-12 w-14 items-center justify-center rounded-md bg-primary-light p-2 sm:h-16 sm:w-16 md:h-24 md:min-w-[120px]">
                     <div className="absolute inset-1 flex flex-col gap-1">
-                        <span className="h-full w-full rounded-md bg-primary/[12%]"></span>
+                        <span className="h-full w-full rounded-md bg-primary/12"></span>
                         <span className="h-full w-full rounded-md bg-white"></span>
                     </div>
                     <span className="relative">{demo1.days}</span>
@@ -66,7 +66,7 @@ const ComponentsPagesComingSoonForm = () => {
                 <span>:</span>
                 <div className="relative inline-flex h-12 w-12 items-center justify-center rounded-md bg-primary-light p-2 sm:h-16 sm:w-16 md:h-24 md:min-w-[96px]">
                     <div className="absolute inset-1 flex flex-col gap-1">
-                        <span className="h-full w-full rounded-md bg-primary/[12%]"></span>
+                        <span className="h-full w-full rounded-md bg-primary/12"></span>
                         <span className="h-full w-full rounded-md bg-white"></span>
                     </div>
                     <span className="relative">{demo1.hours}</span>
@@ -74,7 +74,7 @@ const ComponentsPagesComingSoonForm = () => {
                 <span>:</span>
                 <div className="relative inline-flex h-12 w-12 items-center justify-center rounded-md bg-primary-light p-2 sm:h-16 sm:w-16 md:h-24 md:min-w-[96px]">
                     <div className="absolute inset-1 flex flex-col gap-1">
-                        <span className="h-full w-full rounded-md bg-primary/[12%]"></span>
+                        <span className="h-full w-full rounded-md bg-primary/12"></span>
                         <span className="h-full w-full rounded-md bg-white"></span>
                     </div>
                     <span className="relative">{demo1.minutes}</span>
@@ -82,7 +82,7 @@ const ComponentsPagesComingSoonForm = () => {
                 <span>:</span>
                 <div className="relative inline-flex h-12 w-12 items-center justify-center rounded-md bg-primary-light p-2 sm:h-16 sm:w-16 md:h-24 md:min-w-[96px]">
                     <div className="absolute inset-1 flex flex-col gap-1">
-                        <span className="h-full w-full rounded-md bg-primary/[12%]"></span>
+                        <span className="h-full w-full rounded-md bg-primary/12"></span>
                         <span className="h-full w-full rounded-md bg-white"></span>
                     </div>
                     <span className="relative">{demo1.seconds}</span>
@@ -94,7 +94,7 @@ const ComponentsPagesComingSoonForm = () => {
                     <input type="email" placeholder="mail@gmail.com" className="form-input mb-5 py-3.5 placeholder:text-base placeholder:text-white-dark sm:mb-0 sm:pe-32" />
                     <button
                         type="button"
-                        className="btn btn-gradient end-1.5 top-1/2 inline-flex border-0 px-4 py-1.5 text-base shadow-none sm:absolute sm:-translate-y-1/2"
+                        className="btn btn-gradient inset-e-1.5 top-1/2 inline-flex border-0 px-4 py-1.5 text-base shadow-none sm:absolute sm:-translate-y-1/2"
                         onClick={() => router.push('/')}
                     >
                         Subscribe

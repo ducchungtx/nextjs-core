@@ -15,12 +15,11 @@ import IconThumbUp from '@/components/icon/icon-thumb-up';
 import IconTrashLines from '@/components/icon/icon-trash-lines';
 import IconUser from '@/components/icon/icon-user';
 import IconX from '@/components/icon/icon-x';
-import { IRootState } from '@/store';
 import { Transition, Dialog, DialogPanel, TransitionChild } from '@headlessui/react';
 import { message } from 'antd';
 import dynamic from 'next/dynamic';
 import React, { Fragment, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useThemeStore } from '@/store/useThemeStore';
 import 'react-quill-new/dist/quill.snow.css';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
@@ -586,14 +585,14 @@ const ComponentsAppsTodoList = () => {
         });
     };
 
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
+    const isRtl = useThemeStore((s) => s.rtlClass) === 'rtl';
 
     return (
         <div>
-            <div className="relative flex h-full gap-5 sm:h-[calc(100vh_-_150px)]">
+            <div className="relative flex h-full gap-5 sm:h-[calc(100vh-150px)]">
                 <div
-                    className={`panel absolute z-10 hidden h-full w-[240px] max-w-full flex-none space-y-4 p-4 ltr:rounded-r-none rtl:rounded-l-none xl:relative xl:block xl:h-auto ltr:xl:rounded-r-md rtl:xl:rounded-l-md ${
-                        isShowTaskMenu && '!block'
+                    className={`panel absolute z-10 hidden h-full w-[240px] max-w-full flex-none space-y-4 p-4 ltr:rounded-r-none rtl:rounded-l-none xl:relative xl:block xl:h-auto xl:ltr:rounded-r-md xl:rtl:rounded-l-md ${
+                        isShowTaskMenu && 'block!'
                     }`}
                 >
                     <div className="flex h-full flex-col pb-16">
@@ -681,7 +680,7 @@ const ComponentsAppsTodoList = () => {
                                 <div className="px-1 py-3 text-white-dark">Tags</div>
                                 <button
                                     type="button"
-                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-success duration-300 hover:bg-white-dark/10 ltr:hover:pl-3 rtl:hover:pr-3 dark:hover:bg-[#181F32] ${
+                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-success duration-300 hover:bg-white-dark/10 hover:ltr:pl-3 hover:rtl:pr-3 dark:hover:bg-[#181F32] ${
                                         selectedTab === 'team' && 'bg-gray-100 ltr:pl-3 rtl:pr-3 dark:bg-[#181F32]'
                                     }`}
                                     onClick={() => {
@@ -694,7 +693,7 @@ const ComponentsAppsTodoList = () => {
                                 </button>
                                 <button
                                     type="button"
-                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-warning duration-300 hover:bg-white-dark/10 ltr:hover:pl-3 rtl:hover:pr-3 dark:hover:bg-[#181F32] ${
+                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-warning duration-300 hover:bg-white-dark/10 hover:ltr:pl-3 hover:rtl:pr-3 dark:hover:bg-[#181F32] ${
                                         selectedTab === 'low' && 'bg-gray-100 ltr:pl-3 rtl:pr-3 dark:bg-[#181F32]'
                                     }`}
                                     onClick={() => {
@@ -708,7 +707,7 @@ const ComponentsAppsTodoList = () => {
 
                                 <button
                                     type="button"
-                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-primary duration-300 hover:bg-white-dark/10 ltr:hover:pl-3 rtl:hover:pr-3 dark:hover:bg-[#181F32] ${
+                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-primary duration-300 hover:bg-white-dark/10 hover:ltr:pl-3 hover:rtl:pr-3 dark:hover:bg-[#181F32] ${
                                         selectedTab === 'medium' && 'bg-gray-100 ltr:pl-3 rtl:pr-3 dark:bg-[#181F32]'
                                     }`}
                                     onClick={() => {
@@ -721,7 +720,7 @@ const ComponentsAppsTodoList = () => {
                                 </button>
                                 <button
                                     type="button"
-                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-danger duration-300 hover:bg-white-dark/10 ltr:hover:pl-3 rtl:hover:pr-3 dark:hover:bg-[#181F32] ${
+                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-danger duration-300 hover:bg-white-dark/10 hover:ltr:pl-3 hover:rtl:pr-3 dark:hover:bg-[#181F32] ${
                                         selectedTab === 'high' && 'bg-gray-100 ltr:pl-3 rtl:pr-3 dark:bg-[#181F32]'
                                     }`}
                                     onClick={() => {
@@ -734,7 +733,7 @@ const ComponentsAppsTodoList = () => {
                                 </button>
                                 <button
                                     type="button"
-                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-info duration-300 hover:bg-white-dark/10 ltr:hover:pl-3 rtl:hover:pr-3 dark:hover:bg-[#181F32] ${
+                                    className={`flex h-10 w-full items-center rounded-md p-1 font-medium text-info duration-300 hover:bg-white-dark/10 hover:ltr:pl-3 hover:rtl:pr-3 dark:hover:bg-[#181F32] ${
                                         selectedTab === 'update' && 'bg-gray-100 ltr:pl-3 rtl:pr-3 dark:bg-[#181F32]'
                                     }`}
                                     onClick={() => {
@@ -755,7 +754,7 @@ const ComponentsAppsTodoList = () => {
                         </div>
                     </div>
                 </div>
-                <div className={`overlay absolute z-[5] hidden h-full w-full rounded-md bg-black/60 ${isShowTaskMenu && '!block xl:!hidden'}`} onClick={() => setIsShowTaskMenu(!isShowTaskMenu)}></div>
+                <div className={`overlay absolute z-5 hidden h-full w-full rounded-md bg-black/60 ${isShowTaskMenu && 'block! xl:hidden!'}`} onClick={() => setIsShowTaskMenu(!isShowTaskMenu)}></div>
                 <div className="panel h-full flex-1 overflow-auto p-0">
                     <div className="flex h-full flex-col">
                         <div className="flex w-full flex-col gap-4 p-4 sm:flex-row sm:items-center">
@@ -766,7 +765,7 @@ const ComponentsAppsTodoList = () => {
                                 <div className="group relative flex-1">
                                     <input
                                         type="text"
-                                        className="peer form-input ltr:!pr-10 rtl:!pl-10"
+                                        className="peer form-input ltr:pr-10! rtl:pl-10!"
                                         placeholder="Search Task..."
                                         value={searchTask}
                                         onChange={(e) => setSearchTask(e.target.value)}
@@ -782,7 +781,7 @@ const ComponentsAppsTodoList = () => {
                                 <button
                                     type="button"
                                     disabled={pager.currentPage === 1}
-                                    className="rounded-md bg-[#f4f4f4] p-1 enabled:hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60 ltr:mr-3 rtl:ml-3 dark:bg-white-dark/20 enabled:dark:hover:bg-white-dark/30"
+                                    className="rounded-md bg-[#f4f4f4] p-1 enabled:hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60 ltr:mr-3 rtl:ml-3 dark:bg-white-dark/20 dark:enabled:hover:bg-white-dark/30"
                                     onClick={() => {
                                         pager.currentPage--;
                                         searchTasks(false);
@@ -793,7 +792,7 @@ const ComponentsAppsTodoList = () => {
                                 <button
                                     type="button"
                                     disabled={pager.currentPage === pager.totalPages}
-                                    className="rounded-md bg-[#f4f4f4] p-1 enabled:hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white-dark/20 enabled:dark:hover:bg-white-dark/30"
+                                    className="rounded-md bg-[#f4f4f4] p-1 enabled:hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white-dark/20 dark:enabled:hover:bg-white-dark/30"
                                     onClick={() => {
                                         pager.currentPage++;
                                         searchTasks(false);
@@ -934,7 +933,7 @@ const ComponentsAppsTodoList = () => {
                                                     </td>
                                                     <td className="w-1">
                                                         <div className="flex w-max items-center justify-between">
-                                                            <div className="flex-shrink-0 ltr:mr-2.5 rtl:ml-2.5">
+                                                            <div className="shrink-0 ltr:mr-2.5 rtl:ml-2.5">
                                                                 {task.path && (
                                                                     <div>
                                                                         <img src={`/assets/images/${task.path}`} className="h-8 w-8 rounded-full object-cover" alt="avatar" />
@@ -1047,7 +1046,7 @@ const ComponentsAppsTodoList = () => {
                                         <button
                                             type="button"
                                             onClick={() => setAddTaskModal(false)}
-                                            className="absolute top-4 text-gray-400 outline-none hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
+                                            className="absolute top-4 text-gray-400 outline-hidden hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
                                         >
                                             <IconX />
                                         </button>
@@ -1152,7 +1151,7 @@ const ComponentsAppsTodoList = () => {
                                         <button
                                             type="button"
                                             onClick={() => setViewTaskModal(false)}
-                                            className="absolute top-4 text-gray-400 outline-none hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
+                                            className="absolute top-4 text-gray-400 outline-hidden hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
                                         >
                                             <IconX />
                                         </button>

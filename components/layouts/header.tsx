@@ -1,9 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
-import { IRootState } from '@/store';
-import { toggleTheme, toggleSidebar, toggleRTL } from '@/store/themeConfigSlice';
+import { useThemeStore } from '@/store/useThemeStore';
 import Dropdown from '@/components/dropdown';
 import IconMenu from '@/components/icon/icon-menu';
 import IconCalendar from '@/components/icon/icon-calendar';
@@ -34,7 +32,6 @@ import { getTranslation } from '@/i18n';
 
 const Header = () => {
     const pathname = usePathname();
-    const dispatch = useDispatch();
     const router = useRouter();
     const { t, i18n } = getTranslation();
 
@@ -66,14 +63,15 @@ const Header = () => {
         }
     }, [pathname]);
 
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
+    const themeConfig = useThemeStore();
+    const isRtl = themeConfig.rtlClass === 'rtl';
+    const { toggleTheme, toggleSidebar, toggleRTL } = themeConfig;
 
-    const themeConfig = useSelector((state: IRootState) => state.themeConfig);
     const setLocale = (flag: string) => {
         if (flag.toLowerCase() === 'ae') {
-            dispatch(toggleRTL('rtl'));
+            toggleRTL('rtl');
         } else {
-            dispatch(toggleRTL('ltr'));
+            toggleRTL('ltr');
         }
         router.refresh();
     };
@@ -145,7 +143,7 @@ const Header = () => {
 
     return (
         <header className={`z-40 ${themeConfig.semidark && themeConfig.menu === 'horizontal' ? 'dark' : ''}`}>
-            <div className="shadow-sm">
+            <div className="shadow-xs">
                 <div className="relative flex w-full items-center bg-white px-5 py-2.5 dark:bg-black">
                     <div className="horizontal-logo flex items-center justify-between ltr:mr-2 rtl:ml-2 lg:hidden">
                         <Link href="/" className="main-logo flex shrink-0 items-center">
@@ -155,7 +153,7 @@ const Header = () => {
                         <button
                             type="button"
                             className="collapse-icon flex flex-none rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary ltr:ml-2 rtl:mr-2 dark:bg-dark/40 dark:text-[#d0d2d6] dark:hover:bg-dark/60 dark:hover:text-primary lg:hidden"
-                            onClick={() => dispatch(toggleSidebar())}
+                            onClick={() => toggleSidebar()}
                         >
                             <IconMenu className="h-5 w-5" />
                         </button>
@@ -180,16 +178,16 @@ const Header = () => {
                             </li>
                         </ul>
                     </div>
-                    <div className="flex items-center space-x-1.5 ltr:ml-auto rtl:mr-auto rtl:space-x-reverse dark:text-[#d0d2d6] sm:flex-1 ltr:sm:ml-0 sm:rtl:mr-0 lg:space-x-2">
+                    <div className="flex items-center space-x-1.5 ltr:ml-auto rtl:mr-auto rtl:space-x-reverse dark:text-[#d0d2d6] sm:flex-1 sm:ltr:ml-0 sm:rtl:mr-0 lg:space-x-2">
                         <div className="sm:ltr:mr-auto sm:rtl:ml-auto">
                             <form
-                                className={`${search && '!block'} absolute inset-x-0 top-1/2 z-10 mx-4 hidden -translate-y-1/2 sm:relative sm:top-0 sm:mx-0 sm:block sm:translate-y-0`}
+                                className={`${search && 'block!'} absolute inset-x-0 top-1/2 z-10 mx-4 hidden -translate-y-1/2 sm:relative sm:top-0 sm:mx-0 sm:block sm:translate-y-0`}
                                 onSubmit={() => setSearch(false)}
                             >
                                 <div className="relative">
                                     <input
                                         type="text"
-                                        className="peer form-input bg-gray-100 placeholder:tracking-widest ltr:pl-9 ltr:pr-9 rtl:pl-9 rtl:pr-9 sm:bg-transparent ltr:sm:pr-4 rtl:sm:pl-4"
+                                        className="peer form-input bg-gray-100 placeholder:tracking-widest ltr:pl-9 ltr:pr-9 rtl:pl-9 rtl:pr-9 sm:bg-transparent sm:ltr:pr-4 sm:rtl:pl-4"
                                         placeholder="Search..."
                                     />
                                     <button type="button" className="absolute inset-0 h-9 w-9 appearance-none peer-focus:text-primary ltr:right-auto rtl:left-auto">
@@ -215,7 +213,7 @@ const Header = () => {
                                         themeConfig.theme === 'light' &&
                                         'flex items-center rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary dark:bg-dark/40 dark:hover:bg-dark/60'
                                     }`}
-                                    onClick={() => dispatch(toggleTheme('dark'))}
+                                    onClick={() => toggleTheme('dark')}
                                 >
                                     <IconSun />
                                 </button>
@@ -228,7 +226,7 @@ const Header = () => {
                                         themeConfig.theme === 'dark' &&
                                         'flex items-center rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary dark:bg-dark/40 dark:hover:bg-dark/60'
                                     }`}
-                                    onClick={() => dispatch(toggleTheme('system'))}
+                                    onClick={() => toggleTheme('system')}
                                 >
                                     <IconMoon />
                                 </button>
@@ -239,7 +237,7 @@ const Header = () => {
                                         themeConfig.theme === 'system' &&
                                         'flex items-center rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary dark:bg-dark/40 dark:hover:bg-dark/60'
                                     }`}
-                                    onClick={() => dispatch(toggleTheme('light'))}
+                                    onClick={() => toggleTheme('light')}
                                 >
                                     <IconLaptop />
                                 </button>
@@ -252,7 +250,7 @@ const Header = () => {
                                 btnClassName="block p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60"
                                 button={i18n.language && <img className="h-5 w-5 rounded-full object-cover" src={`/assets/images/flags/${i18n.language.toUpperCase()}.svg`} alt="flag" />}
                             >
-                                <ul className="grid w-[280px] grid-cols-2 gap-2 !px-2 font-semibold text-dark dark:text-white-dark dark:text-white-light/90">
+                                <ul className="grid w-[280px] grid-cols-2 gap-2 px-2! font-semibold text-dark dark:text-white-dark dark:text-white-light/90">
                                     {themeConfig.languageList.map((item: any) => {
                                         return (
                                             <li key={item.code}>
@@ -280,9 +278,9 @@ const Header = () => {
                                 btnClassName="block p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60"
                                 button={<IconMailDot />}
                             >
-                                <ul className="w-[300px] !py-0 text-xs text-dark dark:text-white-dark sm:w-[375px]">
+                                <ul className="w-[300px] py-0! text-xs text-dark dark:text-white-dark sm:w-[375px]">
                                     <li className="mb-5" onClick={(e) => e.stopPropagation()}>
-                                        <div className="relative !h-[68px] w-full overflow-hidden rounded-t-md p-5 text-white hover:!bg-transparent">
+                                        <div className="relative h-[68px]! w-full overflow-hidden rounded-t-md p-5 text-white hover:bg-transparent!">
                                             <div className="bg- absolute inset-0 h-full w-full bg-[url(/assets/images/menu-heade.jpg)] bg-cover bg-center bg-no-repeat"></div>
                                             <h4 className="relative z-10 text-lg font-semibold">Messages</h4>
                                         </div>
@@ -298,7 +296,7 @@ const Header = () => {
                                                                 <div className="text-sm font-semibold dark:text-white-light/90">{message.title}</div>
                                                                 <div>{message.message}</div>
                                                             </span>
-                                                            <span className="whitespace-pre rounded bg-white-dark/20 px-1 font-semibold text-dark/60 ltr:ml-auto ltr:mr-2 rtl:ml-2 rtl:mr-auto dark:text-white-dark">
+                                                            <span className="whitespace-pre rounded-sm bg-white-dark/20 px-1 font-semibold text-dark/60 ltr:ml-auto ltr:mr-2 rtl:ml-2 rtl:mr-auto dark:text-white-dark">
                                                                 {message.time}
                                                             </span>
                                                             <button type="button" className="text-neutral-300 hover:text-danger" onClick={() => removeMessage(message.id)}>
@@ -309,7 +307,7 @@ const Header = () => {
                                                 })}
                                             </li>
                                             <li className="mt-5 border-t border-white-light text-center dark:border-white/10">
-                                                <button type="button" className="group !h-[48px] justify-center !py-4 font-semibold text-primary dark:text-gray-400">
+                                                <button type="button" className="group h-[48px]! justify-center py-4! font-semibold text-primary dark:text-gray-400">
                                                     <span className="group-hover:underline ltr:mr-1 rtl:ml-1">VIEW ALL ACTIVITIES</span>
                                                     <IconArrowLeft className="transition duration-300 group-hover:translate-x-1 ltr:ml-1 rtl:mr-1" />
                                                 </button>
@@ -317,7 +315,7 @@ const Header = () => {
                                         </>
                                     ) : (
                                         <li className="mb-5" onClick={(e) => e.stopPropagation()}>
-                                            <button type="button" className="!grid min-h-[200px] place-content-center text-lg hover:!bg-transparent">
+                                            <button type="button" className="grid! min-h-[200px] place-content-center text-lg hover:bg-transparent!">
                                                 <div className="mx-auto mb-4 rounded-full text-white ring-4 ring-primary/30">
                                                     <IconInfoCircle fill={true} className="h-10 w-10" />
                                                 </div>
@@ -337,13 +335,13 @@ const Header = () => {
                                     <span>
                                         <IconBellBing />
                                         <span className="absolute top-0 flex h-3 w-3 ltr:right-0 rtl:left-0">
-                                            <span className="absolute -top-[3px] inline-flex h-full w-full animate-ping rounded-full bg-success/50 opacity-75 ltr:-left-[3px] rtl:-right-[3px]"></span>
+                                            <span className="absolute top-[-3px] inline-flex h-full w-full animate-ping rounded-full bg-success/50 opacity-75 ltr:left-[-3px] rtl:right-[-3px]"></span>
                                             <span className="relative inline-flex h-[6px] w-[6px] rounded-full bg-success"></span>
                                         </span>
                                     </span>
                                 }
                             >
-                                <ul className="w-[300px] divide-y !py-0 text-dark dark:divide-white/10 dark:text-white-dark sm:w-[350px]">
+                                <ul className="w-[300px] divide-y py-0! text-dark dark:divide-white/10 dark:text-white-dark sm:w-[350px]">
                                     <li onClick={(e) => e.stopPropagation()}>
                                         <div className="flex items-center justify-between px-4 py-2 font-semibold">
                                             <h4 className="text-lg">Notification</h4>
@@ -356,7 +354,7 @@ const Header = () => {
                                                 return (
                                                     <li key={notification.id} className="dark:text-white-light/90" onClick={(e) => e.stopPropagation()}>
                                                         <div className="group flex items-center px-4 py-2">
-                                                            <div className="grid place-content-center rounded">
+                                                            <div className="grid place-content-center rounded-sm">
                                                                 <div className="relative h-12 w-12">
                                                                     <img className="h-12 w-12 rounded-full object-cover" alt="profile" src={`/assets/images/${notification.profile}`} />
                                                                     <span className="absolute bottom-0 right-[6px] block h-2 w-2 rounded-full bg-success"></span>
@@ -391,7 +389,7 @@ const Header = () => {
                                         </>
                                     ) : (
                                         <li onClick={(e) => e.stopPropagation()}>
-                                            <button type="button" className="!grid min-h-[200px] place-content-center text-lg hover:!bg-transparent">
+                                            <button type="button" className="grid! min-h-[200px] place-content-center text-lg hover:bg-transparent!">
                                                 <div className="mx-auto mb-4 rounded-full ring-4 ring-primary/30">
                                                     <IconInfoCircle fill={true} className="h-10 w-10 text-primary" />
                                                 </div>
@@ -409,14 +407,14 @@ const Header = () => {
                                 btnClassName="relative group block"
                                 button={<img className="h-9 w-9 rounded-full object-cover saturate-50 group-hover:saturate-100" src="/assets/images/user-profile.jpeg" alt="userProfile" />}
                             >
-                                <ul className="w-[230px] !py-0 font-semibold text-dark dark:text-white-dark dark:text-white-light/90">
+                                <ul className="w-[230px] py-0! font-semibold text-dark dark:text-white-dark dark:text-white-light/90">
                                     <li>
                                         <div className="flex items-center px-4 py-4">
                                             <img className="h-10 w-10 rounded-md object-cover" src="/assets/images/user-profile.jpeg" alt="userProfile" />
                                             <div className="truncate ltr:pl-4 rtl:pr-4">
                                                 <h4 className="text-base">
                                                     John Doe
-                                                    <span className="rounded bg-success-light px-1 text-xs text-success ltr:ml-2 rtl:ml-2">Pro</span>
+                                                    <span className="rounded-sm bg-success-light px-1 text-xs text-success ltr:ml-2 rtl:ml-2">Pro</span>
                                                 </h4>
                                                 <button type="button" className="text-black/60 hover:text-primary dark:text-dark-light/60 dark:hover:text-white">
                                                     johndoe@gmail.com
@@ -443,7 +441,7 @@ const Header = () => {
                                         </Link>
                                     </li>
                                     <li className="border-t border-white-light dark:border-white-light/10">
-                                        <Link href="/auth/boxed-signin" className="!py-3 text-danger">
+                                        <Link href="/auth/boxed-signin" className="py-3! text-danger">
                                             <IconLogout className="h-4.5 w-4.5 shrink-0 rotate-90 ltr:mr-2 rtl:ml-2" />
                                             Sign Out
                                         </Link>
@@ -517,7 +515,7 @@ const Header = () => {
                                         <IconCaretDown />
                                     </div>
                                 </button>
-                                <ul className="absolute top-0 z-[10] hidden min-w-[180px] rounded bg-white p-0 py-2 text-dark shadow ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
+                                <ul className="absolute top-0 z-10 hidden min-w-[180px] rounded-sm bg-white p-0 py-2 text-dark shadow-sm ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
                                     <li>
                                         <Link href="/apps/invoice/list">{t('list')}</Link>
                                     </li>
@@ -599,7 +597,7 @@ const Header = () => {
                                         <IconCaretDown />
                                     </div>
                                 </button>
-                                <ul className="absolute top-0 z-[10] hidden min-w-[180px] rounded bg-white p-0 py-2 text-dark shadow ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
+                                <ul className="absolute top-0 z-10 hidden min-w-[180px] rounded-sm bg-white p-0 py-2 text-dark shadow-sm ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
                                     <li>
                                         <Link href="/users/profile">{t('profile')}</Link>
                                     </li>
@@ -646,7 +644,7 @@ const Header = () => {
                                         <IconCaretDown />
                                     </div>
                                 </button>
-                                <ul className="absolute top-0 z-[10] hidden min-w-[180px] rounded bg-white p-0 py-2 text-dark shadow ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
+                                <ul className="absolute top-0 z-10 hidden min-w-[180px] rounded-sm bg-white p-0 py-2 text-dark shadow-sm ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
                                     <li>
                                         <Link href="/pages/error404" target="_blank">
                                             {t('404')}
@@ -671,7 +669,7 @@ const Header = () => {
                                         <IconCaretDown />
                                     </div>
                                 </button>
-                                <ul className="absolute top-0 z-[10] hidden min-w-[180px] rounded bg-white p-0 py-2 text-dark shadow ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
+                                <ul className="absolute top-0 z-10 hidden min-w-[180px] rounded-sm bg-white p-0 py-2 text-dark shadow-sm ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
                                     <li>
                                         <Link href="/auth/cover-login" target="_blank">
                                             {t('login_cover')}
@@ -691,7 +689,7 @@ const Header = () => {
                                         <IconCaretDown />
                                     </div>
                                 </button>
-                                <ul className="absolute top-0 z-[10] hidden min-w-[180px] rounded bg-white p-0 py-2 text-dark shadow ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
+                                <ul className="absolute top-0 z-10 hidden min-w-[180px] rounded-sm bg-white p-0 py-2 text-dark shadow-sm ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
                                     <li>
                                         <Link href="/auth/cover-register" target="_blank">
                                             {t('register_cover')}
@@ -711,7 +709,7 @@ const Header = () => {
                                         <IconCaretDown />
                                     </div>
                                 </button>
-                                <ul className="absolute top-0 z-[10] hidden min-w-[180px] rounded bg-white p-0 py-2 text-dark shadow ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
+                                <ul className="absolute top-0 z-10 hidden min-w-[180px] rounded-sm bg-white p-0 py-2 text-dark shadow-sm ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
                                     <li>
                                         <Link href="/auth/cover-password-reset" target="_blank">
                                             {t('recover_id_cover')}
@@ -731,7 +729,7 @@ const Header = () => {
                                         <IconCaretDown />
                                     </div>
                                 </button>
-                                <ul className="absolute top-0 z-[10] hidden min-w-[180px] rounded bg-white p-0 py-2 text-dark shadow ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
+                                <ul className="absolute top-0 z-10 hidden min-w-[180px] rounded-sm bg-white p-0 py-2 text-dark shadow-sm ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
                                     <li>
                                         <Link href="/auth/cover-lockscreen" target="_blank">
                                             {t('unlock_cover')}
