@@ -675,49 +675,6 @@ const Header = () => {
                             <li>
                                 <Link href="/tables">{t('tables')}</Link>
                             </li>
-                            <li className="relative">
-                                <button type="button">
-                                    {t('datatables')}
-                                    <div className="-rotate-90 ltr:ml-auto rtl:mr-auto rtl:rotate-90">
-                                        <IconCaretDown />
-                                    </div>
-                                </button>
-                                <ul className="absolute top-0 z-[10] hidden min-w-[180px] rounded bg-white p-0 py-2 text-dark shadow ltr:left-[95%] rtl:right-[95%] dark:bg-[#1b2e4b] dark:text-white-dark">
-                                    <li>
-                                        <Link href="/datatables/basic">{t('basic')}</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/datatables/advanced">{t('advanced')}</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/datatables/skin">{t('skin')}</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/datatables/order-sorting">{t('order_sorting')}</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/datatables/multi-column">{t('multi_column')}</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/datatables/multiple-tables">{t('multiple_tables')}</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/datatables/alt-pagination">{t('alt_pagination')}</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/datatables/checkbox">{t('checkbox')}</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/datatables/range-search">{t('range_search')}</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/datatables/export">{t('export')}</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/datatables/column-chooser">{t('column_chooser')}</Link>
-                                    </li>
-                                </ul>
-                            </li>
                         </ul>
                     </li>
                     <li className="menu nav-item relative">

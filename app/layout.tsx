@@ -1,4 +1,5 @@
 import ProviderComponent from '@/components/layouts/provider-component';
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import '../styles/tailwind.css';
 import { Metadata } from 'next';
@@ -21,7 +22,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <body className={nunito.variable}>
-                <ProviderComponent>{children}</ProviderComponent>
+                <AntdRegistry>
+                    <ProviderComponent>{children}</ProviderComponent>
+                </AntdRegistry>
             </body>
         </html>
     );

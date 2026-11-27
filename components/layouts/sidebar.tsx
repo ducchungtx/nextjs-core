@@ -25,7 +25,6 @@ import IconMenuWidgets from '@/components/icon/menu/icon-menu-widgets';
 import IconMenuFontIcons from '@/components/icon/menu/icon-menu-font-icons';
 import IconMenuDragAndDrop from '@/components/icon/menu/icon-menu-drag-and-drop';
 import IconMenuTables from '@/components/icon/menu/icon-menu-tables';
-import IconMenuDatatables from '@/components/icon/menu/icon-menu-datatables';
 import IconMenuForms from '@/components/icon/menu/icon-menu-forms';
 import IconMenuUsers from '@/components/icon/menu/icon-menu-users';
 import IconMenuPages from '@/components/icon/menu/icon-menu-pages';
@@ -416,57 +415,6 @@ const Sidebar = () => {
                                         <span className="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">{t('tables')}</span>
                                     </div>
                                 </Link>
-                            </li>
-
-                            <li className="menu nav-item">
-                                <button type="button" className={`${currentMenu === 'datalabel' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('datalabel')}>
-                                    <div className="flex items-center">
-                                        <IconMenuDatatables className="shrink-0 group-hover:!text-primary" />
-                                        <span className="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">{t('datatables')}</span>
-                                    </div>
-
-                                    <div className={currentMenu !== 'datalabel' ? '-rotate-90 rtl:rotate-90' : ''}>
-                                        <IconCaretDown />
-                                    </div>
-                                </button>
-
-                                <AnimateHeight duration={300} height={currentMenu === 'datalabel' ? 'auto' : 0}>
-                                    <ul className="sub-menu text-gray-500">
-                                        <li>
-                                            <Link href="/datatables/basic">{t('basic')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/datatables/advanced">{t('advanced')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/datatables/skin">{t('skin')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/datatables/order-sorting">{t('order_sorting')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/datatables/multi-column">{t('multi_column')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/datatables/multiple-tables">{t('multiple_tables')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/datatables/alt-pagination">{t('alt_pagination')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/datatables/checkbox">{t('checkbox')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/datatables/range-search">{t('range_search')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/datatables/export">{t('export')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/datatables/column-chooser">{t('column_chooser')}</Link>
-                                        </li>
-                                    </ul>
-                                </AnimateHeight>
                             </li>
 
                             <li className="menu nav-item">
