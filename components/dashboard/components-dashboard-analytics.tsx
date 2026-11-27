@@ -542,7 +542,7 @@ const ComponentsDashboardAnalytics = () => {
                                         <h5 className="font-semibold dark:text-white-light">
                                             New project created :{' '}
                                             <button type="button" className="text-success">
-                                                [VRISTO Admin Template]
+                                                [nextis-core Admin Template]
                                             </button>
                                         </h5>
                                         <p className="text-xs text-white-dark">27 Feb, 2020</p>

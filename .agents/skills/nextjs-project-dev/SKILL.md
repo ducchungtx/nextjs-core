@@ -1,7 +1,7 @@
 ---
 name: nextjs-project-dev
 description: >-
-  Development workflow, Next.js 16 App Router best practices, Vristo UI + Ant Design v6
+  Development workflow, Next.js 16 App Router best practices, nextis-core UI + Ant Design v6
   conventions, Zustand state management, and dependency modernization guide for this
   repository. Use when creating new pages or components, building forms/tables/charts,
   refactoring legacy template code, or auditing and upgrading packages in package.json.
