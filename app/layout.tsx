@@ -1,4 +1,5 @@
 import ProviderComponent from '@/components/layouts/provider-component';
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import '../styles/tailwind.css';
 import { Metadata } from 'next';
@@ -6,8 +7,8 @@ import { Nunito } from 'next/font/google';
 
 export const metadata: Metadata = {
     title: {
-        template: '%s | VRISTO - Multipurpose Tailwind Dashboard Template',
-        default: 'VRISTO - Multipurpose Tailwind Dashboard Template',
+        template: '%s | CHUNGND',
+        default: 'CHUNGND',
     },
 };
 const nunito = Nunito({
@@ -21,7 +22,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <body className={nunito.variable}>
-                <ProviderComponent>{children}</ProviderComponent>
+                <AntdRegistry>
+                    <ProviderComponent>{children}</ProviderComponent>
+                </AntdRegistry>
             </body>
         </html>
     );

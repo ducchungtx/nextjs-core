@@ -1,12 +1,11 @@
 'use client';
 import PanelCodeHighlight from '@/components/panel-code-highlight';
-import { IRootState } from '@/store';
 import ReactApexChart from 'react-apexcharts';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useThemeStore } from '@/store/useThemeStore';
 
 const ComponentsChartsPolarArea = () => {
-    const isDark = useSelector((state: IRootState) => state.themeConfig.theme === 'dark' || state.themeConfig.isDarkMode);
+    const isDark = useThemeStore((s) => s.theme === 'dark' || s.isDarkMode);
 
     const [isMounted, setIsMounted] = useState(false);
     useEffect(() => {

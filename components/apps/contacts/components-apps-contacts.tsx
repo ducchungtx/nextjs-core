@@ -10,8 +10,9 @@ import IconUser from '@/components/icon/icon-user';
 import IconUserPlus from '@/components/icon/icon-user-plus';
 import IconX from '@/components/icon/icon-x';
 import { Transition, Dialog, TransitionChild, DialogPanel } from '@headlessui/react';
+import { message } from 'antd';
 import React, { Fragment, useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
+import AppButton from '@/components/ui/app-button';
 
 const ComponentsAppsContacts = () => {
     const [addContactModal, setAddContactModal] = useState<any>(false);
@@ -260,18 +261,11 @@ const ComponentsAppsContacts = () => {
         showMessage('User has been deleted successfully.');
     };
 
-    const showMessage = (msg = '', type = 'success') => {
-        const toast: any = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 3000,
-            customClass: { container: 'toast' },
-        });
-        toast.fire({
-            icon: type,
-            title: msg,
-            padding: '10px 20px',
+    const showMessage = (msg = '', type: 'success' | 'error' | 'info' | 'warning' = 'success') => {
+        message.open({
+            type,
+            content: msg,
+            duration: 3,
         });
     };
 
@@ -282,27 +276,26 @@ const ComponentsAppsContacts = () => {
                 <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:items-center sm:gap-3">
                     <div className="flex gap-3">
                         <div>
-                            <button type="button" className="btn btn-primary" onClick={() => editUser()}>
-                                <IconUserPlus className="ltr:mr-2 rtl:ml-2" />
+                            <AppButton type="primary" icon={<IconUserPlus />} onClick={() => editUser()}>
                                 Add Contact
-                            </button>
+                            </AppButton>
                         </div>
                         <div>
-                            <button type="button" className={`btn btn-outline-primary p-2 ${value === 'list' && 'bg-primary text-white'}`} onClick={() => setValue('list')}>
-                                <IconListCheck />
-                            </button>
+                            <AppButton tone="primary" variant={value === 'list' ? 'solid' : 'outlined'} icon={<IconListCheck />} onClick={() => setValue('list')} />
                         </div>
                         <div>
-                            <button type="button" className={`btn btn-outline-primary p-2 ${value === 'grid' && 'bg-primary text-white'}`} onClick={() => setValue('grid')}>
-                                <IconLayoutGrid />
-                            </button>
+                            <AppButton tone="primary" variant={value === 'grid' ? 'solid' : 'outlined'} icon={<IconLayoutGrid />} onClick={() => setValue('grid')} />
                         </div>
                     </div>
                     <div className="relative">
                         <input type="text" placeholder="Search Contacts" className="peer form-input py-2 ltr:pr-11 rtl:pl-11" value={search} onChange={(e) => setSearch(e.target.value)} />
-                        <button type="button" className="absolute top-1/2 -translate-y-1/2 peer-focus:text-primary ltr:right-[11px] rtl:left-[11px]">
-                            <IconSearch className="mx-auto" />
-                        </button>
+                        <AppButton
+                            type="text"
+                            size="small"
+                            shape="circle"
+                            className="absolute! top-1/2 -translate-y-1/2 peer-focus:text-primary! ltr:right-[6px] rtl:left-[6px]"
+                            icon={<IconSearch className="mx-auto" />}
+                        />
                     </div>
                 </div>
             </div>
@@ -316,7 +309,7 @@ const ComponentsAppsContacts = () => {
                                     <th>Email</th>
                                     <th>Location</th>
                                     <th>Phone</th>
-                                    <th className="!text-center">Actions</th>
+                                    <th className="text-center!">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -346,12 +339,12 @@ const ComponentsAppsContacts = () => {
                                             <td className="whitespace-nowrap">{contact.phone}</td>
                                             <td>
                                                 <div className="flex items-center justify-center gap-4">
-                                                    <button type="button" className="btn btn-sm btn-outline-primary" onClick={() => editUser(contact)}>
+                                                    <AppButton tone="primary" variant="outlined" size="small" onClick={() => editUser(contact)}>
                                                         Edit
-                                                    </button>
-                                                    <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => deleteUser(contact)}>
+                                                    </AppButton>
+                                                    <AppButton tone="danger" variant="outlined" size="small" onClick={() => deleteUser(contact)}>
                                                         Delete
-                                                    </button>
+                                                    </AppButton>
                                                 </div>
                                             </td>
                                         </tr>
@@ -367,8 +360,8 @@ const ComponentsAppsContacts = () => {
                 <div className="mt-5 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
                     {filteredItems.map((contact: any) => {
                         return (
-                            <div className="relative overflow-hidden rounded-md bg-white text-center shadow dark:bg-[#1c232f]" key={contact.id}>
-                                <div className="relative overflow-hidden rounded-md bg-white text-center shadow dark:bg-[#1c232f]">
+                            <div className="relative overflow-hidden rounded-md bg-white text-center shadow-sm dark:bg-[#1c232f]" key={contact.id}>
+                                <div className="relative overflow-hidden rounded-md bg-white text-center shadow-sm dark:bg-[#1c232f]">
                                     <div className="rounded-t-md bg-white/40 bg-[url('/assets/images/notification-bg.png')] bg-cover bg-center p-6 pb-0">
                                         <img className="mx-auto max-h-40 w-4/5 object-contain" src={`/assets/images/${contact.path}`} alt="contact_image" />
                                     </div>
@@ -393,24 +386,16 @@ const ComponentsAppsContacts = () => {
                                             <div className="mt-4">
                                                 <ul className="flex items-center justify-center space-x-4 rtl:space-x-reverse">
                                                     <li>
-                                                        <button type="button" className="btn btn-outline-primary h-7 w-7 rounded-full p-0">
-                                                            <IconFacebook />
-                                                        </button>
+                                                        <AppButton tone="primary" variant="outlined" shape="circle" size="small" icon={<IconFacebook />} />
                                                     </li>
                                                     <li>
-                                                        <button type="button" className="btn btn-outline-primary h-7 w-7 rounded-full p-0">
-                                                            <IconInstagram />
-                                                        </button>
+                                                        <AppButton tone="primary" variant="outlined" shape="circle" size="small" icon={<IconInstagram />} />
                                                     </li>
                                                     <li>
-                                                        <button type="button" className="btn btn-outline-primary h-7 w-7 rounded-full p-0">
-                                                            <IconLinkedin />
-                                                        </button>
+                                                        <AppButton tone="primary" variant="outlined" shape="circle" size="small" icon={<IconLinkedin />} />
                                                     </li>
                                                     <li>
-                                                        <button type="button" className="btn btn-outline-primary h-7 w-7 rounded-full p-0">
-                                                            <IconTwitter />
-                                                        </button>
+                                                        <AppButton tone="primary" variant="outlined" shape="circle" size="small" icon={<IconTwitter />} />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -431,12 +416,12 @@ const ComponentsAppsContacts = () => {
                                         </div>
                                     </div>
                                     <div className="absolute bottom-0 mt-6 flex w-full gap-4 p-6 ltr:left-0 rtl:right-0">
-                                        <button type="button" className="btn btn-outline-primary w-1/2" onClick={() => editUser(contact)}>
+                                        <AppButton tone="primary" variant="outlined" className="w-1/2" onClick={() => editUser(contact)}>
                                             Edit
-                                        </button>
-                                        <button type="button" className="btn btn-outline-danger w-1/2" onClick={() => deleteUser(contact)}>
+                                        </AppButton>
+                                        <AppButton tone="danger" variant="outlined" className="w-1/2" onClick={() => deleteUser(contact)}>
                                             Delete
-                                        </button>
+                                        </AppButton>
                                     </div>
                                 </div>
                             </div>
@@ -462,13 +447,13 @@ const ComponentsAppsContacts = () => {
                                 leaveTo="opacity-0 scale-95"
                             >
                                 <DialogPanel className="panel w-full max-w-lg overflow-hidden rounded-lg border-0 p-0 text-black dark:text-white-dark">
-                                    <button
-                                        type="button"
+                                    <AppButton
+                                        type="text"
+                                        shape="circle"
                                         onClick={() => setAddContactModal(false)}
-                                        className="absolute top-4 text-gray-400 outline-none hover:text-gray-800 ltr:right-4 rtl:left-4 dark:hover:text-gray-600"
-                                    >
-                                        <IconX />
-                                    </button>
+                                        className="absolute! top-4 text-gray-400! hover:text-gray-800! ltr:right-4 rtl:left-4 dark:hover:text-gray-600!"
+                                        icon={<IconX />}
+                                    />
                                     <div className="bg-[#fbfbfb] py-3 text-lg font-medium ltr:pl-5 ltr:pr-[50px] rtl:pl-[50px] rtl:pr-5 dark:bg-[#121c2c]">
                                         {params.id ? 'Edit Contact' : 'Add Contact'}
                                     </div>
@@ -502,12 +487,12 @@ const ComponentsAppsContacts = () => {
                                                 ></textarea>
                                             </div>
                                             <div className="mt-8 flex items-center justify-end">
-                                                <button type="button" className="btn btn-outline-danger" onClick={() => setAddContactModal(false)}>
+                                                <AppButton tone="danger" variant="outlined" onClick={() => setAddContactModal(false)}>
                                                     Cancel
-                                                </button>
-                                                <button type="button" className="btn btn-primary ltr:ml-4 rtl:mr-4" onClick={saveUser}>
+                                                </AppButton>
+                                                <AppButton type="primary" className="ltr:ml-4 rtl:mr-4" onClick={saveUser}>
                                                     {params.id ? 'Update' : 'Add'}
-                                                </button>
+                                                </AppButton>
                                             </div>
                                         </form>
                                     </div>

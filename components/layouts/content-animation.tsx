@@ -1,24 +1,23 @@
 'use client';
-import { IRootState } from '@/store';
+import { useThemeStore } from '@/store/useThemeStore';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 const ContentAnimation = ({ children }: { children: React.ReactNode }) => {
     const pathname = usePathname();
-    const themeConfig = useSelector((state: IRootState) => state.themeConfig);
-    const [animation, setAnimation] = useState(themeConfig.animation);
+    const themeAnimation = useThemeStore((s) => s.animation);
+    const [animation, setAnimation] = useState(themeAnimation);
 
     useEffect(() => {
-        setAnimation(themeConfig.animation);
-    }, [themeConfig.animation]);
+        setAnimation(themeAnimation);
+    }, [themeAnimation]);
 
     useEffect(() => {
-        setAnimation(themeConfig.animation);
+        setAnimation(themeAnimation);
         setTimeout(() => {
             setAnimation('');
         }, 1100);
-    }, [pathname]);
+    }, [pathname, themeAnimation]);
     return (
         <>
             {/* BEGIN CONTENT AREA */}

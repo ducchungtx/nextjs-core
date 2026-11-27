@@ -38,16 +38,16 @@ import IconUsers from '@/components/icon/icon-users';
 import IconVideo from '@/components/icon/icon-video';
 import IconWheel from '@/components/icon/icon-wheel';
 import IconZipFile from '@/components/icon/icon-zip-file';
-import { IRootState } from '@/store';
 import { Disclosure } from '@headlessui/react';
-import Tippy from '@tippyjs/react';
+import { message, Tooltip } from 'antd';
+import AppButton from '@/components/ui/app-button';
+import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
-import ReactQuill from 'react-quill';
-import { useSelector } from 'react-redux';
-import Swal from 'sweetalert2';
+import { useThemeStore } from '@/store/useThemeStore';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import 'tippy.js/dist/tippy.css';
-import 'react-quill/dist/quill.snow.css';
+import 'react-quill-new/dist/quill.snow.css';
+
+const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
 
 const ComponentsAppsMailbox = () => {
     const [mailList, setMailList] = useState([
@@ -829,7 +829,7 @@ const ComponentsAppsMailbox = () => {
 
     const defaultParams = {
         id: null,
-        from: 'vristo@mail.com',
+        from: 'nextis-core@mail.com',
         to: '',
         cc: '',
         title: '',
@@ -848,7 +848,7 @@ const ComponentsAppsMailbox = () => {
     const [params, setParams] = useState<any>(JSON.parse(JSON.stringify(defaultParams)));
     const [pagedMails, setPagedMails] = useState<any>([]);
 
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
+    const isRtl = useThemeStore((s) => s.rtlClass) === 'rtl';
 
     const [pager] = useState<any>({
         currentPage: 1,
@@ -1208,45 +1208,40 @@ const ComponentsAppsMailbox = () => {
         searchMails();
     };
 
-    const showMessage = (msg = '', type = 'success') => {
-        const toast: any = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 3000,
-            customClass: { container: 'toast' },
-        });
-        toast.fire({
-            icon: type,
-            title: msg,
-            padding: '10px 20px',
+    const showMessage = (msg = '', type: 'success' | 'error' | 'info' | 'warning' = 'success') => {
+        message.open({
+            type,
+            content: msg,
+            duration: 3,
         });
     };
 
     return (
         <div>
-            <div className="relative flex h-full gap-5 sm:h-[calc(100vh_-_150px)]">
+            <div className="relative flex h-full gap-5 sm:h-[calc(100vh-150px)]">
                 <div
-                    className={`overlay absolute z-[5] hidden h-full w-full rounded-md bg-black/60 ${isShowMailMenu ? '!block xl:!hidden' : ''}`}
+                    className={`overlay absolute z-5 hidden h-full w-full rounded-md bg-black/60 ${isShowMailMenu ? 'block! xl:hidden!' : ''}`}
                     onClick={() => setIsShowMailMenu(!isShowMailMenu)}
                 ></div>
                 <div
-                    className={`panel dark:gray-50 absolute z-10 hidden h-full w-[250px] max-w-full flex-none space-y-3 overflow-hidden p-4 ltr:rounded-r-none rtl:rounded-l-none xl:relative xl:block xl:h-auto ltr:xl:rounded-r-md rtl:xl:rounded-l-md ${
-                        isShowMailMenu ? '!block' : ''
+                    className={`panel dark:gray-50 absolute z-10 hidden h-full w-[250px] max-w-full flex-none space-y-3 overflow-hidden p-4 ltr:rounded-r-none rtl:rounded-l-none xl:relative xl:block xl:h-auto xl:ltr:rounded-r-md xl:rtl:rounded-l-md ${
+                        isShowMailMenu ? 'block!' : ''
                     }`}
                 >
                     <div className="flex h-full flex-col pb-16">
                         <div className="pb-5">
-                            <button className="btn btn-primary w-full" type="button" onClick={() => openMail('add', null)}>
+                            <AppButton type="primary" block size="large" className="font-semibold" onClick={() => openMail('add', null)}>
                                 New Message
-                            </button>
+                            </AppButton>
                         </div>
                         <PerfectScrollbar className="relative h-full grow ltr:-mr-3.5 ltr:pr-3.5 rtl:-ml-3.5 rtl:pl-3.5">
                             <div className="space-y-1">
-                                <button
-                                    type="button"
-                                    className={`flex h-10 w-full items-center justify-between rounded-md p-2 font-medium hover:bg-white-dark/10 hover:text-primary dark:hover:bg-[#181F32] dark:hover:text-primary ${
-                                        !isEdit && selectedTab === 'inbox' ? 'bg-gray-100 text-primary dark:bg-[#181F32] dark:text-primary' : ''
+                                <AppButton
+                                    type="text"
+                                    block
+                                    align="between"
+                                    className={`h-10! px-2! font-medium! hover:bg-white-dark/10! hover:text-primary! dark:hover:bg-[#181F32]! dark:hover:text-primary! ${
+                                        !isEdit && selectedTab === 'inbox' ? 'bg-gray-100! text-primary! dark:bg-[#181F32]! dark:text-primary!' : ''
                                     }`}
                                     onClick={() => {
                                         setSelectedTab('inbox');
@@ -1260,12 +1255,14 @@ const ComponentsAppsMailbox = () => {
                                     <div className="whitespace-nowrap rounded-md bg-primary-light px-2 py-0.5 font-semibold dark:bg-[#060818]">
                                         {mailList && mailList.filter((d) => d.type === 'inbox').length}
                                     </div>
-                                </button>
+                                </AppButton>
 
-                                <button
-                                    type="button"
-                                    className={`flex h-10 w-full items-center justify-between rounded-md p-2 font-medium hover:bg-white-dark/10 hover:text-primary dark:hover:bg-[#181F32] dark:hover:text-primary ${
-                                        !isEdit && selectedTab === 'star' ? 'bg-gray-100 text-primary dark:bg-[#181F32] dark:text-primary' : ''
+                                <AppButton
+                                    type="text"
+                                    block
+                                    align="start"
+                                    className={`h-10! px-2! font-medium! hover:bg-white-dark/10! hover:text-primary! dark:hover:bg-[#181F32]! dark:hover:text-primary! ${
+                                        !isEdit && selectedTab === 'star' ? 'bg-gray-100! text-primary! dark:bg-[#181F32]! dark:text-primary!' : ''
                                     }`}
                                     onClick={() => {
                                         setSelectedTab('star');
@@ -1276,12 +1273,14 @@ const ComponentsAppsMailbox = () => {
                                         <IconStar className="shrink-0" />
                                         <div className="ltr:ml-3 rtl:mr-3">Marked</div>
                                     </div>
-                                </button>
+                                </AppButton>
 
-                                <button
-                                    type="button"
-                                    className={`flex h-10 w-full items-center justify-between rounded-md p-2 font-medium hover:bg-white-dark/10 hover:text-primary dark:hover:bg-[#181F32] dark:hover:text-primary ${
-                                        !isEdit && selectedTab === 'sent_mail' ? 'bg-gray-100 text-primary dark:bg-[#181F32] dark:text-primary' : ''
+                                <AppButton
+                                    type="text"
+                                    block
+                                    align="start"
+                                    className={`h-10! px-2! font-medium! hover:bg-white-dark/10! hover:text-primary! dark:hover:bg-[#181F32]! dark:hover:text-primary! ${
+                                        !isEdit && selectedTab === 'sent_mail' ? 'bg-gray-100! text-primary! dark:bg-[#181F32]! dark:text-primary!' : ''
                                     }`}
                                     onClick={() => {
                                         setSelectedTab('sent_mail');
@@ -1293,12 +1292,14 @@ const ComponentsAppsMailbox = () => {
 
                                         <div className="ltr:ml-3 rtl:mr-3">Sent</div>
                                     </div>
-                                </button>
+                                </AppButton>
 
-                                <button
-                                    type="button"
-                                    className={`flex h-10 w-full items-center justify-between rounded-md p-2 font-medium hover:bg-white-dark/10 hover:text-primary dark:hover:bg-[#181F32] dark:hover:text-primary ${
-                                        !isEdit && selectedTab === 'spam' ? 'bg-gray-100 text-primary dark:bg-[#181F32] dark:text-primary' : ''
+                                <AppButton
+                                    type="text"
+                                    block
+                                    align="start"
+                                    className={`h-10! px-2! font-medium! hover:bg-white-dark/10! hover:text-primary! dark:hover:bg-[#181F32]! dark:hover:text-primary! ${
+                                        !isEdit && selectedTab === 'spam' ? 'bg-gray-100! text-primary! dark:bg-[#181F32]! dark:text-primary!' : ''
                                     }`}
                                     onClick={() => {
                                         setSelectedTab('spam');
@@ -1309,12 +1310,14 @@ const ComponentsAppsMailbox = () => {
                                         <IconInfoHexagon className="shrink-0" />
                                         <div className="ltr:ml-3 rtl:mr-3">Spam</div>
                                     </div>
-                                </button>
+                                </AppButton>
 
-                                <button
-                                    type="button"
-                                    className={`flex h-10 w-full items-center justify-between rounded-md p-2 font-medium hover:bg-white-dark/10 hover:text-primary dark:hover:bg-[#181F32] dark:hover:text-primary ${
-                                        !isEdit && selectedTab === 'draft' ? 'bg-gray-100 text-primary dark:bg-[#181F32] dark:text-primary' : ''
+                                <AppButton
+                                    type="text"
+                                    block
+                                    align="between"
+                                    className={`h-10! px-2! font-medium! hover:bg-white-dark/10! hover:text-primary! dark:hover:bg-[#181F32]! dark:hover:text-primary! ${
+                                        !isEdit && selectedTab === 'draft' ? 'bg-gray-100! text-primary! dark:bg-[#181F32]! dark:text-primary!' : ''
                                     }`}
                                     onClick={() => {
                                         setSelectedTab('draft');
@@ -1328,12 +1331,14 @@ const ComponentsAppsMailbox = () => {
                                     <div className="whitespace-nowrap rounded-md bg-primary-light px-2 py-0.5 font-semibold dark:bg-[#060818]">
                                         {mailList && mailList.filter((d) => d.type === 'draft').length}
                                     </div>
-                                </button>
+                                </AppButton>
 
-                                <button
-                                    type="button"
-                                    className={`flex h-10 w-full items-center justify-between rounded-md p-2 font-medium hover:bg-white-dark/10 hover:text-primary dark:hover:bg-[#181F32] dark:hover:text-primary ${
-                                        !isEdit && selectedTab === 'trash' ? 'bg-gray-100 text-primary dark:bg-[#181F32] dark:text-primary' : ''
+                                <AppButton
+                                    type="text"
+                                    block
+                                    align="start"
+                                    className={`h-10! px-2! font-medium! hover:bg-white-dark/10! hover:text-primary! dark:hover:bg-[#181F32]! dark:hover:text-primary! ${
+                                        !isEdit && selectedTab === 'trash' ? 'bg-gray-100! text-primary! dark:bg-[#181F32]! dark:text-primary!' : ''
                                     }`}
                                     onClick={() => {
                                         setSelectedTab('trash');
@@ -1344,12 +1349,18 @@ const ComponentsAppsMailbox = () => {
                                         <IconTrashLines className="shrink-0" />
                                         <div className="ltr:ml-3 rtl:mr-3">Trash</div>
                                     </div>
-                                </button>
+                                </AppButton>
 
                                 <Disclosure as="div">
                                     {({ open }) => (
                                         <>
-                                            <Disclosure.Button className="flex h-10 w-full items-center rounded-md p-2 font-medium hover:bg-white-dark/10 hover:text-primary dark:hover:bg-[#181F32] dark:hover:text-primary">
+                                            <Disclosure.Button
+                                                as={AppButton}
+                                                type="text"
+                                                block
+                                                align="start"
+                                                className="h-10! px-2! font-medium! hover:bg-white-dark/10! hover:text-primary! dark:hover:bg-[#181F32]! dark:hover:text-primary!"
+                                            >
                                                 <IconCaretDown className={`h-5 w-5 shrink-0 ${open && 'rotate-180'}`} />
 
                                                 <div className="ltr:ml-3 rtl:mr-3">{open ? 'Less' : 'More'}</div>
@@ -1357,10 +1368,12 @@ const ComponentsAppsMailbox = () => {
 
                                             <Disclosure.Panel as="ul" unmount={false} className="mt-1 space-y-1">
                                                 <li>
-                                                    <button
-                                                        type="button"
-                                                        className={`flex h-10 w-full items-center rounded-md p-2 font-medium hover:bg-white-dark/10 hover:text-primary dark:hover:bg-[#181F32] dark:hover:text-primary ${
-                                                            !isEdit && selectedTab === 'archive' ? 'bg-gray-100 text-primary dark:bg-[#181F32] dark:text-primary' : ''
+                                                    <AppButton
+                                                        type="text"
+                                                        block
+                                                        align="start"
+                                                        className={`h-10! px-2! font-medium! hover:bg-white-dark/10! hover:text-primary! dark:hover:bg-[#181F32]! dark:hover:text-primary! ${
+                                                            !isEdit && selectedTab === 'archive' ? 'bg-gray-100! text-primary! dark:bg-[#181F32]! dark:text-primary!' : ''
                                                         }`}
                                                         onClick={() => {
                                                             setSelectedTab('archive');
@@ -1369,13 +1382,15 @@ const ComponentsAppsMailbox = () => {
                                                     >
                                                         <IconArchive className="shrink-0" />
                                                         <div className="ltr:ml-3 rtl:mr-3">Archive</div>
-                                                    </button>
+                                                    </AppButton>
                                                 </li>
                                                 <li>
-                                                    <button
-                                                        type="button"
-                                                        className={`flex h-10 w-full items-center rounded-md p-2 font-medium hover:bg-white-dark/10 hover:text-primary dark:hover:bg-[#181F32] dark:hover:text-primary ${
-                                                            !isEdit && selectedTab === 'important' ? 'bg-gray-100 text-primary dark:bg-[#181F32] dark:text-primary' : ''
+                                                    <AppButton
+                                                        type="text"
+                                                        block
+                                                        align="start"
+                                                        className={`h-10! px-2! font-medium! hover:bg-white-dark/10! hover:text-primary! dark:hover:bg-[#181F32]! dark:hover:text-primary! ${
+                                                            !isEdit && selectedTab === 'important' ? 'bg-gray-100! text-primary! dark:bg-[#181F32]! dark:text-primary!' : ''
                                                         }`}
                                                         onClick={() => {
                                                             setSelectedTab('important');
@@ -1384,7 +1399,7 @@ const ComponentsAppsMailbox = () => {
                                                     >
                                                         <IconBookmark className="shrink-0" />
                                                         <div className="ltr:ml-3 rtl:mr-3">Important</div>
-                                                    </button>
+                                                    </AppButton>
                                                 </li>
                                             </Disclosure.Panel>
                                         </>
@@ -1393,32 +1408,38 @@ const ComponentsAppsMailbox = () => {
 
                                 <div className="h-px border-b border-white-light dark:border-[#1b2e4b]"></div>
 
-                                <button
-                                    type="button"
-                                    className={`flex h-10 w-full items-center justify-between rounded-md p-2 font-medium hover:bg-white-dark/10 hover:text-primary dark:hover:bg-[#181F32] dark:hover:text-primary`}
+                                <AppButton
+                                    type="text"
+                                    block
+                                    align="start"
+                                    className="h-10! px-2! font-medium! hover:bg-white-dark/10! hover:text-primary! dark:hover:bg-[#181F32]! dark:hover:text-primary!"
                                 >
                                     <div className="flex items-center">
                                         <IconVideo className="shrink-0" />
                                         <div className="ltr:ml-3 rtl:mr-3">New meeting</div>
                                     </div>
-                                </button>
-                                <button
-                                    type="button"
-                                    className={`flex h-10 w-full items-center justify-between rounded-md p-2 font-medium hover:bg-white-dark/10 hover:text-primary dark:hover:bg-[#181F32] dark:hover:text-primary`}
+                                </AppButton>
+                                <AppButton
+                                    type="text"
+                                    block
+                                    align="start"
+                                    className="h-10! px-2! font-medium! hover:bg-white-dark/10! hover:text-primary! dark:hover:bg-[#181F32]! dark:hover:text-primary!"
                                 >
                                     <div className="flex items-center">
                                         <IconChartSquare className="shrink-0 rotate-180" />
                                         <div className="ltr:ml-3 rtl:mr-3">Join a meeting</div>
                                     </div>
-                                </button>
+                                </AppButton>
                                 <div className="h-px border-b border-white-light dark:border-[#1b2e4b]"></div>
                             </div>
                         </PerfectScrollbar>
 
                         <div className="absolute bottom-0 w-full p-4 ltr:left-0 rtl:right-0">
-                            <button
-                                type="button"
-                                className="group flex w-full items-center justify-between rounded-md p-2 font-medium hover:bg-white-dark/10 hover:text-primary dark:hover:bg-[#181F32] dark:hover:text-primary"
+                            <AppButton
+                                type="text"
+                                block
+                                align="between"
+                                className="group h-auto! px-2! py-2! font-medium! hover:bg-white-dark/10! hover:text-primary! dark:hover:bg-[#181F32]! dark:hover:text-primary!"
                                 onClick={() => setIsShowMailMenu(false)}
                             >
                                 <div className="flex items-center">
@@ -1428,7 +1449,7 @@ const ComponentsAppsMailbox = () => {
                                 <div className="rounded-md bg-primary-light px-2 py-1 dark:bg-[#060818]">
                                     <IconPlus />
                                 </div>
-                            </button>
+                            </AppButton>
                         </div>
                     </div>
                 </div>
@@ -1459,31 +1480,25 @@ const ComponentsAppsMailbox = () => {
                                     </div>
 
                                     <div className="ltr:mr-4 rtl:ml-4">
-                                        <Tippy content="Refresh">
-                                            <button type="button" className="flex items-center hover:text-primary" onClick={() => refreshMails()}>
-                                                <IconRefresh />
-                                            </button>
-                                        </Tippy>
+                                        <Tooltip title="Refresh">
+                                            <AppButton type="text" shape="circle" className="hover:text-primary!" icon={<IconRefresh />} onClick={() => refreshMails()} />
+                                        </Tooltip>
                                     </div>
 
                                     {selectedTab !== 'trash' && (
-                                        <ul className="flex grow items-center gap-4 sm:flex-none ltr:sm:mr-4 rtl:sm:ml-4">
+                                        <ul className="flex grow items-center gap-4 sm:flex-none sm:ltr:mr-4 sm:rtl:ml-4">
                                             <li>
                                                 <div>
-                                                    <Tippy content="Archive">
-                                                        <button type="button" className="flex items-center hover:text-primary" onClick={setArchive}>
-                                                            <IconArchive />
-                                                        </button>
-                                                    </Tippy>
+                                                    <Tooltip title="Archive">
+                                                        <AppButton type="text" shape="circle" className="hover:text-primary!" icon={<IconArchive />} onClick={setArchive} />
+                                                    </Tooltip>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div>
-                                                    <Tippy content="Spam">
-                                                        <button type="button" className="flex items-center hover:text-primary" onClick={setSpam}>
-                                                            <IconInfoHexagon />
-                                                        </button>
-                                                    </Tippy>
+                                                    <Tooltip title="Spam">
+                                                        <AppButton type="text" shape="circle" className="hover:text-primary!" icon={<IconInfoHexagon />} onClick={setSpam} />
+                                                    </Tooltip>
                                                 </div>
                                             </li>
                                             <li>
@@ -1493,37 +1508,37 @@ const ComponentsAppsMailbox = () => {
                                                         placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
                                                         btnClassName="hover:text-primary flex items-center"
                                                         button={
-                                                            <Tippy content="Group">
+                                                            <Tooltip title="Group">
                                                                 <span>
                                                                     <IconWheel />
                                                                 </span>
-                                                            </Tippy>
+                                                            </Tooltip>
                                                         }
                                                     >
                                                         <ul className="text-sm font-medium">
                                                             <li>
-                                                                <button type="button" className="w-full" onClick={() => setGroup('personal')}>
+                                                                <AppButton type="text" block align="start" onClick={() => setGroup('personal')}>
                                                                     <div className="h-2 w-2 shrink-0 rounded-full bg-primary ltr:mr-3 rtl:ml-3"></div>
                                                                     Personal
-                                                                </button>
+                                                                </AppButton>
                                                             </li>
                                                             <li>
-                                                                <button type="button" className="w-full" onClick={() => setGroup('work')}>
+                                                                <AppButton type="text" block align="start" onClick={() => setGroup('work')}>
                                                                     <div className="h-2 w-2 shrink-0 rounded-full bg-warning ltr:mr-3 rtl:ml-3"></div>
                                                                     Work
-                                                                </button>
+                                                                </AppButton>
                                                             </li>
                                                             <li>
-                                                                <button type="button" className="w-full" onClick={() => setGroup('social')}>
+                                                                <AppButton type="text" block align="start" onClick={() => setGroup('social')}>
                                                                     <div className="h-2 w-2 shrink-0 rounded-full bg-success ltr:mr-3 rtl:ml-3"></div>
                                                                     Social
-                                                                </button>
+                                                                </AppButton>
                                                             </li>
                                                             <li>
-                                                                <button type="button" className="w-full" onClick={() => setGroup('private')}>
+                                                                <AppButton type="text" block align="start" onClick={() => setGroup('private')}>
                                                                     <div className="h-2 w-2 shrink-0 rounded-full bg-danger ltr:mr-3 rtl:ml-3"></div>
                                                                     Private
-                                                                </button>
+                                                                </AppButton>
                                                             </li>
                                                         </ul>
                                                     </Dropdown>
@@ -1539,22 +1554,19 @@ const ComponentsAppsMailbox = () => {
                                                     >
                                                         <ul className="whitespace-nowrap">
                                                             <li>
-                                                                <button type="button" className="w-full" onClick={() => setAction('read')}>
-                                                                    <IconOpenBook className="shrink-0 ltr:mr-2 rtl:ml-2" />
+                                                                <AppButton type="text" block align="start" icon={<IconOpenBook className="shrink-0" />} onClick={() => setAction('read')}>
                                                                     Mark as Read
-                                                                </button>
+                                                                </AppButton>
                                                             </li>
                                                             <li>
-                                                                <button type="button" className="w-full" onClick={() => setAction('unread')}>
-                                                                    <IconBook className="shrink-0 ltr:mr-2 rtl:ml-2" />
+                                                                <AppButton type="text" block align="start" icon={<IconBook className="shrink-0" />} onClick={() => setAction('unread')}>
                                                                     Mark as Unread
-                                                                </button>
+                                                                </AppButton>
                                                             </li>
                                                             <li>
-                                                                <button type="button" className="w-full" onClick={() => setAction('trash')}>
-                                                                    <IconTrashLines className="shrink-0 ltr:mr-2 rtl:ml-2" />
+                                                                <AppButton type="text" block align="start" icon={<IconTrashLines className="shrink-0" />} onClick={() => setAction('trash')}>
                                                                     Trash
-                                                                </button>
+                                                                </AppButton>
                                                             </li>
                                                         </ul>
                                                     </Dropdown>
@@ -1564,23 +1576,19 @@ const ComponentsAppsMailbox = () => {
                                     )}
 
                                     {selectedTab === 'trash' && (
-                                        <ul className="flex flex-1 items-center gap-4 sm:flex-none ltr:sm:mr-3 rtl:sm:ml-4">
+                                        <ul className="flex flex-1 items-center gap-4 sm:flex-none sm:ltr:mr-3 sm:rtl:ml-4">
                                             <li>
                                                 <div>
-                                                    <Tippy content="Permanently Delete">
-                                                        <button type="button" className="block hover:text-primary" onClick={() => setAction('delete')}>
-                                                            <IconTrash />
-                                                        </button>
-                                                    </Tippy>
+                                                    <Tooltip title="Permanently Delete">
+                                                        <AppButton type="text" shape="circle" className="hover:text-primary!" icon={<IconTrash />} onClick={() => setAction('delete')} />
+                                                    </Tooltip>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div>
-                                                    <Tippy content="Restore">
-                                                        <button type="button" className="block hover:text-primary" onClick={() => setAction('restore')}>
-                                                            <IconRestore />
-                                                        </button>
-                                                    </Tippy>
+                                                    <Tooltip title="Restore">
+                                                        <AppButton type="text" shape="circle" className="hover:text-primary!" icon={<IconRestore />} onClick={() => setAction('restore')} />
+                                                    </Tooltip>
                                                 </div>
                                             </li>
                                         </ul>
@@ -1589,9 +1597,13 @@ const ComponentsAppsMailbox = () => {
 
                                 <div className="flex w-full items-center justify-between sm:w-auto">
                                     <div className="flex items-center ltr:mr-4 rtl:ml-4">
-                                        <button type="button" className="block hover:text-primary ltr:mr-3 rtl:ml-3 xl:hidden" onClick={() => setIsShowMailMenu(!isShowMailMenu)}>
-                                            <IconMenu />
-                                        </button>
+                                        <AppButton
+                                            type="text"
+                                            shape="circle"
+                                            className="block! hover:text-primary! ltr:mr-3 rtl:ml-3 xl:hidden!"
+                                            icon={<IconMenu />}
+                                            onClick={() => setIsShowMailMenu(!isShowMailMenu)}
+                                        />
                                         <div className="group relative">
                                             <input
                                                 type="text"
@@ -1608,18 +1620,14 @@ const ComponentsAppsMailbox = () => {
                                     </div>
                                     <div className="flex items-center">
                                         <div className="ltr:mr-4 rtl:ml-4">
-                                            <Tippy content="Settings">
-                                                <button type="button" className="hover:text-primary">
-                                                    <IconSettings />
-                                                </button>
-                                            </Tippy>
+                                            <Tooltip title="Settings">
+                                                <AppButton type="text" shape="circle" className="hover:text-primary!" icon={<IconSettings />} />
+                                            </Tooltip>
                                         </div>
                                         <div>
-                                            <Tippy content="Help">
-                                                <button type="button" className="hover:text-primary">
-                                                    <IconHelpCircle className="h-6 w-6" />
-                                                </button>
-                                            </Tippy>
+                                            <Tooltip title="Help">
+                                                <AppButton type="text" shape="circle" className="hover:text-primary!" icon={<IconHelpCircle className="h-6 w-6" />} />
+                                            </Tooltip>
                                         </div>
                                     </div>
                                 </div>
@@ -1629,80 +1637,81 @@ const ComponentsAppsMailbox = () => {
 
                             <div className="flex flex-col flex-wrap items-center justify-between px-4 pb-4 md:flex-row xl:w-auto">
                                 <div className="mt-4 grid w-full grid-cols-2 gap-3 sm:w-auto sm:grid-cols-4">
-                                    <button
-                                        type="button"
-                                        className={`btn btn-outline-primary flex ${selectedTab === 'personal' ? 'bg-primary text-white' : ''}`}
+                                    <AppButton
+                                        tone="primary"
+                                        variant={selectedTab === 'personal' ? 'solid' : 'outlined'}
+                                        icon={<IconUser className="h-5 w-5" />}
                                         onClick={() => {
                                             setSelectedTab('personal');
                                             tabChanged('personal');
                                         }}
                                     >
-                                        <IconUser className="h-5 w-5 ltr:mr-2 rtl:ml-2" />
                                         Personal
-                                    </button>
+                                    </AppButton>
 
-                                    <button
-                                        type="button"
-                                        className={`btn btn-outline-warning flex ${selectedTab === 'work' ? 'bg-warning text-white' : ''}`}
+                                    <AppButton
+                                        tone="warning"
+                                        variant={selectedTab === 'work' ? 'solid' : 'outlined'}
+                                        icon={<IconMessage2 className="h-5 w-5" />}
                                         onClick={() => {
                                             setSelectedTab('work');
                                             tabChanged('work');
                                         }}
                                     >
-                                        <IconMessage2 className="h-5 w-5 ltr:mr-2 rtl:ml-2" />
                                         Work
-                                    </button>
+                                    </AppButton>
 
-                                    <button
-                                        type="button"
-                                        className={`btn btn-outline-success flex ${selectedTab === 'social' ? 'bg-success text-white' : ''}`}
+                                    <AppButton
+                                        tone="success"
+                                        variant={selectedTab === 'social' ? 'solid' : 'outlined'}
+                                        icon={<IconUsers />}
                                         onClick={() => {
                                             setSelectedTab('social');
                                             tabChanged('social');
                                         }}
                                     >
-                                        <IconUsers className="ltr:mr-2 rtl:ml-2" />
                                         Social
-                                    </button>
+                                    </AppButton>
 
-                                    <button
-                                        type="button"
-                                        className={`btn btn-outline-danger flex ${selectedTab === 'private' ? 'bg-danger text-white' : ''}`}
+                                    <AppButton
+                                        tone="danger"
+                                        variant={selectedTab === 'private' ? 'solid' : 'outlined'}
+                                        icon={<IconTag />}
                                         onClick={() => {
                                             setSelectedTab('private');
                                             tabChanged('private');
                                         }}
                                     >
-                                        <IconTag className="ltr:mr-2 rtl:ml-2" />
                                         Private
-                                    </button>
+                                    </AppButton>
                                 </div>
 
                                 <div className="mt-4 flex-1 md:flex-auto">
                                     <div className="flex items-center justify-center md:justify-end">
                                         <div className="ltr:mr-3 rtl:ml-3">{pager.startIndex + 1 + '-' + (pager.endIndex + 1) + ' of ' + filteredMailList.length}</div>
-                                        <button
-                                            type="button"
+                                        <AppButton
+                                            variant="filled"
+                                            color="default"
+                                            size="small"
                                             disabled={pager.currentPage === 1}
-                                            className="rounded-md bg-[#f4f4f4] p-1 enabled:hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60 ltr:mr-3 rtl:ml-3 dark:bg-white-dark/20 enabled:dark:hover:bg-white-dark/30"
+                                            className="ltr:mr-3 rtl:ml-3"
+                                            icon={<IconCaretDown className="h-5 w-5 rotate-90 rtl:-rotate-90" />}
                                             onClick={() => {
                                                 pager.currentPage--;
                                                 searchMails(false);
                                             }}
-                                        >
-                                            <IconCaretDown className="h-5 w-5 rotate-90 rtl:-rotate-90" />
-                                        </button>
-                                        <button
-                                            type="button"
+                                        />
+                                        <AppButton
+                                            variant="filled"
+                                            color="default"
+                                            size="small"
                                             disabled={pager.currentPage === pager.totalPages}
-                                            className="rounded-md bg-[#f4f4f4] p-1 enabled:hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white-dark/20 enabled:dark:hover:bg-white-dark/30"
+                                            icon={<IconCaretDown className="h-5 w-5 -rotate-90 rtl:rotate-90" />}
                                             onClick={() => {
                                                 pager.currentPage++;
                                                 searchMails(false);
                                             }}
-                                        >
-                                            <IconCaretDown className="h-5 w-5 -rotate-90 rtl:rotate-90" />
-                                        </button>
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -1731,36 +1740,36 @@ const ComponentsAppsMailbox = () => {
                                                                     />
                                                                 </div>
                                                                 <div className="ltr:mr-3 rtl:ml-3">
-                                                                    <Tippy content="Star">
-                                                                        <button
-                                                                            type="button"
-                                                                            className={`flex items-center enabled:hover:text-warning disabled:opacity-60 ${mail.isStar ? 'text-warning' : ''}`}
+                                                                    <Tooltip title="Star">
+                                                                        <AppButton
+                                                                            type="text"
+                                                                            size="small"
+                                                                            shape="circle"
+                                                                            className={`enabled:hover:text-warning! ${mail.isStar ? 'text-warning!' : ''}`}
+                                                                            icon={<IconStar className={mail.isStar ? 'fill-warning' : ''} />}
                                                                             onClick={(e) => {
                                                                                 e.stopPropagation();
                                                                                 setStar(mail.id);
                                                                             }}
                                                                             disabled={selectedTab === 'trash'}
-                                                                        >
-                                                                            <IconStar className={mail.isStar ? 'fill-warning' : ''} />
-                                                                        </button>
-                                                                    </Tippy>
+                                                                        />
+                                                                    </Tooltip>
                                                                 </div>
                                                                 <div className="ltr:mr-3 rtl:ml-3">
-                                                                    <Tippy content="Important">
-                                                                        <button
-                                                                            type="button"
-                                                                            className={`flex rotate-90 items-center enabled:hover:text-primary disabled:opacity-60 ${
-                                                                                mail.isImportant ? 'text-primary' : ''
-                                                                            }`}
+                                                                    <Tooltip title="Important">
+                                                                        <AppButton
+                                                                            type="text"
+                                                                            size="small"
+                                                                            shape="circle"
+                                                                            className={`rotate-90 enabled:hover:text-primary! ${mail.isImportant ? 'text-primary!' : ''}`}
+                                                                            icon={<IconBookmark bookmark={false} className={`h-4.5 w-4.5 ${mail.isImportant && 'fill-primary'}`} />}
                                                                             onClick={(e) => {
                                                                                 e.stopPropagation();
                                                                                 setImportant(mail.id);
                                                                             }}
                                                                             disabled={selectedTab === 'trash'}
-                                                                        >
-                                                                            <IconBookmark bookmark={false} className={`h-4.5 w-4.5 ${mail.isImportant && 'fill-primary'}`} />
-                                                                        </button>
-                                                                    </Tippy>
+                                                                        />
+                                                                    </Tooltip>
                                                                 </div>
                                                                 <div className={`whitespace-nowrap font-semibold dark:text-gray-300 ${!mail.isUnread ? 'text-gray-500 dark:text-gray-500' : ''}`}>
                                                                     {mail.firstName ? mail.firstName + ' ' + mail.lastName : mail.email}
@@ -1809,24 +1818,26 @@ const ComponentsAppsMailbox = () => {
                         <div>
                             <div className="flex flex-wrap items-center justify-between p-4">
                                 <div className="flex items-center">
-                                    <button type="button" className="hover:text-primary ltr:mr-2 rtl:ml-2" onClick={() => setSelectedMail(null)}>
-                                        <IconArrowLeft className="h-5 w-5 rotate-180" />
-                                    </button>
+                                    <AppButton
+                                        type="text"
+                                        shape="circle"
+                                        className="hover:text-primary! ltr:mr-2 rtl:ml-2"
+                                        icon={<IconArrowLeft className="h-5 w-5 rotate-180" />}
+                                        onClick={() => setSelectedMail(null)}
+                                    />
                                     <h4 className="text-base font-medium ltr:mr-2 rtl:ml-2 md:text-lg">{selectedMail.title}</h4>
                                     <div className="badge bg-info hover:top-0">{selectedMail.type}</div>
                                 </div>
                                 <div>
-                                    <Tippy content="Print">
-                                        <button type="button">
-                                            <IconPrinter />
-                                        </button>
-                                    </Tippy>
+                                    <Tooltip title="Print">
+                                        <AppButton type="text" shape="circle" icon={<IconPrinter />} />
+                                    </Tooltip>
                                 </div>
                             </div>
                             <div className="h-px border-b border-white-light dark:border-[#1b2e4b]"></div>
                             <div className="relative p-4">
                                 <div className="flex flex-wrap">
-                                    <div className="flex-shrink-0 ltr:mr-2 rtl:ml-2">
+                                    <div className="shrink-0 ltr:mr-2 rtl:ml-2">
                                         {selectedMail.path ? (
                                             <img src={`/assets/images/${selectedMail.path}`} className="h-12 w-12 rounded-full object-cover" alt="avatar" />
                                         ) : (
@@ -1842,7 +1853,7 @@ const ComponentsAppsMailbox = () => {
                                             </div>
                                             {selectedMail.group && (
                                                 <div className="ltr:mr-4 rtl:ml-4">
-                                                    <Tippy content={selectedMail.group} className="capitalize">
+                                                    <Tooltip title={selectedMail.group} classNames={{ container: 'capitalize' }}>
                                                         <div
                                                             className={`h-2 w-2 rounded-full ${
                                                                 (selectedMail.group === 'personal' && 'bg-primary') ||
@@ -1851,7 +1862,7 @@ const ComponentsAppsMailbox = () => {
                                                                 (selectedMail.group === 'private' && 'bg-danger')
                                                             }`}
                                                         ></div>
-                                                    </Tippy>
+                                                    </Tooltip>
                                                 </div>
                                             )}
                                             <div className="whitespace-nowrap text-white-dark">1 days ago</div>
@@ -1869,13 +1880,13 @@ const ComponentsAppsMailbox = () => {
                                                         <li>
                                                             <div className="flex items-center px-4 py-2">
                                                                 <div className="w-1/4 text-white-dark ltr:mr-2 rtl:ml-2">From:</div>
-                                                                <div className="flex-1 truncate">{selectedMail.type === 'sent_mail' ? 'vristo@gmail.com' : selectedMail.email}</div>
+                                                                <div className="flex-1 truncate">{selectedMail.type === 'sent_mail' ? 'nextis-core@gmail.com' : selectedMail.email}</div>
                                                             </div>
                                                         </li>
                                                         <li>
                                                             <div className="flex items-center px-4 py-2">
                                                                 <div className="w-1/4 text-white-dark ltr:mr-2 rtl:ml-2">To:</div>
-                                                                <div className="flex-1 truncate">{selectedMail.type !== 'sent_mail' ? 'vristo@gmail.com' : selectedMail.email}</div>
+                                                                <div className="flex-1 truncate">{selectedMail.type !== 'sent_mail' ? 'nextis-core@gmail.com' : selectedMail.email}</div>
                                                             </div>
                                                         </li>
                                                         <li>
@@ -1898,38 +1909,54 @@ const ComponentsAppsMailbox = () => {
 
                                     <div>
                                         <div className="flex items-center justify-center space-x-3 rtl:space-x-reverse">
-                                            <Tippy content="Star">
-                                                <button
-                                                    type="button"
-                                                    className={`enabled:hover:text-warning disabled:opacity-60 ${selectedMail.isStar ? 'text-warning' : ''}`}
+                                            <Tooltip title="Star">
+                                                <AppButton
+                                                    type="text"
+                                                    shape="circle"
+                                                    className={`enabled:hover:text-warning! ${selectedMail.isStar ? 'text-warning!' : ''}`}
+                                                    icon={<IconStar className={selectedMail.isStar ? 'fill-warning' : ''} />}
                                                     onClick={() => setStar(selectedMail.id)}
                                                     disabled={selectedTab === 'trash'}
-                                                >
-                                                    <IconStar className={selectedMail.isStar ? 'fill-warning' : ''} />
-                                                </button>
-                                            </Tippy>
-                                            <Tippy content="Important">
-                                                <button
-                                                    type="button"
-                                                    className={`enabled:hover:text-primary disabled:opacity-60 ${selectedMail.isImportant ? 'text-primary' : ''}`}
+                                                />
+                                            </Tooltip>
+                                            <Tooltip title="Important">
+                                                <AppButton
+                                                    type="text"
+                                                    shape="circle"
+                                                    className={`enabled:hover:text-primary! ${selectedMail.isImportant ? 'text-primary!' : ''}`}
+                                                    icon={<IconBookmark bookmark={false} className={`h-4.5 w-4.5 rotate-90 ${selectedMail.isImportant && 'fill-primary'}`} />}
                                                     onClick={() => setImportant(selectedMail.id)}
                                                     disabled={selectedTab === 'trash'}
-                                                >
-                                                    <IconBookmark bookmark={false} className={`h-4.5 w-4.5 rotate-90 ${selectedMail.isImportant && 'fill-primary'}`} />
-                                                </button>
-                                            </Tippy>
-                                            <Tippy content="Reply">
-                                                <button type="button" className="hover:text-info" onClick={() => openMail('reply', selectedMail)}>
-                                                    <IconArrowBackward className="rtl:hidden" />
-                                                    <IconArrowForward className="ltr:hidden" />
-                                                </button>
-                                            </Tippy>
-                                            <Tippy content="Forward">
-                                                <button type="button" className="hover:text-info" onClick={() => openMail('forward', selectedMail)}>
-                                                    <IconArrowBackward className="ltr:hidden" />
-                                                    <IconArrowForward className="rtl:hidden" />
-                                                </button>
-                                            </Tippy>
+                                                />
+                                            </Tooltip>
+                                            <Tooltip title="Reply">
+                                                <AppButton
+                                                    type="text"
+                                                    shape="circle"
+                                                    className="hover:text-info!"
+                                                    icon={
+                                                        <>
+                                                            <IconArrowBackward className="rtl:hidden" />
+                                                            <IconArrowForward className="ltr:hidden" />
+                                                        </>
+                                                    }
+                                                    onClick={() => openMail('reply', selectedMail)}
+                                                />
+                                            </Tooltip>
+                                            <Tooltip title="Forward">
+                                                <AppButton
+                                                    type="text"
+                                                    shape="circle"
+                                                    className="hover:text-info!"
+                                                    icon={
+                                                        <>
+                                                            <IconArrowBackward className="ltr:hidden" />
+                                                            <IconArrowForward className="rtl:hidden" />
+                                                        </>
+                                                    }
+                                                    onClick={() => openMail('forward', selectedMail)}
+                                                />
+                                            </Tooltip>
                                         </div>
                                     </div>
                                 </div>
@@ -1948,10 +1975,11 @@ const ComponentsAppsMailbox = () => {
                                         <div className="mt-6 flex flex-wrap items-center">
                                             {selectedMail.attachments.map((attachment: any, i: number) => {
                                                 return (
-                                                    <button
+                                                    <AppButton
                                                         key={i}
-                                                        type="button"
-                                                        className="group relative mb-4 flex items-center rounded-md border border-white-light px-4 py-2.5 transition-all duration-300 hover:border-primary hover:text-primary ltr:mr-4 rtl:ml-4 dark:border-[#1b2e4b]"
+                                                        variant="outlined"
+                                                        color="default"
+                                                        className="group relative mb-4 h-auto! px-4! py-2.5! text-left! hover:border-primary! hover:text-primary! ltr:mr-4 rtl:ml-4 dark:border-[#1b2e4b]!"
                                                     >
                                                         {attachment.type === 'image' && <IconGallery />}
                                                         {attachment.type === 'folder' && <IconFolder />}
@@ -1962,11 +1990,11 @@ const ComponentsAppsMailbox = () => {
                                                             <p className="text-xs font-semibold text-primary">{attachment.name}</p>
                                                             <p className="text-[11px] text-gray-400 dark:text-gray-600">{attachment.size}</p>
                                                         </div>
-                                                        <div className="absolute top-0 z-[5] hidden h-full w-full rounded-md bg-dark-light/40 group-hover:block ltr:left-0 rtl:right-0"></div>
+                                                        <div className="absolute top-0 z-5 hidden h-full w-full rounded-md bg-dark-light/40 group-hover:block ltr:left-0 rtl:right-0"></div>
                                                         <div className="btn btn-primary absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 rounded-full p-1 group-hover:block">
                                                             <IconDownload className="h-4.5 w-4.5" />
                                                         </div>
-                                                    </button>
+                                                    </AppButton>
                                                 );
                                             })}
                                         </div>
@@ -1979,12 +2007,16 @@ const ComponentsAppsMailbox = () => {
                     {isEdit && (
                         <div className="relative">
                             <div className="flex items-center px-6 py-4">
-                                <button type="button" className="block hover:text-primary ltr:mr-3 rtl:ml-3 xl:hidden" onClick={() => setIsShowMailMenu(!isShowMailMenu)}>
-                                    <IconMenu />
-                                </button>
+                                <AppButton
+                                    type="text"
+                                    shape="circle"
+                                    className="block! hover:text-primary! ltr:mr-3 rtl:ml-3 xl:hidden!"
+                                    icon={<IconMenu />}
+                                    onClick={() => setIsShowMailMenu(!isShowMailMenu)}
+                                />
                                 <h4 className="text-lg font-medium text-gray-600 dark:text-gray-400">Message</h4>
                             </div>
-                            <div className="h-px bg-gradient-to-l from-indigo-900/20 via-black to-indigo-900/20 opacity-[0.1] dark:via-white"></div>
+                            <div className="h-px bg-linear-to-l from-indigo-900/20 via-black to-indigo-900/20 opacity-[0.1] dark:via-white"></div>
                             <form className="grid gap-6 p-6">
                                 <div>
                                     <input
@@ -2026,22 +2058,22 @@ const ComponentsAppsMailbox = () => {
                                 <div>
                                     <input
                                         type="file"
-                                        className="form-input p-0 file:border-0 file:bg-primary/90 file:px-4 file:py-2 file:font-semibold file:text-white file:hover:bg-primary ltr:file:mr-5 rtl:file:ml-5"
+                                        className="form-input p-0 file:border-0 file:bg-primary/90 file:px-4 file:py-2 file:font-semibold file:text-white file:hover:bg-primary file:ltr:mr-5 file:rtl:ml-5"
                                         multiple
                                         accept="image/*,.zip,.pdf,.xls,.xlsx,.txt.doc,.docx"
                                         required
                                     />
                                 </div>
                                 <div className="mt-8 flex items-center ltr:ml-auto rtl:mr-auto">
-                                    <button type="button" className="btn btn-outline-danger ltr:mr-3 rtl:ml-3" onClick={closeMsgPopUp}>
+                                    <AppButton tone="danger" variant="outlined" className="ltr:mr-3 rtl:ml-3" onClick={closeMsgPopUp}>
                                         Close
-                                    </button>
-                                    <button type="button" className="btn btn-success ltr:mr-3 rtl:ml-3" onClick={() => saveMail('save', null)}>
+                                    </AppButton>
+                                    <AppButton tone="success" variant="solid" className="ltr:mr-3 rtl:ml-3" onClick={() => saveMail('save', null)}>
                                         Save
-                                    </button>
-                                    <button type="button" className="btn btn-primary" onClick={() => saveMail('send', params.id)}>
+                                    </AppButton>
+                                    <AppButton type="primary" onClick={() => saveMail('send', params.id)}>
                                         Send
-                                    </button>
+                                    </AppButton>
                                 </div>
                             </form>
                         </div>

@@ -22,7 +22,7 @@ const ColorLibrary = () => {
                 {/* main */}
                 <div>
                     <div className="mb-5 w-fit">
-                        <h5 className="rounded bg-success/20 px-3 py-1 text-base font-semibold text-success">Main Colors</h5>
+                        <h5 className="rounded-sm bg-success/20 px-3 py-1 text-base font-semibold text-success">Main Colors</h5>
                     </div>
                     <div className="mb-5">
                         <div className="mb-7 grid grid-cols-2 gap-4 font-semibold dark:text-white-dark sm:grid-cols-3 sm:gap-7">
@@ -161,7 +161,7 @@ const ColorLibrary = () => {
                 {/* more */}
                 <div>
                     <div className="mb-5 w-fit">
-                        <h5 className="rounded bg-success/20 px-3 py-1 text-sm font-semibold text-success sm:text-base">More Colors</h5>
+                        <h5 className="rounded-sm bg-success/20 px-3 py-1 text-sm font-semibold text-success sm:text-base">More Colors</h5>
                     </div>
                     <div>
                         <div className="grid grid-cols-2 gap-4 font-semibold dark:text-white-dark sm:grid-cols-3 sm:gap-7">

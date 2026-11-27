@@ -18,16 +18,15 @@ import IconSquareCheck from '@/components/icon/icon-square-check';
 import IconThumbUp from '@/components/icon/icon-thumb-up';
 import IconTrendingUp from '@/components/icon/icon-trending-up';
 import IconUsersGroup from '@/components/icon/icon-users-group';
-import { IRootState } from '@/store';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import { useSelector } from 'react-redux';
+import { useThemeStore } from '@/store/useThemeStore';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 const ComponentsDashboardAnalytics = () => {
-    const isDark = useSelector((state: IRootState) => state.themeConfig.theme === 'dark' || state.themeConfig.isDarkMode);
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl';
+    const isDark = useThemeStore((s) => s.theme === 'dark' || s.isDarkMode);
+    const isRtl = useThemeStore((s) => s.rtlClass) === 'rtl';
     const [isMounted, setIsMounted] = useState(false);
     useEffect(() => {
         setIsMounted(true);
@@ -368,7 +367,7 @@ const ComponentsDashboardAnalytics = () => {
                                     offset={[0, 5]}
                                     placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
                                     btnClassName="hover:text-primary"
-                                    button={<IconHorizontalDots className="text-black/70 hover:!text-primary dark:text-white/70" />}
+                                    button={<IconHorizontalDots className="text-black/70 hover:text-primary! dark:text-white/70" />}
                                 >
                                     <ul>
                                         <li>
@@ -416,7 +415,7 @@ const ComponentsDashboardAnalytics = () => {
                                     offset={[0, 5]}
                                     placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
                                     btnClassName="hover:text-primary"
-                                    button={<IconHorizontalDots className="text-black/70 hover:!text-primary dark:text-white/70" />}
+                                    button={<IconHorizontalDots className="text-black/70 hover:text-primary! dark:text-white/70" />}
                                 >
                                     <ul>
                                         <li>
@@ -443,7 +442,7 @@ const ComponentsDashboardAnalytics = () => {
                         <div className="flex items-center justify-between">
                             <div className="h-5 w-full overflow-hidden rounded-full bg-dark-light p-1 shadow-3xl dark:bg-dark-light/10 dark:shadow-none">
                                 <div
-                                    className="relative h-full w-full rounded-full bg-gradient-to-r from-[#4361ee] to-[#805dca] before:absolute before:inset-y-0 before:m-auto before:h-2 before:w-2 before:rounded-full before:bg-white ltr:before:right-0.5 rtl:before:left-0.5"
+                                    className="relative h-full w-full rounded-full bg-linear-to-r from-[#4361ee] to-[#805dca] before:absolute before:inset-y-0 before:m-auto before:h-2 before:w-2 before:rounded-full before:bg-white ltr:before:right-0.5 rtl:before:left-0.5"
                                     style={{ width: '65%' }}
                                 ></div>
                             </div>
@@ -457,24 +456,24 @@ const ComponentsDashboardAnalytics = () => {
                             background: 'linear-gradient(0deg,#00c6fb -227%,#005bea)',
                         }}
                     >
-                        <div className="z-[7] mb-16 flex items-start justify-between text-white-light">
+                        <div className="z-7 mb-16 flex items-start justify-between text-white-light">
                             <h5 className="text-lg font-semibold">Total Balance</h5>
 
                             <div className="relative whitespace-nowrap text-xl">
                                 $ 41,741.42
-                                <span className="mt-1 table rounded bg-[#4361ee] p-1 text-xs text-[#d3d3d3] ltr:ml-auto rtl:mr-auto">+ 2453</span>
+                                <span className="mt-1 table rounded-sm bg-primary p-1 text-xs text-[#d3d3d3] ltr:ml-auto rtl:mr-auto">+ 2453</span>
                             </div>
                         </div>
                         <div className="z-10 flex items-center justify-between">
                             <div className="flex items-center justify-between">
-                                <button type="button" className="place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc] ltr:mr-2 rtl:ml-2">
+                                <button type="button" className="place-content-center rounded-sm p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc] ltr:mr-2 rtl:ml-2">
                                     <IconPlus />
                                 </button>
-                                <button type="button" className="grid place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc]">
+                                <button type="button" className="grid place-content-center rounded-sm p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc]">
                                     <IconCreditCard />
                                 </button>
                             </div>
-                            <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
+                            <button type="button" className="z-10 rounded-sm p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-primary">
                                 Upgrade
                             </button>
                         </div>
@@ -490,7 +489,7 @@ const ComponentsDashboardAnalytics = () => {
                                     offset={[0, 5]}
                                     placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
                                     btnClassName="hover:text-primary"
-                                    button={<IconHorizontalDots className="text-black/70 hover:!text-primary dark:text-white/70" />}
+                                    button={<IconHorizontalDots className="text-black/70 hover:text-primary! dark:text-white/70" />}
                                 >
                                     <ul>
                                         <li>
@@ -518,7 +517,7 @@ const ComponentsDashboardAnalytics = () => {
                                     offset={[0, 5]}
                                     placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
                                     btnClassName="hover:text-primary"
-                                    button={<IconHorizontalDots className="text-black/70 hover:!text-primary dark:text-white/70" />}
+                                    button={<IconHorizontalDots className="text-black/70 hover:text-primary! dark:text-white/70" />}
                                 >
                                     <ul>
                                         <li>
@@ -535,7 +534,7 @@ const ComponentsDashboardAnalytics = () => {
                             <div className="space-y-7">
                                 <div className="flex">
                                     <div className="relative z-10 shrink-0 before:absolute before:left-4 before:top-10 before:h-[calc(100%-24px)] before:w-[2px] before:bg-white-dark/30 ltr:mr-2 rtl:ml-2">
-                                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-white shadow shadow-secondary">
+                                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-white shadow-sm shadow-secondary">
                                             <IconPlus className="h-4 w-4" />
                                         </div>
                                     </div>
@@ -543,7 +542,7 @@ const ComponentsDashboardAnalytics = () => {
                                         <h5 className="font-semibold dark:text-white-light">
                                             New project created :{' '}
                                             <button type="button" className="text-success">
-                                                [VRISTO Admin Template]
+                                                [nextis-core Admin Template]
                                             </button>
                                         </h5>
                                         <p className="text-xs text-white-dark">27 Feb, 2020</p>
@@ -645,7 +644,7 @@ const ComponentsDashboardAnalytics = () => {
                                     <div>
                                         <div className="h-5 w-full overflow-hidden rounded-full bg-dark-light p-1 shadow-3xl dark:bg-dark-light/10 dark:shadow-none">
                                             <div
-                                                className="relative h-full w-full rounded-full bg-gradient-to-r from-[#009ffd] to-[#2a2a72] before:absolute before:inset-y-0 before:m-auto before:h-2 before:w-2 before:rounded-full before:bg-white ltr:before:right-0.5 rtl:before:left-0.5"
+                                                className="relative h-full w-full rounded-full bg-linear-to-r from-[#009ffd] to-[#2a2a72] before:absolute before:inset-y-0 before:m-auto before:h-2 before:w-2 before:rounded-full before:bg-white ltr:before:right-0.5 rtl:before:left-0.5"
                                                 style={{ width: '65%' }}
                                             ></div>
                                         </div>
@@ -666,7 +665,7 @@ const ComponentsDashboardAnalytics = () => {
                                     <div>
                                         <div className="h-5 w-full overflow-hidden rounded-full bg-dark-light p-1 shadow-3xl dark:bg-dark-light/10 dark:shadow-none">
                                             <div
-                                                className="relative h-full w-full rounded-full bg-gradient-to-r from-[#a71d31] to-[#3f0d12] before:absolute before:inset-y-0 before:m-auto before:h-2 before:w-2 before:rounded-full before:bg-white ltr:before:right-0.5 rtl:before:left-0.5"
+                                                className="relative h-full w-full rounded-full bg-linear-to-r from-[#a71d31] to-[#3f0d12] before:absolute before:inset-y-0 before:m-auto before:h-2 before:w-2 before:rounded-full before:bg-white ltr:before:right-0.5 rtl:before:left-0.5"
                                                 style={{ width: '40%' }}
                                             ></div>
                                         </div>
@@ -687,7 +686,7 @@ const ComponentsDashboardAnalytics = () => {
                                     <div>
                                         <div className="h-5 w-full overflow-hidden rounded-full bg-dark-light p-1 shadow-3xl dark:bg-dark-light/10 dark:shadow-none">
                                             <div
-                                                className="relative h-full w-full rounded-full bg-gradient-to-r from-[#fe5f75] to-[#fc9842] before:absolute before:inset-y-0 before:m-auto before:h-2 before:w-2 before:rounded-full before:bg-white ltr:before:right-0.5 rtl:before:left-0.5"
+                                                className="relative h-full w-full rounded-full bg-linear-to-r from-[#fe5f75] to-[#fc9842] before:absolute before:inset-y-0 before:m-auto before:h-2 before:w-2 before:rounded-full before:bg-white ltr:before:right-0.5 rtl:before:left-0.5"
                                                 style={{ width: '25%' }}
                                             ></div>
                                         </div>
@@ -797,7 +796,7 @@ const ComponentsDashboardAnalytics = () => {
                             </div>
 
                             <div className="absolute bottom-0 -mx-5 flex w-full items-center justify-between p-5">
-                                <button type="button" className="btn btn-secondary btn-lg w-full border-0 bg-gradient-to-r from-[#3d38e1] to-[#1e9afe]">
+                                <button type="button" className="btn btn-secondary btn-lg w-full border-0 bg-linear-to-r from-[#3d38e1] to-[#1e9afe]">
                                     View Details
                                 </button>
                             </div>
@@ -821,7 +820,7 @@ const ComponentsDashboardAnalytics = () => {
                                     offset={[0, 5]}
                                     placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
                                     btnClassName="hover:text-primary"
-                                    button={<IconHorizontalDots className="h-5 w-5 text-black/70 hover:!text-primary dark:text-white/70" />}
+                                    button={<IconHorizontalDots className="h-5 w-5 text-black/70 hover:text-primary! dark:text-white/70" />}
                                 >
                                     <ul>
                                         <li>
@@ -847,13 +846,13 @@ const ComponentsDashboardAnalytics = () => {
                                 <p className="text-primary">65%</p>
                             </div>
                             <div className="mb-5 h-2.5 rounded-full bg-dark-light p-0.5 dark:bg-dark-light/10">
-                                <div className="h-full rounded-full bg-gradient-to-r from-[#1e9afe] to-[#60dfcd]" style={{ width: '65%' }}></div>
+                                <div className="h-full rounded-full bg-linear-to-r from-[#1e9afe] to-[#60dfcd]" style={{ width: '65%' }}></div>
                             </div>
                             <div className="flex items-end justify-between">
                                 <div className="flex items-center rounded-full bg-danger/20 px-2 py-1 text-xs font-semibold text-danger">
                                     <IconClock className="h-3 w-3 ltr:mr-1 rtl:ml-1" />3 Days Left
                                 </div>
-                                <div className="flex items-center justify-center group-hover:-space-x-2 rtl:space-x-reverse rtl:group-hover:space-x-reverse">
+                                <div className="flex items-center justify-center group-hover:-space-x-2 rtl:space-x-reverse group-hover:rtl:space-x-reverse">
                                     <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#bfc9d4] font-semibold text-white opacity-0 transition-all duration-300 group-hover:opacity-100 dark:bg-dark">
                                         +6
                                     </span>

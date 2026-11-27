@@ -1,4 +1,4 @@
-# Project AI Guidelines (`vristo-next` / Next.js 14 App Router)
+# Project AI Guidelines (`nextis-core` / Next.js 14 App Router)
 
 This repository is a Next.js 14 App Router (`app/`) dashboard application using React 18, TypeScript (`strict: true`, `@/*` path alias to repo root), Tailwind CSS 3, and Redux Toolkit (`store/`).
 

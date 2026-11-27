@@ -6,6 +6,7 @@ import IconSend from '@/components/icon/icon-send';
 import IconX from '@/components/icon/icon-x';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import AppButton from '@/components/ui/app-button';
 
 const ComponentsAppsInvoiceEdit = () => {
     const currencyList = ['USD - US Dollar', 'GBP - British Pound', 'IDR - Indonesian Rupiah', 'INR - Indian Rupee', 'BRL - Brazilian Real', 'EUR - Germany (Euro)', 'TRY - Turkish Lira'];
@@ -99,7 +100,7 @@ const ComponentsAppsInvoiceEdit = () => {
 
     return (
         <div className="flex flex-col gap-2.5 xl:flex-row">
-            <div className="panel flex-1 px-0 py-6 ltr:xl:mr-6 rtl:xl:ml-6">
+            <div className="panel flex-1 px-0 py-6 xl:ltr:mr-6 xl:rtl:ml-6">
                 <div className="flex flex-wrap justify-between px-4">
                     <div className="mb-6 w-full lg:w-1/2">
                         <div className="flex shrink-0 items-center text-black dark:text-white">
@@ -107,7 +108,7 @@ const ComponentsAppsInvoiceEdit = () => {
                         </div>
                         <div className="mt-6 space-y-1 text-gray-500 dark:text-gray-400">
                             <div>13 Tetrick Road, Cypress Gardens, Florida, 33884, US</div>
-                            <div>vristo@gmail.com</div>
+                            <div>nextis-core@gmail.com</div>
                             <div>+1 (070) 123-4567</div>
                         </div>
                     </div>
@@ -141,7 +142,7 @@ const ComponentsAppsInvoiceEdit = () => {
                 <hr className="my-6 border-white-light dark:border-[#1b2e4b]" />
                 <div className="mt-8 px-4">
                     <div className="flex flex-col justify-between lg:flex-row">
-                        <div className="mb-6 w-full lg:w-1/2 ltr:lg:mr-6 rtl:lg:ml-6">
+                        <div className="mb-6 w-full lg:w-1/2 lg:ltr:mr-6 lg:rtl:ml-6">
                             <div className="text-lg">Bill To :-</div>
                             <div className="mt-4 flex items-center">
                                 <label htmlFor="reciever-name" className="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">
@@ -410,7 +411,7 @@ const ComponentsAppsInvoiceEdit = () => {
                             <tbody>
                                 {items.length <= 0 && (
                                     <tr>
-                                        <td colSpan={5} className="!text-center font-semibold">
+                                        <td colSpan={5} className="text-center! font-semibold">
                                             No Item Available
                                         </td>
                                     </tr>
@@ -444,9 +445,7 @@ const ComponentsAppsInvoiceEdit = () => {
                                             </td>
                                             <td>${item.quantity * item.amount}</td>
                                             <td>
-                                                <button type="button" onClick={() => removeItem(item)}>
-                                                    <IconX className="h-5 w-5" />
-                                                </button>
+                                                <AppButton type="text" size="small" shape="circle" icon={<IconX className="h-5 w-5" />} onClick={() => removeItem(item)} />
                                             </td>
                                         </tr>
                                     );
@@ -456,9 +455,9 @@ const ComponentsAppsInvoiceEdit = () => {
                     </div>
                     <div className="mt-6 flex flex-col justify-between px-4 sm:flex-row">
                         <div className="mb-6 sm:mb-0">
-                            <button type="button" className="btn btn-primary" onClick={() => addItem()}>
+                            <AppButton type="primary" onClick={() => addItem()}>
                                 Add Item
-                            </button>
+                            </AppButton>
                         </div>
                         <div className="sm:w-2/5">
                             <div className="flex items-center justify-between">
@@ -535,25 +534,22 @@ const ComponentsAppsInvoiceEdit = () => {
                 </div>
                 <div className="panel">
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
-                        <button type="button" className="btn btn-success w-full gap-2">
-                            <IconSave className="shrink-0 ltr:mr-2 rtl:ml-2" />
+                        <AppButton tone="success" variant="solid" block icon={<IconSave className="shrink-0" />}>
                             Save
-                        </button>
+                        </AppButton>
 
-                        <button type="button" className="btn btn-info w-full gap-2">
-                            <IconSend className="shrink-0 ltr:mr-2 rtl:ml-2" />
+                        <AppButton tone="info" variant="solid" block icon={<IconSend className="shrink-0" />}>
                             Send Invoice
-                        </button>
+                        </AppButton>
 
                         <Link href="/apps/invoice/preview" className="btn btn-primary w-full gap-2">
                             <IconEye className="shrink-0 ltr:mr-2 rtl:ml-2" />
                             Preview
                         </Link>
 
-                        <button type="button" className="btn btn-secondary w-full gap-2">
-                            <IconDownload className="shrink-0 ltr:mr-2 rtl:ml-2" />
+                        <AppButton tone="secondary" variant="solid" block icon={<IconDownload className="shrink-0" />}>
                             Download
-                        </button>
+                        </AppButton>
                     </div>
                 </div>
             </div>
