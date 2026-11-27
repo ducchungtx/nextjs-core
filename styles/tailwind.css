@@ -1,9 +1,6 @@
 /* Animate css */
 @import './animate.css';
 
-/* swiper css */
-@import './swiper.css';
-
 /* Elements - Progressbar */
 @import './progressbar.css';
 
@@ -12,9 +9,6 @@
 
 /* calendar css */
 @import './fullcalendar.css';
-
-/* sweetalert css */
-@import './sweetalert.css';
 
 /* quill-editor css */
 @import './quill-editor.css';

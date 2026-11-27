@@ -27,7 +27,6 @@ import IconCaretDown from '@/components/icon/icon-caret-down';
 import IconMenuApps from '@/components/icon/menu/icon-menu-apps';
 import IconMenuComponents from '@/components/icon/menu/icon-menu-components';
 import IconMenuElements from '@/components/icon/menu/icon-menu-elements';
-import IconMenuForms from '@/components/icon/menu/icon-menu-forms';
 import IconMenuPages from '@/components/icon/menu/icon-menu-pages';
 import IconMenuMore from '@/components/icon/menu/icon-menu-more';
 import { usePathname, useRouter } from 'next/navigation';
@@ -550,46 +549,13 @@ const Header = () => {
                         </button>
                         <ul className="sub-menu">
                             <li>
-                                <Link href="/components/tabs">{t('tabs')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/components/accordions">{t('accordions')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/components/modals">{t('modals')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/components/cards">{t('cards')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/components/carousel">{t('carousel')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/components/countdown">{t('countdown')}</Link>
-                            </li>
-                            <li>
                                 <Link href="/components/counter">{t('counter')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/components/sweetalert">{t('sweet_alerts')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/components/timeline">{t('timeline')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/components/notifications">{t('notifications')}</Link>
                             </li>
                             <li>
                                 <Link href="/components/media-object">{t('media_object')}</Link>
                             </li>
                             <li>
-                                <Link href="/components/list-group">{t('list_group')}</Link>
-                            </li>
-                            <li>
                                 <Link href="/components/pricing-table">{t('pricing_tables')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/components/lightbox">{t('lightbox')}</Link>
                             </li>
                         </ul>
                     </li>
@@ -605,116 +571,13 @@ const Header = () => {
                         </button>
                         <ul className="sub-menu">
                             <li>
-                                <Link href="/elements/alerts">{t('alerts')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/elements/avatar">{t('avatar')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/elements/badges">{t('badges')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/elements/breadcrumbs">{t('breadcrumbs')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/elements/buttons">{t('buttons')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/elements/buttons-group">{t('button_groups')}</Link>
-                            </li>
-                            <li>
                                 <Link href="/elements/color-library">{t('color_library')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/elements/dropdown">{t('dropdown')}</Link>
                             </li>
                             <li>
                                 <Link href="/elements/infobox">{t('infobox')}</Link>
                             </li>
                             <li>
                                 <Link href="/elements/jumbotron">{t('jumbotron')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/elements/loader">{t('loader')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/elements/pagination">{t('pagination')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/elements/popovers">{t('popovers')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/elements/progress-bar">{t('progress_bar')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/elements/search">{t('search')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/elements/tooltips">{t('tooltips')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/elements/treeview">{t('treeview')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/elements/typography">{t('typography')}</Link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li className="menu nav-item relative">
-                        <button type="button" className="nav-link">
-                            <div className="flex items-center">
-                                <IconMenuForms className="shrink-0" />
-                                <span className="px-1">{t('forms')}</span>
-                            </div>
-                            <div className="right_arrow">
-                                <IconCaretDown />
-                            </div>
-                        </button>
-                        <ul className="sub-menu">
-                            <li>
-                                <Link href="/forms/basic">{t('basic')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/forms/input-group">{t('input_group')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/forms/layouts">{t('layouts')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/forms/validation">{t('validation')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/forms/input-mask">{t('input_mask')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/forms/select2">{t('select2')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/forms/touchspin">{t('touchspin')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/forms/checkbox-radio">{t('checkbox_and_radio')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/forms/switches">{t('switches')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/forms/wizards">{t('wizards')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/forms/file-upload">{t('file_upload')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/forms/quill-editor">{t('quill_editor')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/forms/markdown-editor">{t('markdown_editor')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/forms/date-picker">{t('date_and_range_picker')}</Link>
-                            </li>
-                            <li>
-                                <Link href="/forms/clipboard">{t('clipboard')}</Link>
                             </li>
                         </ul>
                     </li>

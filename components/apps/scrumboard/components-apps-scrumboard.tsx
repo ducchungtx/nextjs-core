@@ -10,10 +10,10 @@ import IconTrashLines from '@/components/icon/icon-trash-lines';
 import IconX from '@/components/icon/icon-x';
 import { IRootState } from '@/store';
 import { Transition, Dialog, DialogPanel, TransitionChild } from '@headlessui/react';
+import { message } from 'antd';
 import React, { Fragment, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ReactSortable } from 'react-sortablejs';
-import Swal from 'sweetalert2';
 
 const ComponentsAppsScrumBoard = () => {
     const [projectList, setProjectList] = useState<any>([
@@ -116,18 +116,11 @@ const ComponentsAppsScrumBoard = () => {
         });
     };
 
-    const showMessage = (msg = '', type = 'success') => {
-        const toast: any = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 3000,
-            customClass: { container: 'toast' },
-        });
-        toast.fire({
-            icon: type,
-            title: msg,
-            padding: '10px 20px',
+    const showMessage = (msg = '', type: 'success' | 'error' | 'info' | 'warning' = 'success') => {
+        message.open({
+            type,
+            content: msg,
+            duration: 3,
         });
     };
 

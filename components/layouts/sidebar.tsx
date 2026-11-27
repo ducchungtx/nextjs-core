@@ -24,7 +24,6 @@ import IconMenuCharts from '@/components/icon/menu/icon-menu-charts';
 import IconMenuWidgets from '@/components/icon/menu/icon-menu-widgets';
 import IconMenuFontIcons from '@/components/icon/menu/icon-menu-font-icons';
 import IconMenuDragAndDrop from '@/components/icon/menu/icon-menu-drag-and-drop';
-import IconMenuForms from '@/components/icon/menu/icon-menu-forms';
 import IconMenuUsers from '@/components/icon/menu/icon-menu-users';
 import IconMenuPages from '@/components/icon/menu/icon-menu-pages';
 import IconMenuAuthentication from '@/components/icon/menu/icon-menu-authentication';
@@ -249,46 +248,13 @@ const Sidebar = () => {
                                 <AnimateHeight duration={300} height={currentMenu === 'component' ? 'auto' : 0}>
                                     <ul className="sub-menu text-gray-500">
                                         <li>
-                                            <Link href="/components/tabs">{t('tabs')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/components/accordions">{t('accordions')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/components/modals">{t('modals')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/components/cards">{t('cards')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/components/carousel">{t('carousel')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/components/countdown">{t('countdown')}</Link>
-                                        </li>
-                                        <li>
                                             <Link href="/components/counter">{t('counter')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/components/sweetalert">{t('sweet_alerts')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/components/timeline">{t('timeline')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/components/notifications">{t('notifications')}</Link>
                                         </li>
                                         <li>
                                             <Link href="/components/media-object">{t('media_object')}</Link>
                                         </li>
                                         <li>
-                                            <Link href="/components/list-group">{t('list_group')}</Link>
-                                        </li>
-                                        <li>
                                             <Link href="/components/pricing-table">{t('pricing_tables')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/components/lightbox">{t('lightbox')}</Link>
                                         </li>
                                     </ul>
                                 </AnimateHeight>
@@ -309,58 +275,13 @@ const Sidebar = () => {
                                 <AnimateHeight duration={300} height={currentMenu === 'element' ? 'auto' : 0}>
                                     <ul className="sub-menu text-gray-500">
                                         <li>
-                                            <Link href="/elements/alerts">{t('alerts')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/elements/avatar">{t('avatar')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/elements/badges">{t('badges')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/elements/breadcrumbs">{t('breadcrumbs')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/elements/buttons">{t('buttons')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/elements/buttons-group">{t('button_groups')}</Link>
-                                        </li>
-                                        <li>
                                             <Link href="/elements/color-library">{t('color_library')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/elements/dropdown">{t('dropdown')}</Link>
                                         </li>
                                         <li>
                                             <Link href="/elements/infobox">{t('infobox')}</Link>
                                         </li>
                                         <li>
                                             <Link href="/elements/jumbotron">{t('jumbotron')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/elements/loader">{t('loader')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/elements/pagination">{t('pagination')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/elements/popovers">{t('popovers')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/elements/progress-bar">{t('progress_bar')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/elements/search">{t('search')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/elements/tooltips">{t('tooltips')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/elements/treeview">{t('treeview')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/elements/typography">{t('typography')}</Link>
                                         </li>
                                     </ul>
                                 </AnimateHeight>
@@ -400,74 +321,6 @@ const Sidebar = () => {
                                         <span className="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">{t('drag_and_drop')}</span>
                                     </div>
                                 </Link>
-                            </li>
-
-                            <h2 className="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
-                                <IconMinus className="hidden h-5 w-4 flex-none" />
-                                <span>{t('tables_and_forms')}</span>
-                            </h2>
-
-                            <li className="menu nav-item">
-                                <button type="button" className={`${currentMenu === 'forms' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('forms')}>
-                                    <div className="flex items-center">
-                                        <IconMenuForms className="shrink-0 group-hover:!text-primary" />
-                                        <span className="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">{t('forms')}</span>
-                                    </div>
-
-                                    <div className={currentMenu !== 'forms' ? '-rotate-90 rtl:rotate-90' : ''}>
-                                        <IconCaretDown />
-                                    </div>
-                                </button>
-
-                                <AnimateHeight duration={300} height={currentMenu === 'forms' ? 'auto' : 0}>
-                                    <ul className="sub-menu text-gray-500">
-                                        <li>
-                                            <Link href="/forms/basic">{t('basic')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/forms/input-group">{t('input_group')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/forms/layouts">{t('layouts')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/forms/validation">{t('validation')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/forms/input-mask">{t('input_mask')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/forms/select2">{t('select2')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/forms/touchspin">{t('touchspin')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/forms/checkbox-radio">{t('checkbox_and_radio')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/forms/switches">{t('switches')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/forms/wizards">{t('wizards')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/forms/file-upload">{t('file_upload')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/forms/quill-editor">{t('quill_editor')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/forms/markdown-editor">{t('markdown_editor')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/forms/date-picker">{t('date_and_range_picker')}</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/forms/clipboard">{t('clipboard')}</Link>
-                                        </li>
-                                    </ul>
-                                </AnimateHeight>
                             </li>
 
                             <h2 className="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">

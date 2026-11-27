@@ -17,10 +17,10 @@ import IconUser from '@/components/icon/icon-user';
 import IconX from '@/components/icon/icon-x';
 import { IRootState } from '@/store';
 import { Transition, Dialog, DialogPanel, TransitionChild } from '@headlessui/react';
+import { message } from 'antd';
 import React, { Fragment, useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import { useSelector } from 'react-redux';
-import Swal from 'sweetalert2';
 import 'react-quill/dist/quill.snow.css';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
@@ -576,18 +576,11 @@ const ComponentsAppsTodoList = () => {
         setAddTaskModal(false);
     };
 
-    const showMessage = (msg = '', type = 'success') => {
-        const toast: any = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 3000,
-            customClass: { container: 'toast' },
-        });
-        toast.fire({
-            icon: type,
-            title: msg,
-            padding: '10px 20px',
+    const showMessage = (msg = '', type: 'success' | 'error' | 'info' | 'warning' = 'success') => {
+        message.open({
+            type,
+            content: msg,
+            duration: 3,
         });
     };
 

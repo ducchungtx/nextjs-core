@@ -40,11 +40,10 @@ import IconWheel from '@/components/icon/icon-wheel';
 import IconZipFile from '@/components/icon/icon-zip-file';
 import { IRootState } from '@/store';
 import { Disclosure } from '@headlessui/react';
-import { Tooltip } from 'antd';
+import { message, Tooltip } from 'antd';
 import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import { useSelector } from 'react-redux';
-import Swal from 'sweetalert2';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-quill/dist/quill.snow.css';
 
@@ -1207,18 +1206,11 @@ const ComponentsAppsMailbox = () => {
         searchMails();
     };
 
-    const showMessage = (msg = '', type = 'success') => {
-        const toast: any = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 3000,
-            customClass: { container: 'toast' },
-        });
-        toast.fire({
-            icon: type,
-            title: msg,
-            padding: '10px 20px',
+    const showMessage = (msg = '', type: 'success' | 'error' | 'info' | 'warning' = 'success') => {
+        message.open({
+            type,
+            content: msg,
+            duration: 3,
         });
     };
 

@@ -2,8 +2,8 @@
 import IconPlus from '@/components/icon/icon-plus';
 import IconX from '@/components/icon/icon-x';
 import { Transition, Dialog, DialogBackdrop, TransitionChild, DialogPanel } from '@headlessui/react';
+import { message } from 'antd';
 import React, { Fragment, useState } from 'react';
-import Swal from 'sweetalert2';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -227,18 +227,11 @@ const ComponentsAppsCalendar = () => {
         const { value, id } = e.target;
         setParams({ ...params, [id]: value });
     };
-    const showMessage = (msg = '', type = 'success') => {
-        const toast: any = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 3000,
-            customClass: { container: 'toast' },
-        });
-        toast.fire({
-            icon: type,
-            title: msg,
-            padding: '10px 20px',
+    const showMessage = (msg = '', type: 'success' | 'error' | 'info' | 'warning' = 'success') => {
+        message.open({
+            type,
+            content: msg,
+            duration: 3,
         });
     };
 

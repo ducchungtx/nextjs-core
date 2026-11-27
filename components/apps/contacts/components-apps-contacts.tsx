@@ -10,8 +10,8 @@ import IconUser from '@/components/icon/icon-user';
 import IconUserPlus from '@/components/icon/icon-user-plus';
 import IconX from '@/components/icon/icon-x';
 import { Transition, Dialog, TransitionChild, DialogPanel } from '@headlessui/react';
+import { message } from 'antd';
 import React, { Fragment, useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
 
 const ComponentsAppsContacts = () => {
     const [addContactModal, setAddContactModal] = useState<any>(false);
@@ -260,18 +260,11 @@ const ComponentsAppsContacts = () => {
         showMessage('User has been deleted successfully.');
     };
 
-    const showMessage = (msg = '', type = 'success') => {
-        const toast: any = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 3000,
-            customClass: { container: 'toast' },
-        });
-        toast.fire({
-            icon: type,
-            title: msg,
-            padding: '10px 20px',
+    const showMessage = (msg = '', type: 'success' | 'error' | 'info' | 'warning' = 'success') => {
+        message.open({
+            type,
+            content: msg,
+            duration: 3,
         });
     };
 
